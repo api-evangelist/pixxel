@@ -1,0 +1,109 @@
+openapi: 3.0.0
+info:
+  description: Swagger doc for Stargate
+  title: stargate AOI Bandset API
+  contact:
+    name: Team-Identity
+    email: identity@pixxel.co.in
+  version: v0.1.0
+servers:
+- url: https://api.pixxel.space
+tags:
+- name: Bandset
+paths:
+  /v0/bandsets:
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: List of all bandsets, that can be used to place a tasking order.
+      tags:
+      - Bandset
+      summary: List all bandsets
+      operationId: ListBandsets
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ListBandsets'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/orders/bandsets
+components:
+  schemas:
+    clerk.Error:
+      type: object
+      properties:
+        code:
+          description: short string based code reflecting the type of error
+          type: string
+        details:
+          description: additional details on the error
+        message:
+          description: info message on the error
+          type: string
+    clerk.ListBandsets:
+      type: object
+      properties:
+        bandsets:
+          type: array
+          items:
+            $ref: '#/components/schemas/clerk.Bandset'
+    clerk.Band:
+      type: object
+      properties:
+        name:
+          description: name of the band
+          type: string
+          example: B001
+        wavelength:
+          description: wavelength of the band in nm
+          type: number
+          example: 473
+    clerk.Bandset:
+      type: object
+      properties:
+        bands:
+          description: list of bands in the bandset
+          type: array
+          items:
+            $ref: '#/components/schemas/clerk.Band'
+        captures:
+          description: number of captures required to fulfill the order for the current bandset. tasking order cost is dependent on the number of captures required by the bandset
+          type: integer
+          example: 1
+        description:
+          description: description of the bandset
+          type: string
+          example: Agriculture bandset
+        id:
+          description: id of the bandset
+          type: string
+          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
+        name:
+          description: name of the bandset
+          type: string
+          example: Agriculture
+    clerk.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/clerk.Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: Authorization
+      in: header

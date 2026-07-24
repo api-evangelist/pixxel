@@ -1,0 +1,219 @@
+openapi: 3.0.0
+info:
+  description: Swagger doc for Stargate
+  title: stargate AOI Assets API
+  contact:
+    name: Team-Identity
+    email: identity@pixxel.co.in
+  version: v0.1.0
+servers:
+- url: https://api.pixxel.space
+tags:
+- name: Assets
+paths:
+  /v0/aois/{aoi_id}/assets:
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: List all assets for a given AOI with optional filtering
+      tags:
+      - Assets
+      summary: List assets for an AOI
+      operationId: ListAssets
+      parameters:
+      - description: AOI ID
+        name: aoi_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: Offset for pagination
+        name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - description: Limit for pagination
+        name: limit
+        in: query
+        schema:
+          type: integer
+          default: 10
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/atlas.AssetListResponseModel'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/assets/list-assets
+components:
+  schemas:
+    atlas.AssetStatus:
+      type: string
+      enum:
+      - success
+      - failed
+      - started
+      - creating
+      x-enum-varnames:
+      - AssetStatusSuccess
+      - AssetStatusFailed
+      - AssetStatusStarted
+      - AssetStatusCreating
+    atlas.AssetType:
+      type: string
+      enum:
+      - mosaic
+      - stac_item
+      - visualization
+      x-enum-varnames:
+      - MosaicAssetType
+      - STACItemAssetType
+      - VisualizationAssetType
+    atlas.AssetListResponseModel:
+      type: object
+      properties:
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/atlas.AssetReadModel'
+        pagination:
+          $ref: '#/components/schemas/common.Pagination'
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
+    common.Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          x-order: '10037'
+          example: 10
+        offset:
+          type: integer
+          x-order: '10038'
+          example: 0
+        total:
+          type: integer
+          x-order: '10039'
+          example: 100
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
+    atlas.Polygon:
+      type: object
+      required:
+      - coordinates
+      - type
+      properties:
+        type:
+          description: GeoJSON geometry type. Must be "Polygon" for AOI boundaries
+          type: string
+          x-order: '100'
+          example: Polygon
+        coordinates:
+          description: 'Nested array of coordinates [[[lng,lat],...]] forming a closed polygon. Example: [[[49.32, 40.85], [49.32, 9.08], [110.7, 9.08], [110.7, 40.85], [49.32, 40.85]]]'
+          type: array
+          items:
+            type: array
+            items:
+              type: array
+              items:
+                type: number
+          x-order: '101'
+    atlas.AssetReadModel:
+      type: object
+      properties:
+        aoi_id:
+          type: string
+          example: e9767554-550e-4464-a677-b8cf096073ab
+        area_in_sq_m:
+          type: number
+          example: 0
+        asset_type:
+          allOf:
+          - $ref: '#/components/schemas/atlas.AssetType'
+          example: mosaic
+        band_list:
+          type: array
+          items:
+            type: string
+          example:
+          - B01
+          - B02
+        centroid:
+          type: array
+          items:
+            type: number
+          example:
+          - 77.55
+          - 12.95
+        created_at:
+          type: string
+          example: '2022-11-14 12:55:49.125928+00:00'
+        date:
+          type: string
+          example: '2022-11-14'
+        description:
+          type: string
+          example: This asset is mosaic file
+        geometry:
+          $ref: '#/components/schemas/atlas.Polygon'
+        id:
+          type: string
+          example: e9767554-550e-4464-a677-b8cf096073ab
+        name:
+          type: string
+          example: Asset-A
+        path:
+          type: string
+          example: https://storage.account
+        progress:
+          type: integer
+          example: 0
+        resolution:
+          type: number
+          example: 10
+        status:
+          allOf:
+          - $ref: '#/components/schemas/atlas.AssetStatus'
+          example: success
+        updated_at:
+          type: string
+          example: '2022-11-14 12:55:49.125928+00:00'
+        visualization_id:
+          type: string
+          example: e9767554-550e-4464-a677-b8cf096073ab
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: Authorization
+      in: header

@@ -1,0 +1,307 @@
+openapi: 3.0.0
+info:
+  description: Swagger doc for Stargate
+  title: stargate AOI Indices API
+  contact:
+    name: Team-Identity
+    email: identity@pixxel.co.in
+  version: v0.1.0
+servers:
+- url: https://api.pixxel.space
+tags:
+- name: Indices
+paths:
+  /v0/indices:
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: Returns a list of all available indices (both custom and preset) with their formulas and metadata. Use the type query parameter to filter by custom or preset.
+      tags:
+      - Indices
+      summary: List all available indices
+      operationId: ListIndices
+      parameters:
+      - description: Offset for pagination
+        name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - description: Limit for pagination
+        name: limit
+        in: query
+        schema:
+          type: integer
+          default: 10
+      - description: Filter by satellite ID
+        name: satellite_id
+        in: query
+        schema:
+          type: string
+      - description: Filter by index type (custom/preset)
+        name: type
+        in: query
+        schema:
+          type: string
+      - description: Filter by expression type
+        name: expression_type
+        in: query
+        schema:
+          type: string
+      - description: Filter by index ID
+        name: index_id
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/atlas.ListIndicesResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/indices/list-indices
+    post:
+      security:
+      - ApiKeyAuth: []
+      description: Creates a new custom index with the provided parameters. This endpoint is for creating custom indices only; preset indices are pre-generated and can be viewed using the list indices endpoint.
+      tags:
+      - Indices
+      summary: Create a new index
+      operationId: CreateIndex
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/atlas.IndexCreateRequest'
+        description: Index creation parameters
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/atlas.IndexCreateResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/indices/create-index
+components:
+  schemas:
+    atlas.IndexEntity:
+      type: object
+      properties:
+        bands:
+          type: array
+          items:
+            type: string
+        colormap:
+          type: string
+        created_at:
+          type: string
+        description:
+          type: string
+        expression:
+          type: string
+        expression_type:
+          $ref: '#/components/schemas/atlas.ExpressionType'
+        id:
+          type: string
+        name:
+          type: string
+        rescale:
+          type: array
+          items:
+            type: integer
+        satellite_id:
+          type: string
+        type:
+          $ref: '#/components/schemas/atlas.IndexType'
+        updated_at:
+          type: string
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
+    atlas.IndexCreateRequest:
+      type: object
+      required:
+      - colormap
+      - description
+      - expression
+      - expression_type
+      - name
+      - rescale
+      - satellite_id
+      properties:
+        name:
+          type: string
+          x-order: '100'
+          example: NDVI
+        description:
+          type: string
+          x-order: '101'
+          example: This formula will give insights about vegetation
+        rescale:
+          type: array
+          items:
+            type: integer
+          x-order: '102'
+          example:
+          - 0
+          - 1
+        expression:
+          type: string
+          x-order: '103'
+          example: (B04-B08)/(B04+B08)
+        colormap:
+          type: string
+          x-order: '104'
+          example: rplumbho
+        satellite_id:
+          type: string
+          x-order: '105'
+          example: 0002a3a3-00a2-4b55-842b-44d8202c6d60
+        expression_type:
+          allOf:
+          - $ref: '#/components/schemas/atlas.ExpressionType'
+          x-order: '106'
+          example: index
+    common.Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          x-order: '10037'
+          example: 10
+        offset:
+          type: integer
+          x-order: '10038'
+          example: 0
+        total:
+          type: integer
+          x-order: '10039'
+          example: 100
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
+    atlas.ExpressionType:
+      type: string
+      enum:
+      - composite
+      - index
+      - grayscale
+      x-enum-varnames:
+      - ExpressionTypeComposite
+      - ExpressionTypeIndex
+      - ExpressionTypeGrayscale
+    atlas.ListIndicesResponse:
+      type: object
+      properties:
+        indices:
+          type: array
+          items:
+            $ref: '#/components/schemas/atlas.IndexEntity'
+        pagination:
+          $ref: '#/components/schemas/common.Pagination'
+    atlas.IndexType:
+      type: string
+      enum:
+      - custom
+      - preset
+      x-enum-varnames:
+      - Custom
+      - Preset
+    atlas.IndexCreateResponse:
+      type: object
+      properties:
+        bands:
+          type: array
+          items:
+            type: string
+          example:
+          - B01
+          - B02
+          - B03
+        colormap:
+          type: string
+          example: rplumbho
+        created_at:
+          type: string
+          example: '2022-11-14 12:55:49.125928+00:00'
+        description:
+          type: string
+          example: This formula will give insights about vegetation
+        expression:
+          type: string
+          example: (B04-B08)/(B04+B08)
+        expression_type:
+          allOf:
+          - $ref: '#/components/schemas/atlas.ExpressionType'
+          example: index
+        id:
+          type: string
+          example: e9767554-550e-4464-a677-b8cf096073ab
+        name:
+          type: string
+          example: NDVI
+        rescale:
+          type: array
+          items:
+            type: integer
+          example:
+          - 0
+          - 1
+        satellite_id:
+          type: string
+          example: 0002a3a3-00a2-4b55-842b-44d8202c6d60
+        type:
+          allOf:
+          - $ref: '#/components/schemas/atlas.IndexType'
+          example: custom
+        updated_at:
+          type: string
+          example: '2022-11-14 12:55:49.125928+00:00'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: Authorization
+      in: header

@@ -1,0 +1,158 @@
+openapi: 3.0.0
+info:
+  description: Swagger doc for Stargate
+  title: stargate AOI Downloads API
+  contact:
+    name: Team-Identity
+    email: identity@pixxel.co.in
+  version: v0.1.0
+servers:
+- url: https://api.pixxel.space
+tags:
+- name: Downloads
+paths:
+  /v0/aois/{aoi_id}/downloads:
+    post:
+      security:
+      - ApiKeyAuth: []
+      description: Creates a download request for specified assets in an AOI
+      tags:
+      - Downloads
+      summary: Create a download request for assets in an AOI
+      operationId: AOICreateDownload
+      parameters:
+      - description: AOI ID
+        name: aoi_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/atlas.DownloadCreateModel'
+        description: Download Request
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/atlas.DownloadReadModel'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/assets/create-download
+  /v0/aois/{aoi_id}/downloads/{download_id}:
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: Gets the status of a download request for an AOI
+      tags:
+      - Downloads
+      summary: Get status of a download request
+      operationId: GetDownloadStatus
+      parameters:
+      - description: AOI ID
+        name: aoi_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: Download ID
+        name: download_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/atlas.DownloadReadModel'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/assets/get-status-download-request
+components:
+  schemas:
+    atlas.DownloadReadModel:
+      type: object
+      properties:
+        download_id:
+          type: string
+          example: dc01addf-b6c3-4fa9-9a49-dcdcb4c99229
+        signed_url:
+          type: string
+          example: https://storage.account/download
+        status:
+          type: string
+          example: SUCCESS
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
+    atlas.DownloadCreateModel:
+      type: object
+      required:
+      - asset_ids
+      properties:
+        asset_ids:
+          type: array
+          items:
+            type: string
+          example:
+          - 00173fc9-7ea6-49a6-b030-620df1cf822d
+          - 49a6-b030-620df1cf822d-00173fc9-7ea6
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: Authorization
+      in: header

@@ -1,0 +1,81 @@
+openapi: 3.0.0
+info:
+  description: Swagger doc for Stargate
+  title: stargate AOI Report API
+  contact:
+    name: Team-Identity
+    email: identity@pixxel.co.in
+  version: v0.1.0
+servers:
+- url: https://api.pixxel.space
+tags:
+- name: Report
+paths:
+  /v0/reports:
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: Download the entire order history report for the organization, successful response is in csv format.
+      tags:
+      - Report
+      summary: download order report
+      operationId: DownloadOrderReport
+      parameters:
+      - description: local timezone of the client
+        name: tz
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+components:
+  schemas:
+    clerk.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/clerk.Error'
+    clerk.Error:
+      type: object
+      properties:
+        code:
+          description: short string based code reflecting the type of error
+          type: string
+        details:
+          description: additional details on the error
+        message:
+          description: info message on the error
+          type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: Authorization
+      in: header

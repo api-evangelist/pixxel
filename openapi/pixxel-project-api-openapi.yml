@@ -1,0 +1,195 @@
+openapi: 3.0.0
+info:
+  description: Swagger doc for Stargate
+  title: stargate AOI Project API
+  contact:
+    name: Team-Identity
+    email: identity@pixxel.co.in
+  version: v0.1.0
+servers:
+- url: https://api.pixxel.space
+tags:
+- name: Project
+paths:
+  /v0/projects:
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: List projects for the service user
+      tags:
+      - Project
+      summary: List projects
+      operationId: ListProjects
+      parameters:
+      - description: Page number
+        name: page_num
+        in: query
+        schema:
+          type: integer
+      - description: Page size
+        name: page_size
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/frontier.listProjects'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/projects/list-get-projects
+  /v0/projects/{id}:
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: Get project by ID. Only the projects under current service user will be accessible.
+      tags:
+      - Project
+      summary: Get project
+      operationId: GetProjectById
+      parameters:
+      - description: Project ID
+        name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/frontier.getProjectById'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/projects/list-get-projects
+components:
+  schemas:
+    frontier.getProjectById:
+      type: object
+      properties:
+        project:
+          type: object
+          properties:
+            id:
+              description: ID of the project
+              type: string
+              x-order: '0'
+            name:
+              description: Project slug
+              type: string
+              x-order: '1'
+            title:
+              description: Project name
+              type: string
+              x-order: '2'
+            org_id:
+              description: Workspace ID this project belongs to
+              type: string
+              x-order: '3'
+            created_at:
+              description: Project creation datetime
+              type: string
+              x-order: '4'
+            updated_at:
+              description: Project update datetime
+              type: string
+              x-order: '5'
+            metadata:
+              description: Additional data in the form of key-value pairs
+              type: object
+              x-order: '6'
+    frontier.listProjects:
+      type: object
+      properties:
+        count:
+          description: Total count of records, to be used for pagination
+          type: integer
+        projects:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                description: ID of the project
+                type: string
+                x-order: '0'
+              name:
+                description: Project slug
+                type: string
+                x-order: '1'
+              title:
+                description: Project name
+                type: string
+                x-order: '2'
+              org_id:
+                description: Workspace ID this project belongs to
+                type: string
+                x-order: '3'
+              members_count:
+                description: Number of users in this project
+                type: integer
+                x-order: '4'
+              created_at:
+                description: Project creation datetime
+                type: string
+                x-order: '5'
+              updated_at:
+                description: Project update datetime
+                type: string
+                x-order: '6'
+              metadata:
+                description: Additional data in the form of key-value pairs
+                type: object
+                x-order: '7'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: Authorization
+      in: header

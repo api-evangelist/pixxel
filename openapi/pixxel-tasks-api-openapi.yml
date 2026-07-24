@@ -1,0 +1,106 @@
+openapi: 3.0.0
+info:
+  description: Swagger doc for Stargate
+  title: stargate AOI Tasks API
+  contact:
+    name: Team-Identity
+    email: identity@pixxel.co.in
+  version: v0.1.0
+servers:
+- url: https://api.pixxel.space
+tags:
+- name: Tasks
+paths:
+  /v0/workflows/{workflow_id}/jobs/{job_id}/tasks/{task_id}/download:
+    put:
+      security:
+      - ApiKeyAuth: []
+      description: Creates a download package containing the specified task assets from a job run of a workflow.
+      tags:
+      - Tasks
+      summary: Download Task
+      operationId: downloadTask
+      parameters:
+      - description: Unique ID for the workflow to download from
+        name: workflow_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: Specific job execution ID within the workflow
+        name: job_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: Target task ID containing assets to download
+        name: task_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/dexter.PutTaskUpstreamResponseBody'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/jobs/download-task
+components:
+  schemas:
+    dexter.PutTaskUpstreamResponseBody:
+      type: object
+      properties:
+        id:
+          description: Id is the unique identifier of the task
+          type: string
+          x-order: '10'
+        job_id:
+          description: JobId is the ID of the job
+          type: string
+          x-order: '20'
+        workflow_id:
+          description: WorkflowId is the ID of the workflow
+          type: string
+          x-order: '30'
+        status:
+          description: Status indicates the current status of the download operation
+          type: string
+          x-order: '40'
+        signed_url:
+          description: SignedUrl is the URL where the packaged assets can be downloaded from
+          type: string
+          x-order: '50'
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: Authorization
+      in: header

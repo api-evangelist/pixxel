@@ -1,0 +1,323 @@
+openapi: 3.0.0
+info:
+  description: Swagger doc for Stargate
+  title: stargate AOI Stores API
+  contact:
+    name: Team-Identity
+    email: identity@pixxel.co.in
+  version: v0.1.0
+servers:
+- url: https://api.pixxel.space
+tags:
+- name: Stores
+paths:
+  /v0/stores:
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: List stores under current workspace
+      tags:
+      - Stores
+      summary: List stores
+      operationId: ListStores
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/courier.ListStoresResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/orders/stores
+    post:
+      security:
+      - ApiKeyAuth: []
+      description: Create a store to export data to, under current workspace
+      tags:
+      - Stores
+      summary: Create a store
+      operationId: CreateStore
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/courier.CreateStoreRequest'
+        description: Create Store
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/courier.CreateStoreResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/orders/stores
+  /v0/stores/{id}:
+    delete:
+      security:
+      - ApiKeyAuth: []
+      description: Delete a store under current workspace
+      tags:
+      - Stores
+      summary: Delete a store
+      operationId: DeleteStore
+      parameters:
+      - description: Delete Store id
+        name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: ''
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/orders/stores
+components:
+  schemas:
+    courier.CreateStoreResponse:
+      type: object
+      properties:
+        id:
+          description: Identifier to be used while transferring data
+          type: string
+          x-order: '10'
+          example: 576d8241-6e78-40ad-b3e6-295edbfe71f5
+        name:
+          description: Unique user friendly name for easier identification
+          type: string
+          x-order: '20'
+          example: my-analysis-store
+        type:
+          description: Type of bucket depending on the cloud provider. Currently Supported - S3, AZBLOB, GCS
+          allOf:
+          - $ref: '#/components/schemas/domain.BucketType'
+          x-order: '30'
+          example: S3
+        configs:
+          allOf:
+          - $ref: '#/components/schemas/domain.StoreConfigs'
+          x-order: '40'
+        labels:
+          description: User defined labels for metadata
+          type: object
+          additionalProperties:
+            type: string
+          x-order: '50'
+          example:
+            env: prod
+            team: data
+        created_at:
+          description: Store creation time
+          type: string
+          x-order: '60'
+          example: '2024-03-20T15:04:05Z'
+        updated_at:
+          description: Store last updated time
+          type: string
+          x-order: '70'
+          example: '2024-03-20T15:04:05Z'
+        created_by:
+          description: Identifier of the user that created store
+          type: string
+          x-order: '80'
+          example: ea2a79fc-6f68-40d7-8b79-18195bf74872
+    domain.StoreConfigs:
+      type: object
+      required:
+      - bucket
+      - region
+      properties:
+        bucket:
+          description: Name of the bucket to be used for data transfers
+          type: string
+          x-order: '1'
+          example: my-data-bucket
+        region:
+          description: Region as defined by cloud provider
+          type: string
+          x-order: '2'
+          example: us-east-2
+        path_prefix:
+          description: Path prefix to be used for all transfers.
+          type: string
+          x-order: '3'
+          example: data/processed/
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
+    domain.Store:
+      type: object
+      properties:
+        id:
+          description: Identifier to be used while transferring data
+          type: string
+          x-order: '10'
+          example: 576d8241-6e78-40ad-b3e6-295edbfe71f5
+        name:
+          description: Unique user friendly name for easier identification
+          type: string
+          x-order: '20'
+          example: my-analysis-store
+        type:
+          description: Type of bucket depending on the cloud provider. Currently Supported - S3, AZBLOB, GCS
+          allOf:
+          - $ref: '#/components/schemas/domain.BucketType'
+          x-order: '30'
+          example: S3
+        configs:
+          allOf:
+          - $ref: '#/components/schemas/domain.StoreConfigs'
+          x-order: '40'
+        labels:
+          description: User defined labels for metadata
+          type: object
+          additionalProperties:
+            type: string
+          x-order: '50'
+          example:
+            env: prod
+            team: data
+        created_at:
+          description: Store creation time
+          type: string
+          x-order: '60'
+          example: '2024-03-20T15:04:05Z'
+        updated_at:
+          description: Store last updated time
+          type: string
+          x-order: '70'
+          example: '2024-03-20T15:04:05Z'
+        created_by:
+          description: Identifier of the user that created store
+          type: string
+          x-order: '80'
+          example: ea2a79fc-6f68-40d7-8b79-18195bf74872
+    domain.BucketType:
+      type: string
+      enum:
+      - S3
+      - GCS
+      - AZBLOB
+      x-enum-varnames:
+      - BucketTypeAWSS3
+      - BucketTypeGCS
+      - BucketTypeAZBLOB
+    courier.CreateStoreRequest:
+      type: object
+      required:
+      - configs
+      - name
+      - secrets
+      - type
+      properties:
+        name:
+          description: Unique user friendly name for easier identification
+          type: string
+          x-order: '10'
+          example: my-analysis-store
+        type:
+          description: Type of bucket depending on the cloud provider. Currently Supported - S3, AZBLOB, GCS
+          allOf:
+          - $ref: '#/components/schemas/domain.BucketType'
+          x-order: '20'
+          example: S3
+        configs:
+          allOf:
+          - $ref: '#/components/schemas/domain.StoreConfigs'
+          x-order: '30'
+        secrets:
+          description: "Credentials to be used for transferring data to specified bucket\nThese vary for each cloud provider -\n\t\t- **S3** - `access_key_id`, `secret_access_key`\n\t\t- **AZBLOB** - `account_name`, `tenant_id`, `client_id`, `client_secret`\n\t\t- **GCS** - `project_id`, `service_account_credentials`"
+          type: object
+          additionalProperties:
+            type: string
+          x-order: '40'
+        labels:
+          description: User defined labels for metadata
+          type: object
+          additionalProperties:
+            type: string
+          x-order: '50'
+          example:
+            env: prod
+            team: data
+    courier.ListStoresResponse:
+      type: object
+      properties:
+        stores:
+          type: array
+          items:
+            $ref: '#/components/schemas/domain.Store'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: Authorization
+      in: header

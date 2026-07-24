@@ -1,0 +1,492 @@
+openapi: 3.0.0
+info:
+  description: Swagger doc for Stargate
+  title: stargate AOI API
+  contact:
+    name: Team-Identity
+    email: identity@pixxel.co.in
+  version: v0.1.0
+servers:
+- url: https://api.pixxel.space
+tags:
+- name: AOI
+paths:
+  /v0/aois:
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: List all Areas of Interest (AOIs) with optional filtering
+      tags:
+      - AOI
+      summary: List all AOIs
+      operationId: ListAOIs
+      parameters:
+      - description: Offset for pagination
+        name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - description: Limit for pagination
+        name: limit
+        in: query
+        schema:
+          type: integer
+          default: 10
+      - description: Filter by creation date
+        name: created_at
+        in: query
+        schema:
+          type: string
+      - description: Filter by update date
+        name: updated_at
+        in: query
+        schema:
+          type: string
+      - description: Filter by AOI ID
+        name: aoi_id
+        in: query
+        schema:
+          type: string
+      - description: Filter by AOI name
+        name: aoi_name
+        in: query
+        schema:
+          type: string
+      - description: Filter by project IDs (comma separated)
+        name: project_ids
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/atlas.AOIListResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/aoi/list-aoi
+    post:
+      security:
+      - ApiKeyAuth: []
+      description: Creates a new AOI with specified parameters
+      tags:
+      - AOI
+      summary: Create a new AOI
+      operationId: AOICreateAOI
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/atlas.AOICreateModelV2'
+        description: AOI Creation Request
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/atlas.AOI'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/aoi/create-aoi
+  /v0/aoi/{aoi_id}:
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: Get AOI by ID. Only the AOIs under current service user will be accessible.
+      tags:
+      - AOI
+      summary: Get AOI
+      operationId: GetAoiById
+      parameters:
+      - description: AOI ID
+        name: aoi_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/atlas.AOI'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/aoi/get-aoi
+  /v0/satellites:
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: List of supported satellites. This endpoint returns all available satellites in a single response; pagination is not required as the satellite catalog contains a limited set of entries.
+      tags:
+      - AOI
+      summary: List supported satellites
+      operationId: List Satellites
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/lens.modifiedSuccessResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/search/list-supported-satellites
+components:
+  schemas:
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
+    atlas.AOI:
+      type: object
+      properties:
+        aoi_id:
+          description: Unique identifier (UUID) of the created AOI
+          type: string
+          x-order: '100'
+          example: e9767554-550e-4464-a677-b8cf096073ab
+        name:
+          description: Unique user friendly name of the AOI for easier identification
+          type: string
+          x-order: '101'
+          example: AOI-D2
+        description:
+          description: Brief description of the AOI explaining its purpose or contents
+          type: string
+          x-order: '102'
+          example: This AOI contains images of D2
+        satellite_id:
+          description: 'Unique identifier (UUID) for the satellite. Each satellite has a unique ID mapped to its name: - `Pixxel-TD1` - `0004ab8d-0ad1-4d62-8a3f-fe18a7000e70` - `Pixxel-TD2` - `0005c5bb-0bd2-4c80-9393-4a808341c54c`'
+          type: string
+          x-order: '103'
+          example: 0005c5bb-0bd2-4c80-9393-4a808341c54c
+        project_id:
+          description: UUID of the project this AOI belongs to
+          type: string
+          x-order: '104'
+          example: ce5dcc14-8291-4b0c-a278-8c05ec426d22
+        images:
+          description: Map of images associated with the AOI, keyed by image identifier
+          type: object
+          additionalProperties: true
+          x-order: '105'
+        eo_bands:
+          description: List of Earth Observation bands available for this AOI
+          type: array
+          items:
+            type: string
+          x-order: '106'
+          example:
+          - B01
+          - B02
+          - B03
+        geometry:
+          description: GeoJSON Polygon geometry defining the geographic boundary of the AOI
+          allOf:
+          - $ref: '#/components/schemas/atlas.Polygon'
+          x-order: '107'
+        progress:
+          description: Processing progress of the AOI from 0 to 100 in percentage
+          type: integer
+          x-order: '108'
+          example: 100
+        status:
+          description: 'Current status of the AOI: success, started, running, failed, updating, partial_success'
+          allOf:
+          - $ref: '#/components/schemas/atlas.AOIStatus'
+          x-order: '109'
+          example: success
+        is_favourite:
+          description: Whether the AOI is marked as favourite by the user
+          type: boolean
+          x-order: '110'
+          example: false
+        created_at:
+          description: Timestamp when the AOI was created (ISO 8601 format)
+          type: string
+          x-order: '111'
+          example: '2022-11-14T12:55:49.125928+00:00'
+        updated_at:
+          description: Timestamp when the AOI was last updated (ISO 8601 format)
+          type: string
+          x-order: '112'
+          example: '2022-11-14T12:55:49.125928+00:00'
+        user_id:
+          description: Unique identifier of the user who created the AOI
+          type: string
+          x-order: '113'
+          example: user-123456
+        area_in_sq_m:
+          description: Total area of the AOI in square meters
+          type: number
+          x-order: '114'
+          example: 123456.78
+        centroid:
+          description: Geographic centroid coordinates of the AOI [longitude, latitude]
+          type: array
+          items:
+            type: number
+          x-order: '115'
+          example:
+          - 77.55
+          - 12.95
+    lens.modifiedSuccessResponse:
+      type: object
+      properties:
+        satellites:
+          type: array
+          items:
+            $ref: '#/components/schemas/lens.originalSuccessResponse'
+    common.Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          x-order: '10037'
+          example: 10
+        offset:
+          type: integer
+          x-order: '10038'
+          example: 0
+        total:
+          type: integer
+          x-order: '10039'
+          example: 100
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
+    atlas.Polygon:
+      type: object
+      required:
+      - coordinates
+      - type
+      properties:
+        type:
+          description: GeoJSON geometry type. Must be "Polygon" for AOI boundaries
+          type: string
+          x-order: '100'
+          example: Polygon
+        coordinates:
+          description: 'Nested array of coordinates [[[lng,lat],...]] forming a closed polygon. Example: [[[49.32, 40.85], [49.32, 9.08], [110.7, 9.08], [110.7, 40.85], [49.32, 40.85]]]'
+          type: array
+          items:
+            type: array
+            items:
+              type: array
+              items:
+                type: number
+          x-order: '101'
+    atlas.AOIListResponse:
+      type: object
+      properties:
+        aois:
+          type: array
+          items:
+            $ref: '#/components/schemas/atlas.AOI'
+        pagination:
+          $ref: '#/components/schemas/common.Pagination'
+    atlas.AOIStatus:
+      type: string
+      enum:
+      - success
+      - started
+      - running
+      - failed
+      - updating
+      - partial_success
+      x-enum-varnames:
+      - AOIStatusSuccess
+      - AOIStatusStarted
+      - AOIStatusRunning
+      - AOIStatusFailed
+      - AOIStatusUpdating
+      - AOIStatusPartial_Success
+    lens.originalSuccessResponse:
+      type: object
+      properties:
+        bands:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              offset:
+                type: number
+              scale:
+                type: number
+              spatial_resolution:
+                type: integer
+              wavelength:
+                type: number
+        collections:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              provider:
+                type: string
+              queryables:
+                type: array
+                items:
+                  type: string
+              rescale:
+                type: array
+                items:
+                  type: integer
+        id:
+          type: string
+        name:
+          type: string
+        rgb_composite:
+          type: object
+          properties:
+            blue:
+              type: string
+            green:
+              type: string
+            red:
+              type: string
+    atlas.AOICreateModelV2:
+      type: object
+      required:
+      - description
+      - geometry
+      - item_ids
+      - name
+      - project_id
+      - provider
+      - satellite_id
+      properties:
+        name:
+          description: Unique user friendly name of the AOI for easier identification
+          type: string
+          x-order: '100'
+          example: AOI-D2
+        description:
+          description: Brief description of the AOI explaining its purpose or contents
+          type: string
+          x-order: '101'
+          example: This AOI contains images of D2
+        satellite_id:
+          description: 'Unique identifier (UUID) for the satellite. Each satellite has a unique ID mapped to its name: - `Pixxel-TD1` - `0004ab8d-0ad1-4d62-8a3f-fe18a7000e70` - `Pixxel-TD2` - `0005c5bb-0bd2-4c80-9393-4a808341c54c`'
+          type: string
+          x-order: '102'
+          example: 0005c5bb-0bd2-4c80-9393-4a808341c54c
+        provider:
+          description: 'Data provider source for satellite imagery: - `pixxel` - For TD and Firefly satellite imagery - `planetary` - For all open source satellite data (Landsat, Sentinel, etc.)'
+          type: string
+          x-order: '103'
+          example: pixxel
+        project_id:
+          description: UUID of the project this AOI belongs to. The AOI will be associated with this project for organization
+          type: string
+          x-order: '104'
+          example: ce5dcc14-8291-4b0c-a278-8c05ec426d22
+        geometry:
+          description: Polygon geometry defining the geographic boundary of the AOI
+          allOf:
+          - $ref: '#/components/schemas/atlas.Polygon'
+          x-order: '105'
+        item_ids:
+          description: 'Array of satellite image item IDs to include in this AOI. Item IDs Example: `["TD2_000650_20230404_L2A_20240405_01001067", "TD1_005630_20230314_L2A_20230504_03001069"]`'
+          type: array
+          items:
+            type: string
+          x-order: '106'
+          example:
+          - TD2_00056_20230815_L2A_004010_01001001
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: Authorization
+      in: header

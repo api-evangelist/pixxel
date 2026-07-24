@@ -1,0 +1,796 @@
+openapi: 3.0.0
+info:
+  description: Swagger doc for Stargate
+  title: stargate AOI Catalog API
+  contact:
+    name: Team-Identity
+    email: identity@pixxel.co.in
+  version: v0.1.0
+servers:
+- url: https://api.pixxel.space
+tags:
+- name: Catalog
+paths:
+  /v0/catalogs/deliveries:
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: List of all deliveries for the workspace
+      tags:
+      - Catalog
+      summary: List all deliveries
+      operationId: ListDeliveries
+      parameters:
+      - description: Delivery ID
+        name: delivery_id
+        in: query
+        schema:
+          type: string
+      - description: Catalog ID
+        name: catalog_id
+        in: query
+        schema:
+          type: string
+      - description: Task ID
+        name: task_id
+        in: query
+        schema:
+          type: string
+      - description: Order Item ID
+        name: order_item_id
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ListDeliveries'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/orders/delivery-download
+    post:
+      security:
+      - ApiKeyAuth: []
+      description: Create a delivery request which will be fulfilled async, only one of catalog id or order_item should be populated in a single delivery request.
+      tags:
+      - Catalog
+      summary: Create deliveries
+      operationId: CreateDelivery
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/clerk.CreateDeliveryRequest'
+        description: Request Body
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ListDeliveries'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/orders/delivery-download
+  /v0/catalogs/download:
+    post:
+      security:
+      - ApiKeyAuth: []
+      description: Create a download resource which will get populated with a signed url async. Only one of orderitem or catalog id should be populated in a single request.
+      tags:
+      - Catalog
+      summary: Create a download resource
+      operationId: CreateDownload
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/clerk.DownloadRequest'
+        description: Request Body
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.DownloadResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/orders/delivery-download
+  /v0/catalogs/download/{download_id}:
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: Get the current status of a download resource, signed_url field will be populated only if the operation is successful.
+      tags:
+      - Catalog
+      summary: Get download status
+      operationId: GetDownloadById
+      parameters:
+      - description: Download ID
+        name: download_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.DownloadResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/orders/delivery-download
+  /v0/catalogs/search:
+    post:
+      security:
+      - ApiKeyAuth: []
+      description: Search all catalogs owned by the workspace
+      tags:
+      - Catalog
+      summary: Search all catalogs
+      operationId: SearchCatalogs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/clerk.originalCatalogFilter'
+        description: Catalog filter
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.SearchCatalogsResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/orders/catalog
+  /v0/catalogs/{id}:
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: Get a single catalog by ID
+      tags:
+      - Catalog
+      summary: Get a catalog
+      operationId: GetCatalogById
+      parameters:
+      - description: Catalog ID
+        name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.Catalog'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/clerk.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/orders/catalog
+components:
+  schemas:
+    clerk.Error:
+      type: object
+      properties:
+        code:
+          description: short string based code reflecting the type of error
+          type: string
+        details:
+          description: additional details on the error
+        message:
+          description: info message on the error
+          type: string
+    clerk.Catalog:
+      type: object
+      properties:
+        area:
+          description: area of the catalog in sq. km
+          type: number
+          example: 100
+        bandset_id:
+          description: id of the bandset present in the catalog
+          type: string
+          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92277
+        created_at:
+          description: timestamp of the creation of the catalog
+          type: string
+          example: '2024-05-27T06:50:20.056549Z'
+        created_by:
+          description: uuid of the user who created the catalog
+          type: string
+          example: 0d7b3c5e-3b2a-4e77-bedb-5e0d2257cdb6
+        delivery_status:
+          description: status of the delivery of the catalog, in case automated delivery was enabled
+          allOf:
+          - $ref: '#/components/schemas/clerk.DeliveryStatus'
+          example: SUCCESSFUL
+        details:
+          description: STAC item info of the catalog
+          allOf:
+          - $ref: '#/components/schemas/clerk.STACItem'
+        id:
+          description: id of the catalog
+          type: string
+          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
+        org_id:
+          description: id of the workspace to which the catalog belongs
+          type: string
+          example: e31ab6f8-d359-4c6a-83c6-bfa322 29bb01
+        task_id:
+          description: id of the task, whose catalog this resource tracks
+          type: string
+          example: ef8195b7-5ca6-4aca-a3fc-df6ffd58892d
+        updated_at:
+          description: timestamp of the last update of the catalog
+          type: string
+          example: '2024-05-27T06:50:20.056549Z'
+        updated_by:
+          description: uuid of the user who last updated the catalog
+          type: string
+          example: 0ada9483-e3ed-4f31-8a69-372686966451
+    clerk.originalCatalogFilter:
+      type: object
+      properties:
+        bbox:
+          description: 'Only features that have a geometry that intersects the bounding box are selected. The bounding box is provided as four numbers:
+
+
+            Lower left: (Latitude 1, Longitude1)
+
+            Upper right: (Latitude 2, Longitude 2)
+
+            The coordinate reference system of the values is WGS84 longitude/latitude (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless a different coordinate reference system is specified in the parameter bbox-crs.
+
+
+            For WGS84 longitude/latitude the values are in most cases the sequence of minimum longitude, minimum latitude, maximum longitude and maximum latitude. However, in cases where the box spans the antimeridian the first value (west-most box edge) is larger than the third value (east-most box edge).
+
+
+            If a feature has multiple spatial geometry properties, it is the decision of the server whether only a single spatial geometry property is used to determine the extent or all relevant geometries.
+
+
+            Example: The bounding box of the New Zealand Exclusive Economic Zone in WGS 84 (from 160.6°E to 170°W and from 55.95°S to 25.89°S) would be represented in JSON as [160.6, -55.95, -170, -25.89] and in a query as bbox=160.6,-55.95,-170,-25.89'
+          type: array
+          items:
+            type: number
+          example:
+          - 160.6
+          - -55.95
+          - -170
+          - -25.89
+        collections:
+          description: Array of Collection IDs to include in the search for items. Only Item objects in one of the provided collections will be searched.
+          type: array
+          items:
+            type: string
+        datetime:
+          description: 'Either a date-time or an interval, open or closed. Date and time expressions adhere to RFC 3339. Open intervals are expressed using double-dots.
+
+
+            Examples:
+
+
+            A date-time: "2018-02-12T23:20:50Z"
+
+            A closed interval: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z"
+
+            Open intervals: "2018-02-12T00:00:00Z/.." or "../2018-03-18T12:31:12Z"
+
+            Only features that have a temporal property that intersects the value of datetime are selected.
+
+
+            If a feature has multiple temporal properties, it is the decision of the server whether only a single temporal property is used to determine the extent or all relevant temporal properties.'
+          type: string
+          example: 2020-04-05T11:56:49.865Z/2023-06-05T11:56:49.865Z
+        ids:
+          type: array
+          items:
+            type: string
+          example:
+          - 47435e2b-d8c4-41ff-9de9-2be3bfc92276
+        intersects:
+          description: 'pointGeoJSON (object) or multipointGeoJSON (object) or linestringGeoJSON (object) or multilinestringGeoJSON (object) or polygonGeoJSON (object) or multipolygonGeoJSON (object) or geometrycollectionGeoJSON (object) (geometryGeoJSON)
+
+            The optional intersects parameter filters the result Items in the same way as bbox, only with a GeoJSON Geometry rather than a bbox.'
+          allOf:
+          - $ref: '#/components/schemas/clerk.Geometry'
+        item_ids:
+          description: STAC Item IDs as present in the archives API
+          type: array
+          items:
+            type: string
+          example:
+          - TD1_2024_ABC
+        limit:
+          type: integer
+          default: 2
+          example: 50
+        offset:
+          type: integer
+          default: 0
+          minimum: 0
+          example: 50
+        order_ids:
+          type: array
+          items:
+            type: string
+          example:
+          - 57435e2b-d8c4-41ff-9de9-2be3bfc92277
+        order_item_ids:
+          type: array
+          items:
+            type: string
+          example:
+          - 57435e2b-d8c4-41ff-9de9-2be3bfc92278
+        query:
+          description: "a query object to search/filter according to the properites of the stac-item\n```\n\"query\": {\n   \"cloudcover\": {\n       \"gt\": 0,\n       \"lt\": 10\n   },\n   \"bands\": {\n       \"eq\": [\n           \"RGB\",\n           \"B001\",\n           \"B002\"\n       ]\n   }\n  }\n ```"
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties: true
+        sort_by:
+          description: "a sortby object to sort the items by the properties of the stac-item\n\"sortby\": [\n{\n    \"field\": \"properties->>'datetime'\",\n    \"direction\": \"desc\"\n}\n]"
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              $ref: '#/components/schemas/clerk.SortingOrder'
+    clerk.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/clerk.Error'
+    common.Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          x-order: '10037'
+          example: 10
+        offset:
+          type: integer
+          x-order: '10038'
+          example: 0
+        total:
+          type: integer
+          x-order: '10039'
+          example: 100
+    clerk.DownloadResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
+        signed_url:
+          type: string
+          example: http://signed_url_link
+        status:
+          allOf:
+          - $ref: '#/components/schemas/clerk.DownloadStatus'
+          example: success
+    clerk.ListDeliveries:
+      type: object
+      properties:
+        deliveries:
+          type: array
+          items:
+            $ref: '#/components/schemas/clerk.Delivery'
+    clerk.DownloadRequest:
+      type: object
+      required:
+      - catalog_ids
+      - order_item_ids
+      properties:
+        catalog_ids:
+          description: do not supply order_item_ids if this field is used
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+          example:
+          - 47435e2b-d8c4-51ff-9de9-2be3bfc92276
+        order_item_ids:
+          description: do not supply catalog_ids if this field is used
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    clerk.Properties:
+      type: object
+      properties:
+        constellation:
+          description: name of the constellation
+          type: string
+        created:
+          description: timestamp of the creation of the image
+          type: string
+        datetime:
+          description: timestamp of the image
+          type: string
+        eo:cloud_cover:
+          description: cloud cover percentage
+          type: number
+        gsd:
+          description: ground sample distance
+          type: integer
+        instruments:
+          description: list of instruments
+          type: array
+          items:
+            type: string
+        platform:
+          description: name of the platform
+          type: string
+        proj:epsg:
+          description: EPSG code of the projection
+          type: integer
+        proj:shape:
+          description: shape of the projection
+          type: array
+          items:
+            type: integer
+        proj:transform:
+          description: transform of the projection
+          type: array
+          items:
+            type: number
+        proj:wkt2:
+          description: WKT2 of the projection
+          type: string
+        sat:orbit_state:
+          description: orbit state of the satellite
+          type: string
+        sat:relative_orbit:
+          description: relative orbit number of the satellite
+          type: integer
+        sci:doi:
+          description: DOI of the scientific publication
+          type: string
+        updated:
+          description: timestamp of the last update of the image
+          type: string
+        view:off_nadir:
+          description: off nadir angle of the satellite
+          type: number
+        view:satellite_look_angle:
+          description: look angle of the satellite
+          type: number
+        view:sun_azimuth:
+          description: azimuth angle of the sun
+          type: number
+        view:sun_elevation:
+          description: elevation angle of the sun
+          type: number
+    clerk.Delivery:
+      type: object
+      properties:
+        catalog_id:
+          description: id of the catalog, whose delivery this resource tracks
+          type: string
+          example: 47435e2b-d8c4-51ff-9de9-2be3bfc92276
+        cloud_delivery:
+          description: cloud delivery configuration for the delivery resource
+          allOf:
+          - $ref: '#/components/schemas/clerk.CloudDelivery'
+        created_at:
+          description: timestamp of the creation of the delivery resource
+          type: string
+          example: '2024-05-27T06:50:20.056549Z'
+        created_by:
+          description: uuid of the user who created the delivery resource
+          type: string
+          example: 60795589-8759-4d00-9162-b1537b66fb3e
+        delivery_id:
+          description: id of the delivery
+          type: string
+          example: 47435e2b-d8c4-41ff-9de9-2be3cfc92276
+        status:
+          description: status of the delivery resource
+          allOf:
+          - $ref: '#/components/schemas/clerk.DeliveryStatus'
+          example: SUCCESS
+        target_path:
+          description: target path where the resource is delivered, add the cloud_config path and target_path to get the actual path of the resource
+          type: string
+          example: order_1/catalogs.zip
+        task_id:
+          description: id of the task, whose delivery this resource tracks. The task_id is set only for automated deliveries. Manual deliveries would have the task_id set as null.
+          type: string
+          example: 7f74a393-236f-4e02-9d22-b11dea4eac8a
+        updated_at:
+          description: timestamp of the last update of the delivery resource
+          type: string
+          example: '2024-05-27T06:50:20.056549Z'
+        updated_by:
+          description: uuid of the user who last updated the delivery resource
+          type: string
+          example: b23d9181-4de1-4856-950b-e83b2ac52830
+    clerk.DeliveryStatus:
+      type: string
+      enum:
+      - UNSPECIFIED
+      - CREATED
+      - FAILED
+      - IN_PROGRESS
+      - SUCCESS
+      x-enum-varnames:
+      - DeliveryStatusUnspecified
+      - DeliveryStatusCreated
+      - DeliveryStatusFailed
+      - DeliveryStatusInProgress
+      - DeliveryStatusSuccess
+    clerk.SearchCatalogsResponse:
+      type: object
+      properties:
+        catalogs:
+          type: array
+          items:
+            $ref: '#/components/schemas/clerk.Catalog'
+        pagination:
+          $ref: '#/components/schemas/common.Pagination'
+    clerk.DownloadStatus:
+      type: string
+      enum:
+      - success
+      - created
+      - failed
+      - in_progress
+      x-enum-varnames:
+      - DownloadStatusSuccess
+      - DownloadStatusCreated
+      - DownloadStatusFailed
+      - DownloadStatusInProgress
+    clerk.CloudDelivery:
+      type: object
+      required:
+      - config
+      properties:
+        config:
+          description: id of the store
+          type: string
+          example: 9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6
+        path:
+          description: prefix path to which resource should be transferred to
+          type: string
+          example: path/subdirectory1/
+    clerk.DeliveryRequest:
+      type: object
+      required:
+      - catalog_ids
+      - cloud_info
+      - order_item_ids
+      properties:
+        catalog_ids:
+          description: do not supply order_item_ids if this field is used
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+          example:
+          - 47435e2b-d8c4-51ff-9de9-2be3bfc92276
+        cloud_info:
+          $ref: '#/components/schemas/clerk.CloudDelivery'
+        order_item_ids:
+          description: do not supply catalog_ids if this field is used
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    clerk.Asset:
+      type: object
+      properties:
+        eo:bands:
+          type: array
+          items:
+            $ref: '#/components/schemas/clerk.EoBand'
+        href:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        title:
+          type: string
+        type:
+          type: string
+    clerk.CreateDeliveryRequest:
+      type: object
+      required:
+      - deliveries
+      properties:
+        deliveries:
+          type: array
+          items:
+            $ref: '#/components/schemas/clerk.DeliveryRequest'
+    clerk.SortingOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+      x-enum-varnames:
+      - AscendingSortingOrder
+      - DescendingSortingOrder
+    clerk.Link:
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+    clerk.Geometry:
+      type: object
+      properties:
+        coordinates:
+          type: array
+          items:
+            type: array
+            items:
+              type: array
+              items:
+                type: number
+        type:
+          type: string
+          example: Polygon
+    clerk.EoBand:
+      type: object
+      properties:
+        center_wavelength:
+          type: number
+        common_name:
+          type: string
+        fwhm:
+          type: number
+        name:
+          type: string
+    clerk.STACItem:
+      type: object
+      properties:
+        assets:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/clerk.Asset'
+        bbox:
+          description: bounding box of the STAC item
+          type: array
+          items:
+            type: number
+        collection:
+          type: string
+        geometry:
+          $ref: '#/components/schemas/clerk.Geometry'
+        id:
+          description: id of the STAC item, also referred as item_id
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/clerk.Link'
+        properties:
+          $ref: '#/components/schemas/clerk.Properties'
+        stac_extensions:
+          description: list of extensions used in the STAC item
+          type: array
+          items: {}
+        stac_version:
+          description: version of the STAC standard used
+          type: string
+        type:
+          description: type of the STAC item
+          type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: Authorization
+      in: header

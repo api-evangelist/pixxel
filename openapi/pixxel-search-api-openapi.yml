@@ -1,0 +1,499 @@
+openapi: 3.0.0
+info:
+  description: Swagger doc for Stargate
+  title: stargate AOI Search API
+  contact:
+    name: Team-Identity
+    email: identity@pixxel.co.in
+  version: v0.1.0
+servers:
+- url: https://api.pixxel.space
+tags:
+- name: Search
+paths:
+  /v0/search:
+    post:
+      security:
+      - ApiKeyAuth: []
+      description: Search for satellite images using various filters and parameters. This endpoint uses cursor-based pagination with next_token for efficient navigation through large result sets and consistent behaviour across external providers (Planetary, Element). Use the next_token from the response to fetch subsequent pages of results.
+      tags:
+      - Search
+      summary: Search satellite images
+      operationId: SearchSatelliteImages
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/lens.V2Query'
+        description: Search Query Parameters
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/lens.V2Response'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/search/satellite-image
+components:
+  schemas:
+    lens.SatelliteInfo:
+      type: object
+      required:
+      - collection_id
+      - satellite_id
+      properties:
+        collection_id:
+          type: string
+          x-order: '100'
+          example: sentinel-2-l2a
+        satellite_id:
+          type: string
+          x-order: '101'
+          example: 0002a3a3-00a2-4b55-842b-44d8202c6d60
+    lens.Geometry:
+      type: object
+      properties:
+        coordinates:
+          x-order: '100'
+        type:
+          type: string
+          x-order: '101'
+          example: Polygon
+    lens.V2Response:
+      type: object
+      properties:
+        items:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/cosmos.Item'
+          x-order: '100'
+        pagination:
+          type: object
+          properties:
+            limit:
+              type: integer
+              x-order: '100'
+              example: 10
+            skip:
+              type: integer
+              x-order: '101'
+              example: 0
+            total:
+              type: integer
+              x-order: '102'
+              example: 100
+          x-order: '101'
+    cosmos.Geometry:
+      type: object
+      properties:
+        type:
+          description: The type of the geometry
+          allOf:
+          - $ref: '#/components/schemas/cosmos.GeometryType'
+          x-order: '30'
+          example: Polygon
+        coordinates:
+          x-order: '31'
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
+    cosmos.RasterBand:
+      type: object
+      properties:
+        nodata:
+          description: The nodata value of the band
+          type: number
+          example: -9999
+        offset:
+          description: The offset of the band
+          type: number
+          example: 0
+        scale:
+          description: The scale of the band
+          type: number
+          example: 1
+        spatial_resolution:
+          description: The spatial resolution of the band in meters
+          type: number
+          example: 10
+    cosmos.GeometryType:
+      type: string
+      enum:
+      - Point
+      - MultiPoint
+      - LineString
+      - MultiLineString
+      - Polygon
+      - MultiPolygon
+      - GeometryCollection
+      x-enum-varnames:
+      - GeometryPoint
+      - GeometryMultiPoint
+      - GeometryLineString
+      - GeometryMultiLineString
+      - GeometryPolygon
+      - GeometryMultiPolygon
+      - GeometryCollection
+    cosmos.Item:
+      type: object
+      required:
+      - id
+      properties:
+        id:
+          description: The unique identifier of the item
+          type: string
+          x-order: '10'
+          example: 20201211_223832_CS25
+        type:
+          description: The type of the item
+          type: string
+          x-order: '11'
+          example: Feature
+        collection:
+          description: The collection the item belongs to
+          type: string
+          x-order: '12'
+          example: simple-collection_2
+        stac_version:
+          description: The version of the STAC specification
+          type: string
+          x-order: '13'
+          example: 1.0.0
+        stac_extensions:
+          description: The extensions used in the item
+          type: array
+          items:
+            type: string
+          x-order: '14'
+          example:
+          - https://stac-extensions.github.io/eo/v1.0.0/schema.json
+          - https://stac-extensions.github.io/projection/v1.0.0/schema.json
+          - https://stac-extensions.github.io/view/v1.0.0/schema.json
+        bbox:
+          description: The bounding box of the item
+          type: array
+          items:
+            type: string
+          x-order: '15'
+          example:
+          - '172.91173669923782'
+          - '1.3438851951615003'
+          - '172.95469614953714'
+          - '1.3690476620161975'
+        geometry:
+          description: The geometry of the item
+          allOf:
+          - $ref: '#/components/schemas/cosmos.Geometry'
+          x-order: '16'
+        properties:
+          allOf:
+          - $ref: '#/components/schemas/cosmos.Properties'
+          x-order: '17'
+        assets:
+          description: "Example\n```\n{\n\t\"B091\": {\n\t\t\"href\": \"<path_to_asset>\",\n     \"type\": \"image/tiff\",\n     \"roles\": [\"data\"],\n     \"title\": \"B091\",\n     \"eo:bands\": [\n\t\t\t{\n\t\t\t\t\"fwhm\": 0,\n             \"name\": \"B091\",\n             \"solar_irradiance\": 1984.75,\n             \"center_wavelength\": 490,\n             \"common_name\": \"red\",\n         }\n\t\t],\n     \"raster:bands\": [\n         {\n             \"scale\": 0.00002,\n             \"nodata\": 0,\n         \t\"offset\": 0,\n         \t\"spatial_resolution\": 30\n       \t}\n\t\t]\n\t},\n\t\"B013\": {\n\t\t\"href\": \"<path_to_asset>\",\n    \t\"type\": \"image/png\",\n    \t\"roles\": [\"data\"],\n    \t\"title\": \"B013\",\n    \t\"eo:bands\": [\n    \t\t{\n\t\t\t\t\"fwhm\": 0,\n            \t\"name\": \"B013\",\n            \t\"common_name\": \"blue\",\n            \t\"solar_irradiance\": 1965.25,\n            \t\"center_wavelength\": 493\n        \t}\n    \t],\n    \t\"raster:bands\": [\n     \t{\n            \t\"scale\": 0.00002,\n            \t\"nodata\": 0,\n            \t\"offset\": 0,\n            \t\"spatial_resolution\": 30\n        \t}\n    \t]\n  }\n}                                                                                                                                                                                                              // The properties of the item"
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/cosmos.Asset'
+          x-order: '18'
+        links:
+          description: The links of the item
+          type: array
+          items:
+            $ref: '#/components/schemas/cosmos.Link'
+          x-order: '19'
+    cosmos.Properties:
+      type: object
+      properties:
+        altitude:
+          description: The altitude of the sensor in meters
+          type: number
+          example: 700
+        constellation:
+          description: The constellation name
+          type: string
+          example: TD1
+        created:
+          description: The date and time the item was created
+          type: string
+          example: '2022-01-01T10:00:00Z'
+        datetime:
+          type: string
+          example: '2022-06-15T12:00:00Z'
+        description:
+          description: A description of the item
+          type: string
+          example: Example description of the dataset
+        eo:cloud_cover:
+          description: The percentage of the image covered by clouds
+          type: number
+          example: 23.5
+        gsd:
+          description: The ground sample distance in meters
+          type: number
+          example: 30
+        instruments:
+          description: The instruments used
+          type: array
+          items:
+            type: string
+          example:
+          - VNIR
+        license:
+          description: The license of the item
+          type: string
+          example: CC-BY-4.0
+        platform:
+          description: The platform name
+          type: string
+          example: TD1
+        proj:code:
+          description: The EPSG code of the projection
+          type: string
+          example: EPSG:4326
+        proj:shape:
+          description: The shape of the projection
+          type: array
+          items:
+            type: integer
+          example:
+          - 10980
+          - 10980
+        proj:transform:
+          description: the affine transform coefficients
+          type: array
+          items:
+            type: number
+          example:
+          - 0
+          - 10
+          - 500000
+          - 0
+          - -10
+          - 1000000
+        rd:anomalous_pixels:
+          description: The percentage of anomalous pixels
+          type: number
+          example: 0.01
+        rd:earth_sun_distance:
+          description: The distance between the Earth and the Sun
+          type: number
+          example: 1
+        rd:product_level:
+          description: The product level
+          type: string
+          example: L2A
+        rd:sat_id:
+          description: The satellite ID
+          type: string
+          example: SAT-123
+        rd:type:
+          description: The type of radiometric data
+          type: string
+          example: Reflectance
+        sci:doi:
+          description: The DOI of the scientific publication
+          type: string
+          example: 10.1234/sci_doi
+        startdatetime:
+          type: string
+          example: '2022-01-01T00:00:00Z'
+        title:
+          description: The title of the item
+          type: string
+          example: Example Title
+        updated:
+          description: The date and time the item was last updated
+          type: string
+          example: '2022-06-01T10:00:00Z'
+        view:off_nadir:
+          description: The angle between the sensor and the vertical
+          type: number
+          example: 5
+        view:scene_center_lat:
+          description: The latitude of the center of the scene
+          type: number
+          example: 12.3456
+        view:scene_center_lon:
+          description: The longitude of the center of the scene
+          type: number
+          example: -76.5432
+        view:sun_azimuth:
+          description: The angle between the sun and the north
+          type: number
+          example: 135
+        view:sun_elevation:
+          description: The angle between the sun and the horizon
+          type: number
+          example: 45
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
+    cosmos.Link:
+      type: object
+      required:
+      - href
+      - rel
+      properties:
+        href:
+          description: The URL or reference the link points to
+          type: string
+          example: https://example.com
+        rel:
+          description: The relationship of the link (e.g., "self", "parent", "child")
+          type: string
+          example: self
+        title:
+          description: A human-readable title for the link
+          type: string
+          example: Example Link Title
+        type:
+          description: The MIME type of the linked resource (e.g., "application/json")
+          type: string
+          example: application/json
+    cosmos.Asset:
+      type: object
+      properties:
+        eo:bands:
+          description: "Example\n```\n[\n\t{\n\t\t\"fwhm\": 0,\n\t\t\"name\": \"B013\",\n\t\t\"common_name\": \"blue\",\n\t\t\"solar_irradiance\": 1965.25,\n\t\t\"center_wavelength\": 493\n\t}\n]"
+          type: array
+          items:
+            $ref: '#/components/schemas/cosmos.EoBand'
+        href:
+          description: The HREF of the asset
+          type: string
+          example: https://example.com/asset.tif
+        raster:bands:
+          description: "Example\n```\n[\n\t{\n\t\t\"scale\": 0.00002,\n\t\t\"nodata\": 0,\n\t\t\"offset\": 0,\n\t\t\"spatial_resolution\": 30\n\t}\n]"
+          type: array
+          items:
+            $ref: '#/components/schemas/cosmos.RasterBand'
+        roles:
+          description: The roles of the asset (e.g., "data", "metadata")
+          type: array
+          items:
+            type: string
+          example:
+          - data
+          - metadata
+        title:
+          description: A human-readable title for the asset
+          type: string
+          example: Example Asset Title
+        type:
+          description: The MIME type of the asset
+          type: string
+          example: image/tiff
+    cosmos.EoBand:
+      type: object
+      properties:
+        center_wavelength:
+          description: The center wavelength of the band in micrometers
+          type: number
+          example: 0.443
+        common_name:
+          description: The common name of the band (e.g., "coastal", "blue", "green")
+          type: string
+          example: coastal
+        fwhm:
+          description: The full width at half maximum (FWHM) of the band in micrometers
+          type: number
+          example: 0.027
+        name:
+          description: The unique name of the band
+          type: string
+          example: B01
+        solar_irradiance:
+          description: The solar irradiance at the top of the atmosphere for the band in W/m²/μm
+          type: number
+          example: 1901
+    lens.V2Query:
+      type: object
+      required:
+      - end_date
+      - geometry
+      - satellites
+      - start_date
+      properties:
+        start_date:
+          type: string
+          x-order: '100'
+          example: '2023-04-18T11:56:49.865Z'
+        end_date:
+          type: string
+          x-order: '101'
+          example: '2023-05-03T11:56:49.865Z'
+        satellites:
+          type: array
+          items:
+            $ref: '#/components/schemas/lens.SatelliteInfo'
+          x-order: '103'
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/lens.Filter'
+          x-order: '104'
+        geometry:
+          allOf:
+          - $ref: '#/components/schemas/lens.Geometry'
+          x-order: '106'
+        limit:
+          type: integer
+          maximum: 10000
+          minimum: 1
+          x-order: '107'
+          example: 10
+    lens.Filter:
+      type: object
+      required:
+      - id
+      - max
+      - min
+      properties:
+        id:
+          description: eo:cloud_cover
+          type: string
+          x-order: '100'
+          example: eo:cloud_cover
+        min:
+          description: '0'
+          type: integer
+          x-order: '101'
+          example: 0
+        max:
+          description: '100'
+          type: integer
+          x-order: '102'
+          example: 100
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: Authorization
+      in: header

@@ -1,0 +1,884 @@
+openapi: 3.0.0
+info:
+  description: Swagger doc for Stargate
+  title: stargate AOI Visualizations API
+  contact:
+    name: Team-Identity
+    email: identity@pixxel.co.in
+  version: v0.1.0
+servers:
+- url: https://api.pixxel.space
+tags:
+- name: Visualizations
+paths:
+  /v0/aois/{aoi_id}/visualizations:
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: Lists all visualizations for a given AOI with optional filtering
+      tags:
+      - Visualizations
+      summary: List visualizations for an AOI
+      operationId: ListVisualizations
+      parameters:
+      - description: AOI ID
+        name: aoi_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: Offset for pagination
+        name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      - description: Limit for pagination
+        name: limit
+        in: query
+        schema:
+          type: integer
+          default: 10
+      - description: Filter by type
+        name: type
+        in: query
+        schema:
+          type: string
+      - description: Filter by user ID
+        name: user_id
+        in: query
+        schema:
+          type: string
+      - description: Filter by expression type
+        name: expression_type
+        in: query
+        schema:
+          type: string
+      - description: Filter by index ID
+        name: index_id
+        in: query
+        schema:
+          type: string
+      - description: Filter by visualization ID
+        name: visualization_id
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/atlas.VisualizationListResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/visualizations/list-visualization
+    post:
+      security:
+      - ApiKeyAuth: []
+      description: Creates a new visualization for an AOI using the specified index and assets. For preset index types, both dynamic and theoretical legend metadata are auto-computed. For custom index types with expression_type INDEX, only dynamic legend metadata is computed. For custom index types with expression_type composite or grayscale, no legend metadata is generated.
+      tags:
+      - Visualizations
+      summary: Create a new visualization
+      operationId: CreateVisualization
+      parameters:
+      - description: AOI ID
+        name: aoi_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/atlas.VisualizationCreateRequest'
+        description: Visualization creation parameters
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/atlas.VisualizationDetailResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/visualizations/create-visualization
+  /v0/aois/{aoi_id}/visualizations/{visualization_id}/metadata:
+    put:
+      security:
+      - ApiKeyAuth: []
+      description: Updates the visualization metadata legend for a specific mode (dynamic or theoretical). Only the specified mode is updated; the other mode is preserved.
+      tags:
+      - Visualizations
+      summary: Update visualization metadata
+      operationId: UpdateVisualizationMetadata
+      parameters:
+      - description: AOI ID
+        name: aoi_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: Visualization ID
+        name: visualization_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/atlas.VisualizationMetadataUpdateRequest'
+        description: Visualization metadata update parameters
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/atlas.VisualizationMetadata'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+    patch:
+      security:
+      - ApiKeyAuth: []
+      description: Rolls back the visualization metadata for specified dates and mode. Recomputes the legend for the specified mode from source data, preserving the other mode.
+      tags:
+      - Visualizations
+      summary: Rollback visualization metadata
+      operationId: RollbackVisualizationMetadata
+      parameters:
+      - description: AOI ID
+        name: aoi_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: Visualization ID
+        name: visualization_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/atlas.VisualizationMetadataRollbackRequest'
+        description: Visualization metadata rollback parameters
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/atlas.VisualizationDetailResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+  /v0/aois/{aoi_id}/visualizations/{visualization_id}/png:
+    post:
+      security:
+      - ApiKeyAuth: []
+      description: Generates an on-the-fly PNG of the index for a given date and mode, with legend overlay. Returns the PNG image as binary data.
+      tags:
+      - Visualizations
+      summary: Generate an index PNG for a visualization
+      operationId: GenerateIndexPng
+      parameters:
+      - description: AOI ID
+        name: aoi_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: Visualization ID
+        name: visualization_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/atlas.PngRequest'
+        description: PNG generation parameters
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Bad Request
+          content:
+            image/png:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            image/png:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            image/png:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            image/png:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            image/png:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+  /v0/aois/{aoi_id}/visualizations/{visualization_id}/sld:
+    post:
+      security:
+      - ApiKeyAuth: []
+      description: Generates Styled Layer Descriptor (SLD) XML for the specified dates and visualization modes. Returns SLD grouped by mode and date.
+      tags:
+      - Visualizations
+      summary: Generate SLD styles for a visualization
+      operationId: GenerateVisualizationSLD
+      parameters:
+      - description: AOI ID
+        name: aoi_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: Visualization ID
+        name: visualization_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/atlas.SLDRequest'
+        description: SLD generation parameters
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/atlas.SLDResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+components:
+  schemas:
+    atlas.SLDRequest:
+      type: object
+      required:
+      - dates
+      - visualization_modes
+      properties:
+        dates:
+          description: List of dates to generate SLD for
+          type: array
+          items:
+            type: string
+          x-order: '100'
+          example:
+          - '2024_05_06'
+          - '2024_05_07'
+        visualization_modes:
+          description: Visualization modes to generate SLD for
+          type: array
+          items:
+            $ref: '#/components/schemas/atlas.VisualizationMode'
+          x-order: '101'
+          example:
+          - dynamic
+          - theoretical
+    atlas.VisualizationMetadata:
+      type: object
+      properties:
+        legend:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/atlas.VisualizationLegends'
+    atlas.AssetType:
+      type: string
+      enum:
+      - mosaic
+      - stac_item
+      - visualization
+      x-enum-varnames:
+      - MosaicAssetType
+      - STACItemAssetType
+      - VisualizationAssetType
+    common.Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          x-order: '10037'
+          example: 10
+        offset:
+          type: integer
+          x-order: '10038'
+          example: 0
+        total:
+          type: integer
+          x-order: '10039'
+          example: 100
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
+    atlas.PngRequest:
+      type: object
+      required:
+      - date
+      - index_id
+      - visualization_mode
+      properties:
+        index_id:
+          description: UUID of the index to compute the preview for
+          type: string
+          x-order: '100'
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        date:
+          description: Date string, e.g. 2024_05_06
+          type: string
+          x-order: '101'
+          example: '2024_05_06'
+        visualization_mode:
+          description: 'Legend mode to use: ''dynamic'' or ''theoretical'''
+          type: string
+          enum:
+          - dynamic
+          - theoretical
+          x-order: '102'
+          example: dynamic
+    atlas.VisualizationMode:
+      type: string
+      enum:
+      - dynamic
+      - theoretical
+      x-enum-varnames:
+      - VisualizationModeDynamic
+      - VisualizationModeTheoretical
+    atlas.VisualizationLegends:
+      type: object
+      properties:
+        dynamic:
+          type: array
+          items:
+            $ref: '#/components/schemas/atlas.LegendItem'
+        theoretical:
+          type: array
+          items:
+            $ref: '#/components/schemas/atlas.LegendItem'
+    atlas.AssetStatus:
+      type: string
+      enum:
+      - success
+      - failed
+      - started
+      - creating
+      x-enum-varnames:
+      - AssetStatusSuccess
+      - AssetStatusFailed
+      - AssetStatusStarted
+      - AssetStatusCreating
+    atlas.VisualizationListItem:
+      type: object
+      properties:
+        aoi_id:
+          type: string
+          example: e9767554-550e-4464-a677-b8cf096073ab
+        created_at:
+          type: string
+          example: '2022-11-14 12:55:49.125928+00:00'
+        id:
+          type: string
+          example: a80f7f4c-abe9-4118-875e-3a2306577e11
+        index_id:
+          type: string
+          example: 90d63531-5f54-4704-a4b0-7bb92ae08f23
+        progress:
+          type: integer
+          example: 100
+        status:
+          allOf:
+          - $ref: '#/components/schemas/atlas.VisualizationStatus'
+          example: success
+        tenant_id:
+          type: string
+          example: tenant-123456
+        updated_at:
+          type: string
+          example: '2022-11-14 12:55:49.125928+00:00'
+        user_id:
+          type: string
+          example: e3a671ad-5381-4413-8c1c-bc4e1ccaff45
+    atlas.VisualizationMetadataUpdateRequest:
+      type: object
+      required:
+      - legend
+      - visualization_mode
+      properties:
+        visualization_mode:
+          description: Which legend mode to update (dynamic or theoretical)
+          allOf:
+          - $ref: '#/components/schemas/atlas.VisualizationMode'
+          x-order: '100'
+          example: theoretical
+        legend:
+          description: Legend breakpoints per date. For dynamic mode, values can be null (auto-computed)
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/atlas.LegendItemUpdateRequest'
+          x-order: '101'
+        dynamic_bins:
+          description: Number of equal-interval bins for dynamic mode (1-15). Required when visualization_mode is dynamic
+          type: integer
+          x-order: '102'
+          example: 5
+    atlas.Polygon:
+      type: object
+      required:
+      - coordinates
+      - type
+      properties:
+        type:
+          description: GeoJSON geometry type. Must be "Polygon" for AOI boundaries
+          type: string
+          x-order: '100'
+          example: Polygon
+        coordinates:
+          description: 'Nested array of coordinates [[[lng,lat],...]] forming a closed polygon. Example: [[[49.32, 40.85], [49.32, 9.08], [110.7, 9.08], [110.7, 40.85], [49.32, 40.85]]]'
+          type: array
+          items:
+            type: array
+            items:
+              type: array
+              items:
+                type: number
+          x-order: '101'
+    atlas.ExpressionType:
+      type: string
+      enum:
+      - composite
+      - index
+      - grayscale
+      x-enum-varnames:
+      - ExpressionTypeComposite
+      - ExpressionTypeIndex
+      - ExpressionTypeGrayscale
+    atlas.VisualizationMetadataRollbackRequest:
+      type: object
+      required:
+      - dates
+      - index_id
+      - visualization_mode
+      properties:
+        index_id:
+          description: The index ID for this visualization
+          type: string
+          x-order: '100'
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        dates:
+          description: List of date strings to rollback
+          type: array
+          items:
+            type: string
+          x-order: '101'
+          example:
+          - '2024_05_06'
+          - '2025_11_14'
+        visualization_mode:
+          description: Which legend mode to rollback (dynamic or theoretical)
+          allOf:
+          - $ref: '#/components/schemas/atlas.VisualizationMode'
+          x-order: '102'
+          example: dynamic
+    atlas.VisualizationDetailResponse:
+      type: object
+      properties:
+        aoi_id:
+          type: string
+          example: e9767554-550e-4464-a677-b8cf096073ab
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/atlas.Asset'
+        created_at:
+          type: string
+          example: '2022-11-14 12:55:49.125928+00:00'
+        expression:
+          type: string
+          example: (B08 - B04) / (B08 + B04)
+        expression_type:
+          allOf:
+          - $ref: '#/components/schemas/atlas.ExpressionType'
+          example: index
+        id:
+          type: string
+          example: a80f7f4c-abe9-4118-875e-3a2306577e11
+        index_id:
+          type: string
+          example: 90d63531-5f54-4704-a4b0-7bb92ae08f23
+        index_name:
+          type: string
+          example: NDVI-Custom
+        metadata:
+          $ref: '#/components/schemas/atlas.VisualizationMetadata'
+        progress:
+          type: integer
+          example: 100
+        rescale:
+          type: array
+          items:
+            type: integer
+          example:
+          - 0
+          - 1
+        status:
+          allOf:
+          - $ref: '#/components/schemas/atlas.VisualizationStatus'
+          example: success
+        tenant_id:
+          type: string
+          example: tenant-123456
+        type:
+          allOf:
+          - $ref: '#/components/schemas/atlas.VisualizationType'
+          example: custom
+        updated_at:
+          type: string
+          example: '2022-11-14 12:55:49.125928+00:00'
+        user_id:
+          type: string
+          example: e3a671ad-5381-4413-8c1c-bc4e1ccaff45
+    atlas.SLDResponse:
+      type: object
+      properties:
+        sld:
+          description: 'Nested map: mode -> date -> SLD XML string'
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: string
+    atlas.LegendItemUpdateRequest:
+      type: object
+      properties:
+        color:
+          type: string
+          example: '#2b83ba'
+        label:
+          type: string
+          example: Very Low
+        max:
+          type: number
+          example: 51
+        min:
+          type: number
+          example: 0
+    atlas.LegendItem:
+      type: object
+      properties:
+        area:
+          type: number
+          example: 50
+        area_percentage:
+          type: number
+          example: 5
+        color:
+          type: string
+          example: '#2b83ba'
+        label:
+          type: string
+          example: Very Low
+        max:
+          type: number
+          example: 51
+        min:
+          type: number
+          example: 0
+    atlas.VisualizationStatus:
+      type: string
+      enum:
+      - creating
+      - success
+      - failed
+      - partial_success
+      x-enum-varnames:
+      - VizStatusCreating
+      - VizStatusSuccess
+      - VizStatusFailed
+      - VizStatusPartialSuccess
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
+    atlas.VisualizationType:
+      type: string
+      enum:
+      - custom
+      x-enum-varnames:
+      - CustomType
+    atlas.VisualizationListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/common.Pagination'
+        visualization:
+          type: array
+          items:
+            $ref: '#/components/schemas/atlas.VisualizationListItem'
+    atlas.Asset:
+      type: object
+      properties:
+        aoi_id:
+          type: string
+          example: e9767554-550e-4464-a677-b8cf096073ab
+        area_in_sq_m:
+          type: number
+          example: 0
+        asset_type:
+          allOf:
+          - $ref: '#/components/schemas/atlas.AssetType'
+          example: mosaic
+        band_list:
+          type: array
+          items:
+            type: string
+          example:
+          - B01
+          - B02
+        centroid:
+          type: array
+          items:
+            type: number
+          example:
+          - 77.55
+          - 12.95
+        created_at:
+          type: string
+          example: '2022-11-14 12:55:49.125928+00:00'
+        date:
+          type: string
+          example: '2022-11-14'
+        description:
+          type: string
+          example: This asset is mosaic file
+        geometry:
+          $ref: '#/components/schemas/atlas.Polygon'
+        id:
+          type: string
+          example: e9767554-550e-4464-a677-b8cf096073ab
+        name:
+          type: string
+          example: Asset-A
+        path:
+          type: string
+          example: https://storage.account
+        progress:
+          type: integer
+          example: 0
+        resolution:
+          type: number
+          example: 10
+        status:
+          allOf:
+          - $ref: '#/components/schemas/atlas.AssetStatus'
+          example: success
+        updated_at:
+          type: string
+          example: '2022-11-14 12:55:49.125928+00:00'
+        visualization_id:
+          type: string
+          example: e9767554-550e-4464-a677-b8cf096073ab
+    atlas.VisualizationCreateRequest:
+      type: object
+      required:
+      - index_id
+      properties:
+        index_id:
+          description: UUID of the index to use for this visualization
+          type: string
+          x-order: '100'
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        src_asset_ids:
+          description: Optional list of source asset IDs to include in the visualization
+          type: array
+          items:
+            type: string
+          x-order: '101'
+          example:
+          - e3a671ad-5381-4413-8c1c-bc4e1ccaff45
+          - 90d63531-5f54-4704-a4b0-7bb92ae08f23
+        resolution:
+          description: Optional resolution override. If not provided, defaults to the satellite's default resolution
+          type: number
+          x-order: '102'
+          example: 10
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: Authorization
+      in: header

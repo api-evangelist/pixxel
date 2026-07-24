@@ -1,0 +1,262 @@
+openapi: 3.0.0
+info:
+  description: Swagger doc for Stargate
+  title: stargate AOI Blocks API
+  contact:
+    name: Team-Identity
+    email: identity@pixxel.co.in
+  version: v0.1.0
+servers:
+- url: https://api.pixxel.space
+tags:
+- name: Blocks
+paths:
+  /v0/blocks:
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: Responds with the list of all blocks
+      tags:
+      - Blocks
+      summary: List Blocks
+      parameters:
+      - description: 'mode is basically the execution mode. Possible values: insight or workflow'
+        name: mode
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/dexter.ListBlocksTransformerResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/blocks/list-blocks
+  /v0/blocks/{name}:
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: Responds with all versions of a specific block
+      tags:
+      - Blocks
+      summary: Get Block Versions
+      parameters:
+      - description: Block name
+        name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/dexter.GetBlockVersionsTransformerResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/blocks/get-block-versions
+  /v0/blocks/{name}/versions/{version}:
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: Responds with a specific version of a block
+      tags:
+      - Blocks
+      summary: Get Block by Version
+      parameters:
+      - description: Block name
+        name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: Block version
+        name: version
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/dexter.BlockSpecItem'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/blocks/get-block-by-version
+components:
+  schemas:
+    dexter.ListBlocksTransformerResponse:
+      type: object
+      properties:
+        blocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/dexter.BlockSpecItem'
+          x-order: '10'
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
+    dexter.BlockSpec:
+      type: object
+      properties:
+        kind:
+          description: Kind specifies the category or classification of the block
+          type: string
+          x-order: '10'
+        status:
+          description: Status represents the current state of the block (e.g., active, deprecated)
+          type: integer
+          x-order: '100'
+        inputs:
+          description: Inputs defines the expected input parameters in raw JSON format
+          type: array
+          items:
+            type: integer
+          x-order: '110'
+        outputs:
+          description: Outputs defines the produced output values in raw JSON format
+          type: array
+          items:
+            type: integer
+          x-order: '120'
+        catalog_content_url:
+          description: CatalogContentUrl is the URL where additional catalog content can be found
+          type: string
+          x-order: '130'
+        supported_collections_id:
+          description: SupportedCollections lists identifiers of collections compatible with this block
+          type: array
+          items:
+            type: string
+          x-order: '140'
+        type:
+          description: Type defines the functional type of the block
+          type: string
+          x-order: '20'
+        description:
+          description: Description provides a detailed explanation of the block's purpose and functionality
+          type: string
+          x-order: '30'
+        id:
+          description: Id is the unique identifier for this block
+          type: string
+          x-order: '50'
+        version_id:
+          description: VersionId identifies the specific version of this block
+          type: string
+          x-order: '60'
+        name:
+          description: Name is the canonical name of the block
+          type: string
+          x-order: '70'
+        title:
+          description: Title is the display name of the block
+          type: string
+          x-order: '80'
+        version:
+          description: Version indicates the current version number of the block
+          type: string
+          x-order: '90'
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
+    dexter.GetBlockVersionsTransformerResponse:
+      type: object
+      properties:
+        blocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/dexter.BlockSpecItem'
+          x-order: '10'
+    dexter.BlockSpecItem:
+      type: object
+      properties:
+        id:
+          description: ID is the unique identifier for this block
+          type: string
+          x-order: '10'
+        block_status:
+          description: BlockStatus represents the current state of the block
+          type: string
+          x-order: '20'
+        spec:
+          description: Spec contains the block specification
+          allOf:
+          - $ref: '#/components/schemas/dexter.BlockSpec'
+          x-order: '30'
+        created_at:
+          description: CreatedAt indicates when the block was created
+          type: string
+          x-order: '40'
+        err:
+          description: Err contains any error information
+          type: string
+          x-order: '50'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: Authorization
+      in: header

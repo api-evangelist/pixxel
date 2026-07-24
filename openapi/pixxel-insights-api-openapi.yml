@@ -1,0 +1,405 @@
+openapi: 3.0.0
+info:
+  description: Swagger doc for Stargate
+  title: stargate AOI Insights API
+  contact:
+    name: Team-Identity
+    email: identity@pixxel.co.in
+  version: v0.1.0
+servers:
+- url: https://api.pixxel.space
+tags:
+- name: Insights
+paths:
+  /v0/aoi/{aoi_id}/insights:
+    post:
+      security:
+      - ApiKeyAuth: []
+      description: Creates an insight or get the estimated cost of running the insight.
+      tags:
+      - Insights
+      summary: Create Insights on an AOI
+      operationId: createInsights
+      parameters:
+      - description: ID of the AOI on which you want to run the insight
+        name: aoi_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dexter.CreateInsightsWildcardTransformerRequest'
+        description: Create Insight request body
+        required: true
+      responses:
+        '200':
+          description: When estimating cost
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/dexter.CreateInsightCostEstimateUpstreamResponseBody'
+        '201':
+          description: When creating an insight
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/dexter.CreateInsightUpstreamResponseBody'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/insights/create-insight
+  /v0/aoi/{aoiId}/insights:
+    get:
+      security:
+      - ApiKeyAuth: []
+      description: Responds with the list of inisghts details as JSON.
+      tags:
+      - Insights
+      summary: List Insights
+      operationId: listInsights
+      parameters:
+      - description: ID of the AOI
+        name: aoiId
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: Get a specific insight by it's unique id
+        name: id
+        in: query
+        schema:
+          type: string
+      - description: Filter insights by their status
+        name: status
+        in: query
+        schema:
+          type: string
+      - description: Filter insights by the creator's user id
+        name: created_by
+        in: query
+        schema:
+          type: string
+      - description: Filter insights by the time they were created on. Timestamps should be RFC3339 compliant. For dates, provide values like `2025-04-14T00:00:00Z`
+        name: created_on
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/dexter.ListInsightsTransformerResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/insights/list-insights
+  /v0/aoi/{aoi_id}/insights/{insight_id}/download:
+    put:
+      security:
+      - ApiKeyAuth: []
+      description: Creates a download package containing the specified input and output files from an insight
+      tags:
+      - Insights
+      summary: Download Insights
+      operationId: downloadInsights
+      parameters:
+      - description: aoiId
+        name: aoi_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: insightId
+        name: insight_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/dexter.PutInsightsUpstreamRequestBody'
+        description: Specify which inputs and outputs to include
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/dexter.PutInsightsUpstreamResponseBody'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/insights/download-insights
+  /v0/aoi/{aoi_id}/insights/{insight_id}:
+    delete:
+      security:
+      - ApiKeyAuth: []
+      description: Deletes an insight
+      tags:
+      - Insights
+      summary: Delete Insights
+      operationId: deleteInsights
+      parameters:
+      - description: ID of the AOI
+        name: aoi_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: ID of the insight which was run on the AOI
+        name: insight_id
+        in: path
+        required: true
+        schema:
+          type: string
+      - description: ID of the project to which the AOI belongs
+        name: project_id
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/common.ErrorResponse'
+      externalDocs:
+        description: View developer guide to learn more
+        url: /developer/insights/delete-insights
+components:
+  schemas:
+    dexter.PutInsightsUpstreamResponseBody:
+      type: object
+      properties:
+        id:
+          description: Unique identifier of the insight
+          type: string
+          x-order: '10'
+        status:
+          description: Current status of the download operation
+          type: string
+          x-order: '20'
+        signed_url:
+          description: URL where the packaged assets can be downloaded from
+          type: string
+          x-order: '30'
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
+    dexter.ListInsightsTransformerResponse:
+      type: object
+      properties:
+        insights:
+          type: array
+          items:
+            $ref: '#/components/schemas/dexter.ListInsightItem'
+          x-order: '10'
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
+    dexter.CreateInsightCostEstimateUpstreamResponseBody:
+      type: object
+      properties:
+        estimate:
+          description: Estimate provides the computed cost value for the insight execution
+          type: integer
+          x-order: '10'
+    dexter.ListInsightItem:
+      type: object
+      properties:
+        name:
+          description: Display name of the insight
+          type: string
+          x-order: '10'
+        created_at:
+          description: Timestamp when the insight was created
+          type: string
+          x-order: '100'
+        err_msg:
+          description: Contains any error message if the insight processing failed
+          type: string
+          x-order: '110'
+        created_by:
+          description: Identifies the user who created this insight
+          type: string
+          x-order: '120'
+        estimated_time_in_min:
+          description: Expected processing time in minutes
+          type: integer
+          x-order: '130'
+        deleted_at:
+          description: Timestamp when the insight was deleted, null if not deleted
+          type: string
+          x-order: '140'
+        id:
+          description: Unique identifier for the insight
+          type: string
+          x-order: '20'
+        status:
+          description: Represents the current processing status of the insight
+          type: string
+          x-order: '30'
+        input:
+          description: Contains the raw input data provided for the insight
+          type: array
+          items:
+            type: integer
+          x-order: '40'
+        output:
+          description: Contains the raw result data generated by the insight
+          type: array
+          items:
+            type: integer
+          x-order: '50'
+        metadata:
+          description: Contains additional key-value information about the insight
+          type: object
+          additionalProperties:
+            type: string
+          x-order: '60'
+        aoi_id:
+          description: Identifier of the area of interest this insight belongs to
+          type: string
+          x-order: '70'
+        cost:
+          description: Represents the computational cost or credits used for this insight
+          type: integer
+          x-order: '80'
+        progress:
+          description: Indicates the completion percentage of the insight processing
+          type: number
+          x-order: '90'
+    dexter.PutInsightsUpstreamRequestBody:
+      type: object
+      properties:
+        inputs:
+          description: Specifies which input assets to include in the download
+          type: array
+          items:
+            type: string
+          x-order: '10'
+        outputs:
+          description: Specifies which output assets to include in the download
+          type: array
+          items:
+            type: string
+          x-order: '20'
+    dexter.CreateInsightUpstreamResponseBody:
+      type: object
+      properties:
+        id:
+          description: Id is the unique identifier assigned to the created insight
+          type: string
+          x-order: '10'
+        message:
+          description: Message contains additional information about the insight creation result
+          type: string
+          x-order: '20'
+    dexter.CreateInsightsWildcardTransformerRequest:
+      type: object
+      required:
+      - block
+      - input
+      properties:
+        name:
+          description: Name is a human-readable title for the insight
+          type: string
+          x-order: '10'
+        block:
+          description: Describes the processing block to use for the insight
+          type: object
+          required:
+          - version
+          properties:
+            name:
+              description: Name of the block
+              type: string
+            string:
+              description: Id is a unique identifier for the block
+              type: string
+            version:
+              description: Semantic version of the block to use
+              type: string
+          x-order: '20'
+        input:
+          description: Inputs to the insight
+          type: array
+          items:
+            type: integer
+          x-order: '30'
+        project_id:
+          description: Identifies which project this insight belongs to
+          type: string
+          x-order: '40'
+        metadata:
+          description: Contains additional key-value information about the insight
+          type: object
+          additionalProperties:
+            type: string
+          x-order: '50'
+        estimate:
+          description: Indicates whether to return a cost estimate instead of running the insight.
+          type: boolean
+          x-order: '60'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      name: Authorization
+      in: header
