@@ -1,0 +1,22 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Pixxel (stargate)
+  version: 1.0.0
+extends: openapi/pixxel-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: pixxel
+    x-apievangelist-category: satellite-earth-observation
+    x-apievangelist-auth: Personal Access Token (bearer)
+    x-apievangelist-base-url: https://api.pixxel.space
+    x-apievangelist-docs: https://docs.pixxel.space/
+- target: $.info
+  update:
+    description: >-
+      Pixxel "stargate" API — programmatic access to the Aurora Earth-observation
+      platform: manage projects and areas of interest (AOIs), task and order
+      hyperspectral/multispectral imagery, search the STAC archive, run analytics
+      workflows and jobs, generate indices and visualizations, and deliver assets
+      to cloud stores. Authenticate with a bearer Personal Access Token scoped by
+      organization, project, and role.

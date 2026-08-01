@@ -1,0 +1,94 @@
+# Pixxel data model - derived from OpenAPI
+generated: '2026-07-20'
+method: derived
+source: openapi/pixxel-openapi-original.json
+note: Entity-relationship graph derived from OpenAPI path structure, id-reference query params, and component
+  schemas (atlas.* + clerk.* families).
+object_domains:
+  atlas: AOI / analytics / visualization / insight domain
+  clerk: ordering / catalog / delivery / archive domain
+entities:
+- name: Project
+- name: AOI
+- name: Satellite
+- name: Bandset
+- name: Order
+- name: OrderItem
+- name: Asset
+- name: Download
+- name: Index
+- name: Visualization
+- name: Insight
+- name: Workflow
+- name: Job
+- name: Task
+- name: Catalog
+- name: Delivery
+- name: Store
+- name: Collection
+- name: CollectionItem
+relationships:
+- from: AOI
+  to: Project
+  type: belongs_to
+  via: project_id
+- from: AOI
+  to: Asset
+  type: has_many
+  via: GET /v0/aois/{aoi_id}/assets
+- from: AOI
+  to: Download
+  type: has_many
+  via: POST /v0/aois/{aoi_id}/downloads
+- from: AOI
+  to: Insight
+  type: has_many
+  via: POST /v0/aoi/{aoi_id}/insights
+- from: AOI
+  to: Visualization
+  type: has_many
+  via: GET /v0/aois/{aoi_id}/visualizations
+- from: Insight
+  to: AOI
+  type: belongs_to
+  via: aoi_id
+- from: Visualization
+  to: AOI
+  type: belongs_to
+  via: aoi_id
+- from: Order
+  to: OrderItem
+  type: has_many
+  via: order_id
+- from: OrderItem
+  to: Order
+  type: belongs_to
+  via: order_id
+- from: OrderItem
+  to: Bandset
+  type: references
+  via: clerk.OrderItemBandset
+- from: Workflow
+  to: Job
+  type: has_many
+  via: GET /v0/workflows/{workflow_id}/jobs
+- from: Job
+  to: Workflow
+  type: belongs_to
+  via: workflow_id
+- from: Job
+  to: Task
+  type: has_many
+  via: PUT .../jobs/{job_id}/tasks/{task_id}/download
+- from: Delivery
+  to: Store
+  type: references
+  via: cloud delivery target store
+- from: Collection
+  to: CollectionItem
+  type: has_many
+  via: GET /v0/archives/collections/{cid}/items
+- from: CollectionItem
+  to: Collection
+  type: belongs_to
+  via: cid

@@ -1,0 +1,36 @@
+# Pixxel API error catalog — derived from OpenAPI 4xx/5xx responses
+generated: '2026-07-20'
+method: derived
+source: openapi/pixxel-openapi-original.json
+docs: https://docs.pixxel.space/developer/gettingstarted/authentication.md
+format: custom-json
+envelope:
+  shape: '{ "error": { "code": <string>, "message": <string>, "details": <any> } }'
+  schemas:
+  - clerk.ErrorResponse
+  - common.ErrorResponse
+  fields:
+    code: short string code reflecting the type of error
+    message: human-readable info message
+    details: additional details on the error
+problems:
+- status: 400
+  title: Bad Request
+  meaning: Invalid or malformed input / parameters or request body.
+- status: 401
+  title: Unauthorized
+  meaning: Token format is invalid or unrecognized.
+  remediation: "Provide a valid 'Authorization: Bearer <PAT>' header."
+- status: 403
+  title: Forbidden
+  meaning: Token is missing, expired, revoked, or lacks required role/project permissions.
+  remediation: Check token expiry, roles, and project access in Aurora Settings.
+- status: 404
+  title: Not Found
+  meaning: Referenced resource (AOI, order, job, catalog, collection item) does not exist.
+- status: 409
+  title: Conflict
+  meaning: Request conflicts with current resource state (e.g. duplicate or invalid transition).
+- status: 500
+  title: Internal Server Error
+  meaning: Server-side processing error.

@@ -1,0 +1,267 @@
+# Pixxel MCP server (candidate) - derived from OpenAPI
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/pixxel-openapi-original.json
+note: Candidate tool list derived from OpenAPI operations. Pixxel does not publish an official MCP server
+  as of this pass.
+server:
+  name: pixxel
+  transport: http
+  base_url: https://api.pixxel.space
+tools:
+- name: ListProjects
+  description: List projects
+  method: GET
+  path: /v0/projects
+  source_operation: openapi/pixxel-openapi-original.json#ListProjects
+- name: GetProjectById
+  description: Get project
+  method: GET
+  path: /v0/projects/{id}
+  source_operation: openapi/pixxel-openapi-original.json#GetProjectById
+- name: ListAOIs
+  description: List all AOIs
+  method: GET
+  path: /v0/aois
+  source_operation: openapi/pixxel-openapi-original.json#ListAOIs
+- name: AOICreateAOI
+  description: Create a new AOI
+  method: POST
+  path: /v0/aois
+  source_operation: openapi/pixxel-openapi-original.json#AOICreateAOI
+- name: GetAoiById
+  description: Get AOI
+  method: GET
+  path: /v0/aoi/{aoi_id}
+  source_operation: openapi/pixxel-openapi-original.json#GetAoiById
+- name: SearchSatelliteImages
+  description: Search satellite images
+  method: POST
+  path: /v0/search
+  source_operation: openapi/pixxel-openapi-original.json#SearchSatelliteImages
+- name: List_Satellites
+  description: List supported satellites
+  method: GET
+  path: /v0/satellites
+  source_operation: openapi/pixxel-openapi-original.json#List Satellites
+- name: ListIndices
+  description: List all available indices
+  method: GET
+  path: /v0/indices
+  source_operation: openapi/pixxel-openapi-original.json#ListIndices
+- name: CreateIndex
+  description: Create a new index
+  method: POST
+  path: /v0/indices
+  source_operation: openapi/pixxel-openapi-original.json#CreateIndex
+- name: ListVisualizations
+  description: List visualizations for an AOI
+  method: GET
+  path: /v0/aois/{aoi_id}/visualizations
+  source_operation: openapi/pixxel-openapi-original.json#ListVisualizations
+- name: CreateVisualization
+  description: Create a new visualization
+  method: POST
+  path: /v0/aois/{aoi_id}/visualizations
+  source_operation: openapi/pixxel-openapi-original.json#CreateVisualization
+- name: createInsights
+  description: Create Insights on an AOI
+  method: POST
+  path: /v0/aoi/{aoi_id}/insights
+  source_operation: openapi/pixxel-openapi-original.json#createInsights
+- name: listInsights
+  description: List Insights
+  method: GET
+  path: /v0/aoi/{aoiId}/insights
+  source_operation: openapi/pixxel-openapi-original.json#listInsights
+- name: downloadInsights
+  description: Download Insights
+  method: PUT
+  path: /v0/aoi/{aoi_id}/insights/{insight_id}/download
+  source_operation: openapi/pixxel-openapi-original.json#downloadInsights
+- name: deleteInsights
+  description: Delete Insights
+  method: DELETE
+  path: /v0/aoi/{aoi_id}/insights/{insight_id}
+  source_operation: openapi/pixxel-openapi-original.json#deleteInsights
+- name: ListAssets
+  description: List assets for an AOI
+  method: GET
+  path: /v0/aois/{aoi_id}/assets
+  source_operation: openapi/pixxel-openapi-original.json#ListAssets
+- name: AOICreateDownload
+  description: Create a download request for assets in an AOI
+  method: POST
+  path: /v0/aois/{aoi_id}/downloads
+  source_operation: openapi/pixxel-openapi-original.json#AOICreateDownload
+- name: GetDownloadStatus
+  description: Get status of a download request
+  method: GET
+  path: /v0/aois/{aoi_id}/downloads/{download_id}
+  source_operation: openapi/pixxel-openapi-original.json#GetDownloadStatus
+- name: listWorkflows
+  description: List workflows
+  method: GET
+  path: /v0/workflows
+  source_operation: openapi/pixxel-openapi-original.json#listWorkflows
+- name: getWorkflowsById
+  description: Get Workflows By Id
+  method: GET
+  path: /v0/workflows/{workflow_id}
+  source_operation: openapi/pixxel-openapi-original.json#getWorkflowsById
+- name: getWorkflowCostEstimate
+  description: Get Workflow Cost estimate
+  method: GET
+  path: /v0/workflows/{workflow_id}/estimate
+  source_operation: openapi/pixxel-openapi-original.json#getWorkflowCostEstimate
+- name: listJobs
+  description: List Jobs
+  method: GET
+  path: /v0/workflows/{workflow_id}/jobs
+  source_operation: openapi/pixxel-openapi-original.json#listJobs
+- name: createJob
+  description: Create a job from a given workflow
+  method: POST
+  path: /v0/workflows/{workflow_id}/jobs
+  source_operation: openapi/pixxel-openapi-original.json#createJob
+- name: getJobById
+  description: Get Job by Id and WF Id
+  method: GET
+  path: /v0/workflows/{workflow_id}/jobs/{job_id}
+  source_operation: openapi/pixxel-openapi-original.json#getJobById
+- name: downloadJob
+  description: Download Job
+  method: PUT
+  path: /v0/workflows/{workflow_id}/jobs/{job_id}/download
+  source_operation: openapi/pixxel-openapi-original.json#downloadJob
+- name: downloadTask
+  description: Download Task
+  method: PUT
+  path: /v0/workflows/{workflow_id}/jobs/{job_id}/tasks/{task_id}/download
+  source_operation: openapi/pixxel-openapi-original.json#downloadTask
+- name: ListBandsets
+  description: List all bandsets
+  method: GET
+  path: /v0/bandsets
+  source_operation: openapi/pixxel-openapi-original.json#ListBandsets
+- name: ListOrders
+  description: List all orders
+  method: GET
+  path: /v0/orders
+  source_operation: openapi/pixxel-openapi-original.json#ListOrders
+- name: SubmitOrder
+  description: Create an order
+  method: POST
+  path: /v0/orders
+  source_operation: openapi/pixxel-openapi-original.json#SubmitOrder
+- name: GetOrderById
+  description: Get an order
+  method: GET
+  path: /v0/orders/{id}
+  source_operation: openapi/pixxel-openapi-original.json#GetOrderById
+- name: ListOrderItems
+  description: List all orderItems
+  method: GET
+  path: /v0/order-items
+  source_operation: openapi/pixxel-openapi-original.json#ListOrderItems
+- name: GetOrderItemById
+  description: Get an orderItem
+  method: GET
+  path: /v0/order-items/{id}
+  source_operation: openapi/pixxel-openapi-original.json#GetOrderItemById
+- name: ListCollections
+  description: List all collections
+  method: GET
+  path: /v0/archives/collections
+  source_operation: openapi/pixxel-openapi-original.json#ListCollections
+- name: GetCollectionById
+  description: Get a collection
+  method: GET
+  path: /v0/archives/collections/{cid}
+  source_operation: openapi/pixxel-openapi-original.json#GetCollectionById
+- name: ListItemInCollection
+  description: List items in a collection
+  method: GET
+  path: /v0/archives/collections/{cid}/items
+  source_operation: openapi/pixxel-openapi-original.json#ListItemInCollection
+- name: GetCollectionItemById
+  description: Get item
+  method: GET
+  path: /v0/archives/collections/{cid}/items/{id}
+  source_operation: openapi/pixxel-openapi-original.json#GetCollectionItemById
+- name: SearchItemInArchive
+  description: Search all items
+  method: POST
+  path: /v0/archives/search
+  source_operation: openapi/pixxel-openapi-original.json#SearchItemInArchive
+- name: DownloadOrderReport
+  description: download order report
+  method: GET
+  path: /v0/reports
+  source_operation: openapi/pixxel-openapi-original.json#DownloadOrderReport
+- name: ListStores
+  description: List stores
+  method: GET
+  path: /v0/stores
+  source_operation: openapi/pixxel-openapi-original.json#ListStores
+- name: CreateStore
+  description: Create a store
+  method: POST
+  path: /v0/stores
+  source_operation: openapi/pixxel-openapi-original.json#CreateStore
+- name: DeleteStore
+  description: Delete a store
+  method: DELETE
+  path: /v0/stores/{id}
+  source_operation: openapi/pixxel-openapi-original.json#DeleteStore
+- name: ListDeliveries
+  description: List all deliveries
+  method: GET
+  path: /v0/catalogs/deliveries
+  source_operation: openapi/pixxel-openapi-original.json#ListDeliveries
+- name: CreateDelivery
+  description: Create deliveries
+  method: POST
+  path: /v0/catalogs/deliveries
+  source_operation: openapi/pixxel-openapi-original.json#CreateDelivery
+- name: CreateDownload
+  description: Create a download resource
+  method: POST
+  path: /v0/catalogs/download
+  source_operation: openapi/pixxel-openapi-original.json#CreateDownload
+- name: GetDownloadById
+  description: Get download status
+  method: GET
+  path: /v0/catalogs/download/{download_id}
+  source_operation: openapi/pixxel-openapi-original.json#GetDownloadById
+- name: SearchCatalogs
+  description: Search all catalogs
+  method: POST
+  path: /v0/catalogs/search
+  source_operation: openapi/pixxel-openapi-original.json#SearchCatalogs
+- name: GetCatalogById
+  description: Get a catalog
+  method: GET
+  path: /v0/catalogs/{id}
+  source_operation: openapi/pixxel-openapi-original.json#GetCatalogById
+- name: UpdateVisualizationMetadata
+  description: Update visualization metadata
+  method: PUT
+  path: /v0/aois/{aoi_id}/visualizations/{visualization_id}/metadata
+  source_operation: openapi/pixxel-openapi-original.json#UpdateVisualizationMetadata
+- name: RollbackVisualizationMetadata
+  description: Rollback visualization metadata
+  method: PATCH
+  path: /v0/aois/{aoi_id}/visualizations/{visualization_id}/metadata
+  source_operation: openapi/pixxel-openapi-original.json#RollbackVisualizationMetadata
+- name: GenerateIndexPng
+  description: Generate an index PNG for a visualization
+  method: POST
+  path: /v0/aois/{aoi_id}/visualizations/{visualization_id}/png
+  source_operation: openapi/pixxel-openapi-original.json#GenerateIndexPng
+- name: GenerateVisualizationSLD
+  description: Generate SLD styles for a visualization
+  method: POST
+  path: /v0/aois/{aoi_id}/visualizations/{visualization_id}/sld
+  source_operation: openapi/pixxel-openapi-original.json#GenerateVisualizationSLD

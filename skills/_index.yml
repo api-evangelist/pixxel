@@ -1,0 +1,16 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/pixxel-openapi-original.json
+skills:
+- file: pixxel-task-and-order-imagery.md
+  name: Task and order Pixxel satellite imagery
+  api: openapi/pixxel-openapi-original.json
+  operations: [ListProjects, AOICreateAOI, "List Satellites", ListBandsets, SubmitOrder, ListOrderItems, GetOrderById]
+- file: pixxel-archive-search-and-download.md
+  name: Search the Pixxel STAC archive and download assets
+  api: openapi/pixxel-openapi-original.json
+  operations: [ListCollections, ListItemInCollection, SearchItemInArchive, ListAssets, AOICreateDownload, GetDownloadStatus]
+- file: pixxel-analytics-and-insights.md
+  name: Run Pixxel analytics — indices, visualizations, and insights
+  api: openapi/pixxel-openapi-original.json
+  operations: [GetAoiById, CreateIndex, CreateVisualization, listWorkflows, getWorkflowCostEstimate, createJob, getJobById, createInsights, listInsights]

@@ -1,0 +1,55 @@
+# Pixxel API conventions — cross-cutting request/response semantics
+generated: '2026-07-20'
+method: searched
+source: https://docs.pixxel.space/developer/gettingstarted/authentication.md
+spec: openapi/pixxel-openapi-original.json
+base_url: https://api.pixxel.space
+content_type: application/json
+authentication:
+  style: bearer-token
+  scheme: Personal Access Token (PAT)
+  header: 'Authorization: Bearer <PERSONAL_ACCESS_TOKEN>'
+  scoped_by: [organization, project, role]
+  docs: https://docs.pixxel.space/developer/gettingstarted/authentication.md
+  see: authentication/pixxel-authentication.yml
+idempotency:
+  supported: false
+  note: No Idempotency-Key header or idempotent-retry contract is documented or present in the OpenAPI.
+pagination:
+  styles:
+  - offset-limit
+  - page-number
+  params:
+  - offset
+  - limit
+  - page_num
+  - page_size
+  response_field: pagination
+  note: List responses (e.g. atlas.AOIListResponse, clerk.ListOrdersResponse) embed a common.Pagination object.
+filtering:
+  common_params:
+  - status
+  - name
+  - created_at
+  - created_by
+  - project_id
+  - satellite_id
+  - ids
+error_envelope:
+  shape: '{ "error": { "code": <string>, "message": <string>, "details": <any> } }'
+  schemas:
+  - clerk.ErrorResponse
+  - common.ErrorResponse
+  format: custom-json
+  problem_json: false
+  see: errors/pixxel-problem-types.yml
+versioning:
+  style: uri-path
+  current: v0
+  note: All resource paths are prefixed /v0/. Spec info.version is v0.1.0 (title "stargate").
+  see: lifecycle/pixxel-lifecycle.yml
+health_check:
+  endpoint: GET /ping
+rate_limiting:
+  documented: false
+  note: No rate-limit policy or response headers documented as of this pass.

@@ -1,0 +1,19 @@
+# Pixxel API lifecycle — versioning / deprecation / status
+generated: '2026-07-20'
+method: searched
+source: https://docs.pixxel.space/
+versioning:
+  scheme: uri-path
+  current: v0
+  spec_version: v0.1.0
+  docs: https://docs.pixxel.space/developer/gettingstarted/setup
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No deprecation policy or RFC 8594 Sunset/Deprecation header support documented as of this pass.
+sla:
+  url: null
+status_page:
+  url: null
+  note: pixxel.statuspage.io resolves to an inactive page (redirects to /inactive); no public status page found.
+deprecated_operations: []

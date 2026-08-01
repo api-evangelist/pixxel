@@ -1,7 +1,29 @@
 aid: pixxel
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/pixxel.png
 name: Pixxel
-description: Pixxel is a company surfaced as a portfolio company of techstars and added to the API Evangelist
-  network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Pixxel is a hyperspectral Earth-observation company operating the Firefly
+  constellation of hyperspectral imaging satellites and the Aurora platform, an
+  Earth-observation studio for tasking, ordering, searching, and analyzing
+  satellite imagery. Its public "stargate" API (api.pixxel.space) gives developers
+  programmatic access to projects and areas of interest (AOIs), satellite tasking
+  and ordering, a STAC-based imagery archive, cloud delivery, spectral indices and
+  visualizations, and analytics workflows, jobs, and model insights across
+  agriculture, mining, energy, forestry, environment, and government use cases.
+  Authentication uses bearer Personal Access Tokens scoped by organization,
+  project, and role.
 url: https://raw.githubusercontent.com/api-evangelist/pixxel/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,15 +33,337 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 16
+  pass: local-v1
 tags:
 - Company
-apis: []
+- Satellite Imagery
+- Earth Observation
+- Hyperspectral
+- Geospatial
+- Remote Sensing
+- Analytics
+- STAC
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: pixxel:pixxel-aoi-api
+  name: Pixxel AOI API
+  description: The AOI API from Pixxel — 3 operation(s) for aoi.
+  humanURL: https://docs.pixxel.space/
+  baseURL: https://api.pixxel.space
+  tags:
+  - AOI
+  properties:
+  - type: OpenAPI
+    url: openapi/pixxel-aoi-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pixxel.space/
+  - type: Authentication
+    url: authentication/pixxel-authentication.yml
+- aid: pixxel:pixxel-archives-api
+  name: Pixxel Archives API
+  description: The Archives API from Pixxel — 5 operation(s) for archives.
+  humanURL: https://docs.pixxel.space/
+  baseURL: https://api.pixxel.space
+  tags:
+  - Archives
+  properties:
+  - type: OpenAPI
+    url: openapi/pixxel-archives-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pixxel.space/
+  - type: Authentication
+    url: authentication/pixxel-authentication.yml
+- aid: pixxel:pixxel-assets-api
+  name: Pixxel Assets API
+  description: The Assets API from Pixxel — 1 operation(s) for assets.
+  humanURL: https://docs.pixxel.space/
+  baseURL: https://api.pixxel.space
+  tags:
+  - Assets
+  properties:
+  - type: OpenAPI
+    url: openapi/pixxel-assets-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pixxel.space/
+  - type: Authentication
+    url: authentication/pixxel-authentication.yml
+- aid: pixxel:pixxel-bandset-api
+  name: Pixxel Bandset API
+  description: The Bandset API from Pixxel — 1 operation(s) for bandset.
+  humanURL: https://docs.pixxel.space/
+  baseURL: https://api.pixxel.space
+  tags:
+  - Bandset
+  properties:
+  - type: OpenAPI
+    url: openapi/pixxel-bandset-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pixxel.space/
+  - type: Authentication
+    url: authentication/pixxel-authentication.yml
+- aid: pixxel:pixxel-blocks-api
+  name: Pixxel Blocks API
+  description: The Blocks API from Pixxel — 3 operation(s) for blocks.
+  humanURL: https://docs.pixxel.space/
+  baseURL: https://api.pixxel.space
+  tags:
+  - Blocks
+  properties:
+  - type: OpenAPI
+    url: openapi/pixxel-blocks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pixxel.space/
+  - type: Authentication
+    url: authentication/pixxel-authentication.yml
+- aid: pixxel:pixxel-catalog-api
+  name: Pixxel Catalog API
+  description: The Catalog API from Pixxel — 5 operation(s) for catalog.
+  humanURL: https://docs.pixxel.space/
+  baseURL: https://api.pixxel.space
+  tags:
+  - Catalog
+  properties:
+  - type: OpenAPI
+    url: openapi/pixxel-catalog-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pixxel.space/
+  - type: Authentication
+    url: authentication/pixxel-authentication.yml
+- aid: pixxel:pixxel-downloads-api
+  name: Pixxel Downloads API
+  description: The Downloads API from Pixxel — 2 operation(s) for downloads.
+  humanURL: https://docs.pixxel.space/
+  baseURL: https://api.pixxel.space
+  tags:
+  - Downloads
+  properties:
+  - type: OpenAPI
+    url: openapi/pixxel-downloads-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pixxel.space/
+  - type: Authentication
+    url: authentication/pixxel-authentication.yml
+- aid: pixxel:pixxel-external-api
+  name: Pixxel external API
+  description: The external API from Pixxel — 1 operation(s) for external.
+  humanURL: https://docs.pixxel.space/
+  baseURL: https://api.pixxel.space
+  tags:
+  - external
+  properties:
+  - type: OpenAPI
+    url: openapi/pixxel-external-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pixxel.space/
+  - type: Authentication
+    url: authentication/pixxel-authentication.yml
+- aid: pixxel:pixxel-indices-api
+  name: Pixxel Indices API
+  description: The Indices API from Pixxel — 1 operation(s) for indices.
+  humanURL: https://docs.pixxel.space/
+  baseURL: https://api.pixxel.space
+  tags:
+  - Indices
+  properties:
+  - type: OpenAPI
+    url: openapi/pixxel-indices-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pixxel.space/
+  - type: Authentication
+    url: authentication/pixxel-authentication.yml
+- aid: pixxel:pixxel-insights-api
+  name: Pixxel Insights API
+  description: The Insights API from Pixxel — 4 operation(s) for insights.
+  humanURL: https://docs.pixxel.space/
+  baseURL: https://api.pixxel.space
+  tags:
+  - Insights
+  properties:
+  - type: OpenAPI
+    url: openapi/pixxel-insights-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pixxel.space/
+  - type: Authentication
+    url: authentication/pixxel-authentication.yml
+- aid: pixxel:pixxel-jobs-api
+  name: Pixxel Jobs API
+  description: The Jobs API from Pixxel — 3 operation(s) for jobs.
+  humanURL: https://docs.pixxel.space/
+  baseURL: https://api.pixxel.space
+  tags:
+  - Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/pixxel-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pixxel.space/
+  - type: Authentication
+    url: authentication/pixxel-authentication.yml
+- aid: pixxel:pixxel-order-api
+  name: Pixxel Order API
+  description: The Order API from Pixxel — 4 operation(s) for order.
+  humanURL: https://docs.pixxel.space/
+  baseURL: https://api.pixxel.space
+  tags:
+  - Order
+  properties:
+  - type: OpenAPI
+    url: openapi/pixxel-order-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pixxel.space/
+  - type: Authentication
+    url: authentication/pixxel-authentication.yml
+- aid: pixxel:pixxel-project-api
+  name: Pixxel Project API
+  description: The Project API from Pixxel — 2 operation(s) for project.
+  humanURL: https://docs.pixxel.space/
+  baseURL: https://api.pixxel.space
+  tags:
+  - Project
+  properties:
+  - type: OpenAPI
+    url: openapi/pixxel-project-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pixxel.space/
+  - type: Authentication
+    url: authentication/pixxel-authentication.yml
+- aid: pixxel:pixxel-report-api
+  name: Pixxel Report API
+  description: The Report API from Pixxel — 1 operation(s) for report.
+  humanURL: https://docs.pixxel.space/
+  baseURL: https://api.pixxel.space
+  tags:
+  - Report
+  properties:
+  - type: OpenAPI
+    url: openapi/pixxel-report-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pixxel.space/
+  - type: Authentication
+    url: authentication/pixxel-authentication.yml
+- aid: pixxel:pixxel-search-api
+  name: Pixxel Search API
+  description: The Search API from Pixxel — 1 operation(s) for search.
+  humanURL: https://docs.pixxel.space/
+  baseURL: https://api.pixxel.space
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/pixxel-search-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pixxel.space/
+  - type: Authentication
+    url: authentication/pixxel-authentication.yml
+- aid: pixxel:pixxel-stores-api
+  name: Pixxel Stores API
+  description: The Stores API from Pixxel — 2 operation(s) for stores.
+  humanURL: https://docs.pixxel.space/
+  baseURL: https://api.pixxel.space
+  tags:
+  - Stores
+  properties:
+  - type: OpenAPI
+    url: openapi/pixxel-stores-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pixxel.space/
+  - type: Authentication
+    url: authentication/pixxel-authentication.yml
+- aid: pixxel:pixxel-tasks-api
+  name: Pixxel Tasks API
+  description: The Tasks API from Pixxel — 1 operation(s) for tasks.
+  humanURL: https://docs.pixxel.space/
+  baseURL: https://api.pixxel.space
+  tags:
+  - Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/pixxel-tasks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pixxel.space/
+  - type: Authentication
+    url: authentication/pixxel-authentication.yml
+- aid: pixxel:pixxel-visualizations-api
+  name: Pixxel Visualizations API
+  description: The Visualizations API from Pixxel — 4 operation(s) for visualizations.
+  humanURL: https://docs.pixxel.space/
+  baseURL: https://api.pixxel.space
+  tags:
+  - Visualizations
+  properties:
+  - type: OpenAPI
+    url: openapi/pixxel-visualizations-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pixxel.space/
+  - type: Authentication
+    url: authentication/pixxel-authentication.yml
+- aid: pixxel:pixxel-workflows-api
+  name: Pixxel Workflows API
+  description: The Workflows API from Pixxel — 3 operation(s) for workflows.
+  humanURL: https://docs.pixxel.space/
+  baseURL: https://api.pixxel.space
+  tags:
+  - Workflows
+  properties:
+  - type: OpenAPI
+    url: openapi/pixxel-workflows-api-openapi.yml
+  - type: Documentation
+    url: https://docs.pixxel.space/
+  - type: Authentication
+    url: authentication/pixxel-authentication.yml
 common:
 - type: Website
   url: https://pixxel.space/
+- type: DeveloperPortal
+  url: https://docs.pixxel.space/developer
+- type: Documentation
+  url: https://docs.pixxel.space/
+- type: APIReference
+  url: https://docs.pixxel.space/developer/gettingstarted/introduction
+- type: GettingStarted
+  url: https://docs.pixxel.space/documentation/getting_started/quickstart
+- type: Support
+  url: https://support.pixxel.space/hc/en-us
+- type: Blog
+  url: https://pixxel.space/knowledge-hub
+- type: Pricing
+  url: https://docs.pixxel.space/documentation/getting_started/pricingandrefunds/pricingoverview
+- type: SignUp
+  url: https://aurora.pixxel.space/
+- type: PrivacyPolicy
+  url: https://pixxel.space/privacy-policy
+- type: OpenAPI
+  url: openapi/pixxel-openapi-original.json
+- type: Authentication
+  url: authentication/pixxel-authentication.yml
+- type: DomainSecurity
+  url: security/pixxel-domain-security.yml
+- type: LLMsTxt
+  url: llms/pixxel-llms.txt
+- type: WellKnown
+  url: well-known/pixxel-well-known.yml
+- type: MCPServer
+  url: mcp/pixxel-mcp.yml
+- type: Overlay
+  url: overlays/pixxel-openapi-overlay.yaml
+- type: Conformance
+  url: conformance/pixxel-conformance.yml
+- type: ErrorCatalog
+  url: errors/pixxel-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/pixxel-lifecycle.yml
+- type: Conventions
+  url: conventions/pixxel-conventions.yml
+- type: DataModel
+  url: data-model/pixxel-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
