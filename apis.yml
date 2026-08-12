@@ -342,7 +342,7 @@ common:
 - type: PrivacyPolicy
   url: https://pixxel.space/privacy-policy
 - type: OpenAPI
-  url: openapi/pixxel-openapi-original.json
+  url: openapi/_original/pixxel-openapi-original.json
 - type: Authentication
   url: authentication/pixxel-authentication.yml
 - type: DomainSecurity
