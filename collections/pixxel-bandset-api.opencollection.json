@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "stargate AOI Bandset API",
+    "version": "v0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bandset",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all bandsets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pixxel.space/v0/bandsets",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List of all bandsets, that can be used to place a tasking order."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

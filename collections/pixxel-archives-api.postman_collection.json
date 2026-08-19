@@ -1,0 +1,1389 @@
+{
+  "item": [
+    {
+      "id": "7b7976cf-24cd-4606-bc77-9146b897d800",
+      "name": "Archives",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8b6aec1c-14a3-43cf-bd2a-060bbfed556e",
+          "name": "List all collections",
+          "request": {
+            "name": "List all collections",
+            "description": {
+              "content": "Returns a list of all collections available under archives.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "archives",
+                "collections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "Collection IDs"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f9cc12d7-cd0f-4dfd-adc1-849cbee7db97",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "archives",
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"collections\": [\n    {\n      \"created_at\": \"2023-08-06T20:46:56.815552Z\",\n      \"description\": \"A collection description\",\n      \"extent\": {\n        \"spatial\": {\n          \"bbox\": [\n            [\n              8649.29852665577,\n              5972.967991761152\n            ],\n            [\n              5732.7950786419815,\n              5827.115831259887\n            ]\n          ]\n        },\n        \"temporal\": {\n          \"interval\": [\n            [\n              \"string\",\n              \"string\"\n            ],\n            [\n              \"string\",\n              \"string\"\n            ]\n          ]\n        }\n      },\n      \"id\": \"pixxel-dd2\",\n      \"license\": \"proprietary\",\n      \"links\": [\n        {\n          \"href\": \"https://example.com\",\n          \"rel\": \"self\",\n          \"title\": \"Example Link Title\",\n          \"type\": \"application/json\"\n        },\n        {\n          \"href\": \"https://example.com\",\n          \"rel\": \"self\",\n          \"title\": \"Example Link Title\",\n          \"type\": \"application/json\"\n        }\n      ],\n      \"providers\": [\n        {\n          \"description\": \"Pixxel is a space data company\",\n          \"name\": \"Pixxel\",\n          \"roles\": [\n            \"producer\"\n          ],\n          \"url\": \"https://pixxel.space\"\n        },\n        {\n          \"description\": \"Pixxel is a space data company\",\n          \"name\": \"Pixxel\",\n          \"roles\": [\n            \"producer\"\n          ],\n          \"url\": \"https://pixxel.space\"\n        }\n      ],\n      \"stac_extensions\": \"\",\n      \"stac_version\": \"0.1.0\",\n      \"summaries\": \"\",\n      \"title\": \"Pixxel-DD01\",\n      \"type\": \"Collection\",\n      \"updated_at\": \"2023-08-06T20:46:56.815552Z\"\n    },\n    {\n      \"created_at\": \"2023-08-06T20:46:56.815552Z\",\n      \"description\": \"A collection description\",\n      \"extent\": {\n        \"spatial\": {\n          \"bbox\": [\n            [\n              1234.5297273608114,\n              294.23659185678684\n            ],\n            [\n              3607.0128109768098,\n              4004.7614749462978\n            ]\n          ]\n        },\n        \"temporal\": {\n          \"interval\": [\n            [\n              \"string\",\n              \"string\"\n            ],\n            [\n              \"string\",\n              \"string\"\n            ]\n          ]\n        }\n      },\n      \"id\": \"pixxel-dd2\",\n      \"license\": \"proprietary\",\n      \"links\": [\n        {\n          \"href\": \"https://example.com\",\n          \"rel\": \"self\",\n          \"title\": \"Example Link Title\",\n          \"type\": \"application/json\"\n        },\n        {\n          \"href\": \"https://example.com\",\n          \"rel\": \"self\",\n          \"title\": \"Example Link Title\",\n          \"type\": \"application/json\"\n        }\n      ],\n      \"providers\": [\n        {\n          \"description\": \"Pixxel is a space data company\",\n          \"name\": \"Pixxel\",\n          \"roles\": [\n            \"producer\"\n          ],\n          \"url\": \"https://pixxel.space\"\n        },\n        {\n          \"description\": \"Pixxel is a space data company\",\n          \"name\": \"Pixxel\",\n          \"roles\": [\n            \"producer\"\n          ],\n          \"url\": \"https://pixxel.space\"\n        }\n      ],\n      \"stac_extensions\": \"\",\n      \"stac_version\": \"0.1.0\",\n      \"summaries\": \"\",\n      \"title\": \"Pixxel-DD01\",\n      \"type\": \"Collection\",\n      \"updated_at\": \"2023-08-06T20:46:56.815552Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a73e6ef-9fc8-48c3-acd9-7d8554eb47d0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "archives",
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e325d398-38f4-4ccd-b1c2-82152069b42b",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "archives",
+                    "collections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7846c665-fd94-4931-ab32-f2acd18c4f7d",
+          "name": "Get a collection",
+          "request": {
+            "name": "Get a collection",
+            "description": {
+              "content": "Get a STAC collection by it's ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "archives",
+                "collections",
+                ":cid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cid",
+                  "description": "(Required) Collection ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4016bc5a-1dce-47c0-9b77-6bede198d40c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "archives",
+                    "collections",
+                    ":cid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cid",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"2023-08-06T20:46:56.815552Z\",\n  \"description\": \"A collection description\",\n  \"extent\": {\n    \"spatial\": {\n      \"bbox\": [\n        [\n          5644.962365352248,\n          8468.254700981986\n        ],\n        [\n          5999.056915688559,\n          3968.377919231398\n        ]\n      ]\n    },\n    \"temporal\": {\n      \"interval\": [\n        [\n          \"string\",\n          \"string\"\n        ],\n        [\n          \"string\",\n          \"string\"\n        ]\n      ]\n    }\n  },\n  \"id\": \"pixxel-dd2\",\n  \"license\": \"proprietary\",\n  \"links\": [\n    {\n      \"href\": \"https://example.com\",\n      \"rel\": \"self\",\n      \"title\": \"Example Link Title\",\n      \"type\": \"application/json\"\n    },\n    {\n      \"href\": \"https://example.com\",\n      \"rel\": \"self\",\n      \"title\": \"Example Link Title\",\n      \"type\": \"application/json\"\n    }\n  ],\n  \"providers\": [\n    {\n      \"description\": \"Pixxel is a space data company\",\n      \"name\": \"Pixxel\",\n      \"roles\": [\n        \"producer\"\n      ],\n      \"url\": \"https://pixxel.space\"\n    },\n    {\n      \"description\": \"Pixxel is a space data company\",\n      \"name\": \"Pixxel\",\n      \"roles\": [\n        \"producer\"\n      ],\n      \"url\": \"https://pixxel.space\"\n    }\n  ],\n  \"stac_extensions\": \"\",\n  \"stac_version\": \"0.1.0\",\n  \"summaries\": \"\",\n  \"title\": \"Pixxel-DD01\",\n  \"type\": \"Collection\",\n  \"updated_at\": \"2023-08-06T20:46:56.815552Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5905bdd-493f-432c-a68f-f5ce65714cad",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "archives",
+                    "collections",
+                    ":cid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cid",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9e92b9d-af8f-4dd7-b820-8bcdb2abc8b0",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "archives",
+                    "collections",
+                    ":cid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cid",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e30c18da-e9bc-44c5-a27a-190777faf29b",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "archives",
+                    "collections",
+                    ":cid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cid",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8317d408-6045-42cc-9c67-805731ad1e31",
+          "name": "List items in a collection",
+          "request": {
+            "name": "List items in a collection",
+            "description": {
+              "content": "List of items present in a collection",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "archives",
+                "collections",
+                ":cid",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Limit"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cid",
+                  "description": "(Required) Collection ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1c9a4064-87cb-4abc-ac2f-9c87ebb045ca",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "archives",
+                    "collections",
+                    ":cid",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cid",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"id\": \"20201211_223832_CS25\",\n      \"type\": \"Feature\",\n      \"collection\": \"simple-collection_2\",\n      \"stac_version\": \"1.0.0\",\n      \"stac_extensions\": [\n        \"https://stac-extensions.github.io/eo/v1.0.0/schema.json\",\n        \"https://stac-extensions.github.io/projection/v1.0.0/schema.json\",\n        \"https://stac-extensions.github.io/view/v1.0.0/schema.json\"\n      ],\n      \"bbox\": [\n        \"172.91173669923782\",\n        \"1.3438851951615003\",\n        \"172.95469614953714\",\n        \"1.3690476620161975\"\n      ],\n      \"geometry\": {\n        \"type\": \"Polygon\",\n        \"coordinates\": {}\n      },\n      \"properties\": {\n        \"altitude\": 700,\n        \"constellation\": \"TD1\",\n        \"created\": \"2022-01-01T10:00:00Z\",\n        \"datetime\": \"2022-06-15T12:00:00Z\",\n        \"description\": \"Example description of the dataset\",\n        \"eo:cloud_cover\": 23.5,\n        \"gsd\": 30,\n        \"instruments\": [\n          \"VNIR\"\n        ],\n        \"license\": \"CC-BY-4.0\",\n        \"platform\": \"TD1\",\n        \"proj:code\": \"EPSG:4326\",\n        \"proj:shape\": [\n          10980,\n          10980\n        ],\n        \"proj:transform\": [\n          0,\n          10,\n          500000,\n          0,\n          -10,\n          1000000\n        ],\n        \"rd:anomalous_pixels\": 0.01,\n        \"rd:earth_sun_distance\": 1,\n        \"rd:product_level\": \"L2A\",\n        \"rd:sat_id\": \"SAT-123\",\n        \"rd:type\": \"Reflectance\",\n        \"sci:doi\": \"10.1234/sci_doi\",\n        \"startdatetime\": \"2022-01-01T00:00:00Z\",\n        \"title\": \"Example Title\",\n        \"updated\": \"2022-06-01T10:00:00Z\",\n        \"view:off_nadir\": 5,\n        \"view:scene_center_lat\": 12.3456,\n        \"view:scene_center_lon\": -76.5432,\n        \"view:sun_azimuth\": 135,\n        \"view:sun_elevation\": 45\n      },\n      \"assets\": {\n        \"key_0\": {\n          \"eo:bands\": [\n            {\n              \"center_wavelength\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"common_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fwhm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"solar_irradiance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"center_wavelength\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"common_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fwhm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"solar_irradiance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"href\": \"https://example.com/asset.tif\",\n          \"raster:bands\": [\n            {\n              \"nodata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"offset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"spatial_resolution\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"nodata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"offset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"spatial_resolution\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"roles\": [\n            \"data\",\n            \"metadata\"\n          ],\n          \"title\": \"Example Asset Title\",\n          \"type\": \"image/tiff\"\n        },\n        \"key_1\": {\n          \"eo:bands\": [\n            {\n              \"center_wavelength\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"common_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fwhm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"solar_irradiance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"center_wavelength\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"common_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fwhm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"solar_irradiance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"href\": \"https://example.com/asset.tif\",\n          \"raster:bands\": [\n            {\n              \"nodata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"offset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"spatial_resolution\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"nodata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"offset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"spatial_resolution\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"roles\": [\n            \"data\",\n            \"metadata\"\n          ],\n          \"title\": \"Example Asset Title\",\n          \"type\": \"image/tiff\"\n        }\n      },\n      \"links\": [\n        {\n          \"href\": \"https://example.com\",\n          \"rel\": \"self\",\n          \"title\": \"Example Link Title\",\n          \"type\": \"application/json\"\n        },\n        {\n          \"href\": \"https://example.com\",\n          \"rel\": \"self\",\n          \"title\": \"Example Link Title\",\n          \"type\": \"application/json\"\n        }\n      ]\n    },\n    {\n      \"id\": \"20201211_223832_CS25\",\n      \"type\": \"Feature\",\n      \"collection\": \"simple-collection_2\",\n      \"stac_version\": \"1.0.0\",\n      \"stac_extensions\": [\n        \"https://stac-extensions.github.io/eo/v1.0.0/schema.json\",\n        \"https://stac-extensions.github.io/projection/v1.0.0/schema.json\",\n        \"https://stac-extensions.github.io/view/v1.0.0/schema.json\"\n      ],\n      \"bbox\": [\n        \"172.91173669923782\",\n        \"1.3438851951615003\",\n        \"172.95469614953714\",\n        \"1.3690476620161975\"\n      ],\n      \"geometry\": {\n        \"type\": \"Polygon\",\n        \"coordinates\": {}\n      },\n      \"properties\": {\n        \"altitude\": 700,\n        \"constellation\": \"TD1\",\n        \"created\": \"2022-01-01T10:00:00Z\",\n        \"datetime\": \"2022-06-15T12:00:00Z\",\n        \"description\": \"Example description of the dataset\",\n        \"eo:cloud_cover\": 23.5,\n        \"gsd\": 30,\n        \"instruments\": [\n          \"VNIR\"\n        ],\n        \"license\": \"CC-BY-4.0\",\n        \"platform\": \"TD1\",\n        \"proj:code\": \"EPSG:4326\",\n        \"proj:shape\": [\n          10980,\n          10980\n        ],\n        \"proj:transform\": [\n          0,\n          10,\n          500000,\n          0,\n          -10,\n          1000000\n        ],\n        \"rd:anomalous_pixels\": 0.01,\n        \"rd:earth_sun_distance\": 1,\n        \"rd:product_level\": \"L2A\",\n        \"rd:sat_id\": \"SAT-123\",\n        \"rd:type\": \"Reflectance\",\n        \"sci:doi\": \"10.1234/sci_doi\",\n        \"startdatetime\": \"2022-01-01T00:00:00Z\",\n        \"title\": \"Example Title\",\n        \"updated\": \"2022-06-01T10:00:00Z\",\n        \"view:off_nadir\": 5,\n        \"view:scene_center_lat\": 12.3456,\n        \"view:scene_center_lon\": -76.5432,\n        \"view:sun_azimuth\": 135,\n        \"view:sun_elevation\": 45\n      },\n      \"assets\": {\n        \"key_0\": {\n          \"eo:bands\": [\n            {\n              \"center_wavelength\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"common_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fwhm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"solar_irradiance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"center_wavelength\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"common_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fwhm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"solar_irradiance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"href\": \"https://example.com/asset.tif\",\n          \"raster:bands\": [\n            {\n              \"nodata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"offset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"spatial_resolution\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"nodata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"offset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"spatial_resolution\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"roles\": [\n            \"data\",\n            \"metadata\"\n          ],\n          \"title\": \"Example Asset Title\",\n          \"type\": \"image/tiff\"\n        },\n        \"key_1\": {\n          \"eo:bands\": [\n            {\n              \"center_wavelength\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"common_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fwhm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"solar_irradiance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"center_wavelength\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"common_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fwhm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"solar_irradiance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"href\": \"https://example.com/asset.tif\",\n          \"raster:bands\": [\n            {\n              \"nodata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"offset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"spatial_resolution\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"nodata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"offset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"spatial_resolution\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"roles\": [\n            \"data\",\n            \"metadata\"\n          ],\n          \"title\": \"Example Asset Title\",\n          \"type\": \"image/tiff\"\n        },\n        \"key_2\": {\n          \"eo:bands\": [\n            {\n              \"center_wavelength\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"common_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fwhm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"solar_irradiance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"center_wavelength\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"common_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fwhm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"solar_irradiance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"href\": \"https://example.com/asset.tif\",\n          \"raster:bands\": [\n            {\n              \"nodata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"offset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"spatial_resolution\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"nodata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"offset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"spatial_resolution\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"roles\": [\n            \"data\",\n            \"metadata\"\n          ],\n          \"title\": \"Example Asset Title\",\n          \"type\": \"image/tiff\"\n        },\n        \"key_3\": {\n          \"eo:bands\": [\n            {\n              \"center_wavelength\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"common_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fwhm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"solar_irradiance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"center_wavelength\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"common_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fwhm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"solar_irradiance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"href\": \"https://example.com/asset.tif\",\n          \"raster:bands\": [\n            {\n              \"nodata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"offset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"spatial_resolution\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"nodata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"offset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"spatial_resolution\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"roles\": [\n            \"data\",\n            \"metadata\"\n          ],\n          \"title\": \"Example Asset Title\",\n          \"type\": \"image/tiff\"\n        }\n      },\n      \"links\": [\n        {\n          \"href\": \"https://example.com\",\n          \"rel\": \"self\",\n          \"title\": \"Example Link Title\",\n          \"type\": \"application/json\"\n        },\n        {\n          \"href\": \"https://example.com\",\n          \"rel\": \"self\",\n          \"title\": \"Example Link Title\",\n          \"type\": \"application/json\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"https://example.com\",\n      \"rel\": \"self\",\n      \"title\": \"Example Link Title\",\n      \"type\": \"application/json\"\n    },\n    {\n      \"href\": \"https://example.com\",\n      \"rel\": \"self\",\n      \"title\": \"Example Link Title\",\n      \"type\": \"application/json\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9f0314b6-3223-492c-8ac0-4729242b9e16",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "archives",
+                    "collections",
+                    ":cid",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cid",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "261b73a7-543e-47ac-869a-8a1eeed46492",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "archives",
+                    "collections",
+                    ":cid",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cid",
+                      "description": "(Required) Collection ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "38d0d62f-d8a4-4e0c-a3d9-53614d764e73",
+          "name": "Get item",
+          "request": {
+            "name": "Get item",
+            "description": {
+              "content": "Get a STAC item by it's collection and item ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "archives",
+                "collections",
+                ":cid",
+                "items",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cid",
+                  "description": "(Required) Collection ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Item ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c76d76b4-00cf-4d94-bdf2-3c7e816e8a34",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "archives",
+                    "collections",
+                    ":cid",
+                    "items",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cid",
+                      "description": "(Required) Collection ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Item ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"20201211_223832_CS25\",\n  \"type\": \"Feature\",\n  \"collection\": \"simple-collection_2\",\n  \"stac_version\": \"1.0.0\",\n  \"stac_extensions\": [\n    \"https://stac-extensions.github.io/eo/v1.0.0/schema.json\",\n    \"https://stac-extensions.github.io/projection/v1.0.0/schema.json\",\n    \"https://stac-extensions.github.io/view/v1.0.0/schema.json\"\n  ],\n  \"bbox\": [\n    \"172.91173669923782\",\n    \"1.3438851951615003\",\n    \"172.95469614953714\",\n    \"1.3690476620161975\"\n  ],\n  \"geometry\": {\n    \"type\": \"Polygon\",\n    \"coordinates\": {}\n  },\n  \"properties\": {\n    \"altitude\": 700,\n    \"constellation\": \"TD1\",\n    \"created\": \"2022-01-01T10:00:00Z\",\n    \"datetime\": \"2022-06-15T12:00:00Z\",\n    \"description\": \"Example description of the dataset\",\n    \"eo:cloud_cover\": 23.5,\n    \"gsd\": 30,\n    \"instruments\": [\n      \"VNIR\"\n    ],\n    \"license\": \"CC-BY-4.0\",\n    \"platform\": \"TD1\",\n    \"proj:code\": \"EPSG:4326\",\n    \"proj:shape\": [\n      10980,\n      10980\n    ],\n    \"proj:transform\": [\n      0,\n      10,\n      500000,\n      0,\n      -10,\n      1000000\n    ],\n    \"rd:anomalous_pixels\": 0.01,\n    \"rd:earth_sun_distance\": 1,\n    \"rd:product_level\": \"L2A\",\n    \"rd:sat_id\": \"SAT-123\",\n    \"rd:type\": \"Reflectance\",\n    \"sci:doi\": \"10.1234/sci_doi\",\n    \"startdatetime\": \"2022-01-01T00:00:00Z\",\n    \"title\": \"Example Title\",\n    \"updated\": \"2022-06-01T10:00:00Z\",\n    \"view:off_nadir\": 5,\n    \"view:scene_center_lat\": 12.3456,\n    \"view:scene_center_lon\": -76.5432,\n    \"view:sun_azimuth\": 135,\n    \"view:sun_elevation\": 45\n  },\n  \"assets\": {\n    \"key_0\": {\n      \"eo:bands\": [\n        {\n          \"center_wavelength\": 0.443,\n          \"common_name\": \"coastal\",\n          \"fwhm\": 0.027,\n          \"name\": \"B01\",\n          \"solar_irradiance\": 1901\n        },\n        {\n          \"center_wavelength\": 0.443,\n          \"common_name\": \"coastal\",\n          \"fwhm\": 0.027,\n          \"name\": \"B01\",\n          \"solar_irradiance\": 1901\n        }\n      ],\n      \"href\": \"https://example.com/asset.tif\",\n      \"raster:bands\": [\n        {\n          \"nodata\": -9999,\n          \"offset\": 0,\n          \"scale\": 1,\n          \"spatial_resolution\": 10\n        },\n        {\n          \"nodata\": -9999,\n          \"offset\": 0,\n          \"scale\": 1,\n          \"spatial_resolution\": 10\n        }\n      ],\n      \"roles\": [\n        \"data\",\n        \"metadata\"\n      ],\n      \"title\": \"Example Asset Title\",\n      \"type\": \"image/tiff\"\n    }\n  },\n  \"links\": [\n    {\n      \"href\": \"https://example.com\",\n      \"rel\": \"self\",\n      \"title\": \"Example Link Title\",\n      \"type\": \"application/json\"\n    },\n    {\n      \"href\": \"https://example.com\",\n      \"rel\": \"self\",\n      \"title\": \"Example Link Title\",\n      \"type\": \"application/json\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "614a1f48-fe6a-4c4e-95e4-fc16b9535d32",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "archives",
+                    "collections",
+                    ":cid",
+                    "items",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cid",
+                      "description": "(Required) Collection ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Item ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "202a8382-5c70-477c-b65b-dbcac4e38761",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "archives",
+                    "collections",
+                    ":cid",
+                    "items",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cid",
+                      "description": "(Required) Collection ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Item ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc5a506b-3866-4b4e-a102-7556ad5c23fd",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "archives",
+                    "collections",
+                    ":cid",
+                    "items",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cid",
+                      "description": "(Required) Collection ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Item ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ee141a6-5500-40b1-b50c-33c21c04be13",
+          "name": "Search all items",
+          "request": {
+            "name": "Search all items",
+            "description": {
+              "content": "Search for STAC items according to attributes of the item",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "archives",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bbox\": [\n    \"<number>\",\n    \"<number>\"\n  ],\n  \"collections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"datetime\": \"<string>\",\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"intersects\": {\n    \"type\": \"<string>\",\n    \"coordinates\": {}\n  },\n  \"limit\": 10,\n  \"offset\": \"<integer>\",\n  \"query\": {\n    \"key_0\": {\n      \"key_0\": true,\n      \"key_1\": false\n    },\n    \"key_1\": {\n      \"key_0\": 2903.9081742591234,\n      \"key_1\": 3688\n    },\n    \"key_2\": {\n      \"key_0\": \"string\"\n    }\n  },\n  \"sortby\": [\n    {\n      \"key_0\": \"<string>\"\n    },\n    {\n      \"key_0\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9f270f94-5832-4f01-967b-ed7ea6bbb2f1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "archives",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bbox\": [\n    3,\n    4,\n    5,\n    6\n  ],\n  \"collections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"datetime\": \"2020-04-05T11:56:49.865Z/2023-06-05T11:56:49.865Z\",\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"intersects\": {\n    \"type\": \"Polygon\",\n    \"coordinates\": {}\n  },\n  \"limit\": 10,\n  \"offset\": 0,\n  \"query\": {\n    \"key_0\": {\n      \"key_0\": \"string\"\n    },\n    \"key_1\": {\n      \"key_0\": 8409\n    },\n    \"key_2\": {\n      \"key_0\": \"string\",\n      \"key_1\": true\n    },\n    \"key_3\": {\n      \"key_0\": 4430,\n      \"key_1\": false\n    }\n  },\n  \"sortby\": [\n    {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    {\n      \"key_0\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"FeatureCollection\",\n  \"features\": [\n    {\n      \"id\": \"20201211_223832_CS25\",\n      \"type\": \"Feature\",\n      \"collection\": \"simple-collection_2\",\n      \"stac_version\": \"1.0.0\",\n      \"stac_extensions\": [\n        \"https://stac-extensions.github.io/eo/v1.0.0/schema.json\",\n        \"https://stac-extensions.github.io/projection/v1.0.0/schema.json\",\n        \"https://stac-extensions.github.io/view/v1.0.0/schema.json\"\n      ],\n      \"bbox\": [\n        \"172.91173669923782\",\n        \"1.3438851951615003\",\n        \"172.95469614953714\",\n        \"1.3690476620161975\"\n      ],\n      \"geometry\": {\n        \"type\": \"Polygon\",\n        \"coordinates\": {}\n      },\n      \"properties\": {\n        \"altitude\": 700,\n        \"constellation\": \"TD1\",\n        \"created\": \"2022-01-01T10:00:00Z\",\n        \"datetime\": \"2022-06-15T12:00:00Z\",\n        \"description\": \"Example description of the dataset\",\n        \"eo:cloud_cover\": 23.5,\n        \"gsd\": 30,\n        \"instruments\": [\n          \"VNIR\"\n        ],\n        \"license\": \"CC-BY-4.0\",\n        \"platform\": \"TD1\",\n        \"proj:code\": \"EPSG:4326\",\n        \"proj:shape\": [\n          10980,\n          10980\n        ],\n        \"proj:transform\": [\n          0,\n          10,\n          500000,\n          0,\n          -10,\n          1000000\n        ],\n        \"rd:anomalous_pixels\": 0.01,\n        \"rd:earth_sun_distance\": 1,\n        \"rd:product_level\": \"L2A\",\n        \"rd:sat_id\": \"SAT-123\",\n        \"rd:type\": \"Reflectance\",\n        \"sci:doi\": \"10.1234/sci_doi\",\n        \"startdatetime\": \"2022-01-01T00:00:00Z\",\n        \"title\": \"Example Title\",\n        \"updated\": \"2022-06-01T10:00:00Z\",\n        \"view:off_nadir\": 5,\n        \"view:scene_center_lat\": 12.3456,\n        \"view:scene_center_lon\": -76.5432,\n        \"view:sun_azimuth\": 135,\n        \"view:sun_elevation\": 45\n      },\n      \"assets\": {\n        \"key_0\": {\n          \"eo:bands\": [\n            {\n              \"center_wavelength\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"common_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fwhm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"solar_irradiance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"center_wavelength\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"common_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fwhm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"solar_irradiance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"href\": \"https://example.com/asset.tif\",\n          \"raster:bands\": [\n            {\n              \"nodata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"offset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"spatial_resolution\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"nodata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"offset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"spatial_resolution\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"roles\": [\n            \"data\",\n            \"metadata\"\n          ],\n          \"title\": \"Example Asset Title\",\n          \"type\": \"image/tiff\"\n        },\n        \"key_1\": {\n          \"eo:bands\": [\n            {\n              \"center_wavelength\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"common_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fwhm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"solar_irradiance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"center_wavelength\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"common_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fwhm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"solar_irradiance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"href\": \"https://example.com/asset.tif\",\n          \"raster:bands\": [\n            {\n              \"nodata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"offset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"spatial_resolution\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"nodata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"offset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"spatial_resolution\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"roles\": [\n            \"data\",\n            \"metadata\"\n          ],\n          \"title\": \"Example Asset Title\",\n          \"type\": \"image/tiff\"\n        }\n      },\n      \"links\": [\n        {\n          \"href\": \"https://example.com\",\n          \"rel\": \"self\",\n          \"title\": \"Example Link Title\",\n          \"type\": \"application/json\"\n        },\n        {\n          \"href\": \"https://example.com\",\n          \"rel\": \"self\",\n          \"title\": \"Example Link Title\",\n          \"type\": \"application/json\"\n        }\n      ]\n    },\n    {\n      \"id\": \"20201211_223832_CS25\",\n      \"type\": \"Feature\",\n      \"collection\": \"simple-collection_2\",\n      \"stac_version\": \"1.0.0\",\n      \"stac_extensions\": [\n        \"https://stac-extensions.github.io/eo/v1.0.0/schema.json\",\n        \"https://stac-extensions.github.io/projection/v1.0.0/schema.json\",\n        \"https://stac-extensions.github.io/view/v1.0.0/schema.json\"\n      ],\n      \"bbox\": [\n        \"172.91173669923782\",\n        \"1.3438851951615003\",\n        \"172.95469614953714\",\n        \"1.3690476620161975\"\n      ],\n      \"geometry\": {\n        \"type\": \"Polygon\",\n        \"coordinates\": {}\n      },\n      \"properties\": {\n        \"altitude\": 700,\n        \"constellation\": \"TD1\",\n        \"created\": \"2022-01-01T10:00:00Z\",\n        \"datetime\": \"2022-06-15T12:00:00Z\",\n        \"description\": \"Example description of the dataset\",\n        \"eo:cloud_cover\": 23.5,\n        \"gsd\": 30,\n        \"instruments\": [\n          \"VNIR\"\n        ],\n        \"license\": \"CC-BY-4.0\",\n        \"platform\": \"TD1\",\n        \"proj:code\": \"EPSG:4326\",\n        \"proj:shape\": [\n          10980,\n          10980\n        ],\n        \"proj:transform\": [\n          0,\n          10,\n          500000,\n          0,\n          -10,\n          1000000\n        ],\n        \"rd:anomalous_pixels\": 0.01,\n        \"rd:earth_sun_distance\": 1,\n        \"rd:product_level\": \"L2A\",\n        \"rd:sat_id\": \"SAT-123\",\n        \"rd:type\": \"Reflectance\",\n        \"sci:doi\": \"10.1234/sci_doi\",\n        \"startdatetime\": \"2022-01-01T00:00:00Z\",\n        \"title\": \"Example Title\",\n        \"updated\": \"2022-06-01T10:00:00Z\",\n        \"view:off_nadir\": 5,\n        \"view:scene_center_lat\": 12.3456,\n        \"view:scene_center_lon\": -76.5432,\n        \"view:sun_azimuth\": 135,\n        \"view:sun_elevation\": 45\n      },\n      \"assets\": {\n        \"key_0\": {\n          \"eo:bands\": [\n            {\n              \"center_wavelength\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"common_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fwhm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"solar_irradiance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"center_wavelength\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"common_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fwhm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"solar_irradiance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"href\": \"https://example.com/asset.tif\",\n          \"raster:bands\": [\n            {\n              \"nodata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"offset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"spatial_resolution\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"nodata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"offset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"spatial_resolution\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"roles\": [\n            \"data\",\n            \"metadata\"\n          ],\n          \"title\": \"Example Asset Title\",\n          \"type\": \"image/tiff\"\n        }\n      },\n      \"links\": [\n        {\n          \"href\": \"https://example.com\",\n          \"rel\": \"self\",\n          \"title\": \"Example Link Title\",\n          \"type\": \"application/json\"\n        },\n        {\n          \"href\": \"https://example.com\",\n          \"rel\": \"self\",\n          \"title\": \"Example Link Title\",\n          \"type\": \"application/json\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"https://example.com\",\n      \"rel\": \"self\",\n      \"title\": \"Example Link Title\",\n      \"type\": \"application/json\"\n    },\n    {\n      \"href\": \"https://example.com\",\n      \"rel\": \"self\",\n      \"title\": \"Example Link Title\",\n      \"type\": \"application/json\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb625031-b1c8-4a58-bf7a-343148e3d1fb",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "archives",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bbox\": [\n    3,\n    4,\n    5,\n    6\n  ],\n  \"collections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"datetime\": \"2020-04-05T11:56:49.865Z/2023-06-05T11:56:49.865Z\",\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"intersects\": {\n    \"type\": \"Polygon\",\n    \"coordinates\": {}\n  },\n  \"limit\": 10,\n  \"offset\": 0,\n  \"query\": {\n    \"key_0\": {\n      \"key_0\": \"string\"\n    },\n    \"key_1\": {\n      \"key_0\": 8409\n    },\n    \"key_2\": {\n      \"key_0\": \"string\",\n      \"key_1\": true\n    },\n    \"key_3\": {\n      \"key_0\": 4430,\n      \"key_1\": false\n    }\n  },\n  \"sortby\": [\n    {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    {\n      \"key_0\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "56f469aa-3e15-44b2-9d96-7dad80f692ae",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "archives",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bbox\": [\n    3,\n    4,\n    5,\n    6\n  ],\n  \"collections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"datetime\": \"2020-04-05T11:56:49.865Z/2023-06-05T11:56:49.865Z\",\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"intersects\": {\n    \"type\": \"Polygon\",\n    \"coordinates\": {}\n  },\n  \"limit\": 10,\n  \"offset\": 0,\n  \"query\": {\n    \"key_0\": {\n      \"key_0\": \"string\"\n    },\n    \"key_1\": {\n      \"key_0\": 8409\n    },\n    \"key_2\": {\n      \"key_0\": \"string\",\n      \"key_1\": true\n    },\n    \"key_3\": {\n      \"key_0\": 4430,\n      \"key_1\": false\n    }\n  },\n  \"sortby\": [\n    {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    {\n      \"key_0\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ab7352d-ef24-4711-a1b4-e2777cd451d8",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "archives",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bbox\": [\n    3,\n    4,\n    5,\n    6\n  ],\n  \"collections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"datetime\": \"2020-04-05T11:56:49.865Z/2023-06-05T11:56:49.865Z\",\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"intersects\": {\n    \"type\": \"Polygon\",\n    \"coordinates\": {}\n  },\n  \"limit\": 10,\n  \"offset\": 0,\n  \"query\": {\n    \"key_0\": {\n      \"key_0\": \"string\"\n    },\n    \"key_1\": {\n      \"key_0\": 8409\n    },\n    \"key_2\": {\n      \"key_0\": \"string\",\n      \"key_1\": true\n    },\n    \"key_3\": {\n      \"key_0\": 4430,\n      \"key_1\": false\n    }\n  },\n  \"sortby\": [\n    {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    },\n    {\n      \"key_0\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.pixxel.space",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5ca8f588-4c42-4f8e-84d1-9f9fc29c5733",
+    "name": "stargate AOI Archives API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Swagger doc for Stargate\n\nContact Support:\n Name: Team-Identity\n Email: identity@pixxel.co.in",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "stargate AOI API",
+    "version": "v0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AOI",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all AOIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pixxel.space/v0/aois",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit for pagination"
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by creation date"
+              },
+              {
+                "name": "updated_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by update date"
+              },
+              {
+                "name": "aoi_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by AOI ID"
+              },
+              {
+                "name": "aoi_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by AOI name"
+              },
+              {
+                "name": "project_ids",
+                "value": "",
+                "type": "query",
+                "description": "Filter by project IDs (comma separated)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all Areas of Interest (AOIs) with optional filtering"
+        },
+        {
+          "info": {
+            "name": "Create a new AOI",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pixxel.space/v0/aois",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new AOI with specified parameters"
+        },
+        {
+          "info": {
+            "name": "Get AOI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pixxel.space/v0/aoi/:aoi_id",
+            "params": [
+              {
+                "name": "aoi_id",
+                "value": "",
+                "type": "path",
+                "description": "AOI ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get AOI by ID. Only the AOIs under current service user will be accessible."
+        },
+        {
+          "info": {
+            "name": "List supported satellites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pixxel.space/v0/satellites",
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List of supported satellites. This endpoint returns all available satellites in a single response; pagination is not required as the satellite catalog contains a limited set of entries."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

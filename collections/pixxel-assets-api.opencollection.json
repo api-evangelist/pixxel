@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "stargate AOI Assets API",
+    "version": "v0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Assets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List assets for an AOI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pixxel.space/v0/aois/:aoi_id/assets",
+            "params": [
+              {
+                "name": "aoi_id",
+                "value": "",
+                "type": "path",
+                "description": "AOI ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit for pagination"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all assets for a given AOI with optional filtering"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

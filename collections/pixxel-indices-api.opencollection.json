@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "stargate AOI Indices API",
+    "version": "v0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Indices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all available indices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pixxel.space/v0/indices",
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit for pagination"
+              },
+              {
+                "name": "satellite_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by satellite ID"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by index type (custom/preset)"
+              },
+              {
+                "name": "expression_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by expression type"
+              },
+              {
+                "name": "index_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by index ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns a list of all available indices (both custom and preset) with their formulas and metadata. Use the type query parameter to filter by custom or preset."
+        },
+        {
+          "info": {
+            "name": "Create a new index",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pixxel.space/v0/indices",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new custom index with the provided parameters. This endpoint is for creating custom indices only; preset indices are pre-generated and can be viewed using the list indices endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

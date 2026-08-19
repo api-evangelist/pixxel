@@ -1,0 +1,359 @@
+{
+  "item": [
+    {
+      "id": "10a93aa4-0ca3-4ad2-a3ef-a1443ac70d65",
+      "name": "Assets",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "648e9fa9-4d14-4deb-a09b-c97237a78f3a",
+          "name": "List assets for an AOI",
+          "request": {
+            "name": "List assets for an AOI",
+            "description": {
+              "content": "List all assets for a given AOI with optional filtering",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "aois",
+                ":aoi_id",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Limit for pagination"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "aoi_id",
+                  "description": "(Required) AOI ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2f7793ac-2ac4-4018-baa9-86257a15e5c7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "aois",
+                    ":aoi_id",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "aoi_id",
+                      "description": "(Required) AOI ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assets\": [\n    {\n      \"aoi_id\": \"e9767554-550e-4464-a677-b8cf096073ab\",\n      \"area_in_sq_m\": 0,\n      \"asset_type\": \"mosaic\",\n      \"band_list\": [\n        \"B01\",\n        \"B02\"\n      ],\n      \"centroid\": [\n        77.55,\n        12.95\n      ],\n      \"created_at\": \"2022-11-14 12:55:49.125928+00:00\",\n      \"date\": \"2022-11-14\",\n      \"description\": \"This asset is mosaic file\",\n      \"geometry\": {\n        \"coordinates\": [\n          [\n            [\n              6827.041925168023,\n              5954.905862295977\n            ],\n            [\n              1993.1041019379782,\n              5522.068130721094\n            ]\n          ],\n          [\n            [\n              5030.39396019824,\n              1784.7365284374862\n            ],\n            [\n              5939.7149807785445,\n              6396.8551082763815\n            ]\n          ]\n        ],\n        \"type\": \"Polygon\"\n      },\n      \"id\": \"e9767554-550e-4464-a677-b8cf096073ab\",\n      \"name\": \"Asset-A\",\n      \"path\": \"https://storage.account\",\n      \"progress\": 0,\n      \"resolution\": 10,\n      \"status\": \"success\",\n      \"updated_at\": \"2022-11-14 12:55:49.125928+00:00\",\n      \"visualization_id\": \"e9767554-550e-4464-a677-b8cf096073ab\"\n    },\n    {\n      \"aoi_id\": \"e9767554-550e-4464-a677-b8cf096073ab\",\n      \"area_in_sq_m\": 0,\n      \"asset_type\": \"mosaic\",\n      \"band_list\": [\n        \"B01\",\n        \"B02\"\n      ],\n      \"centroid\": [\n        77.55,\n        12.95\n      ],\n      \"created_at\": \"2022-11-14 12:55:49.125928+00:00\",\n      \"date\": \"2022-11-14\",\n      \"description\": \"This asset is mosaic file\",\n      \"geometry\": {\n        \"coordinates\": [\n          [\n            [\n              8250.746205505882,\n              9151.671165388898\n            ],\n            [\n              5729.015883430721,\n              2500.2892019640954\n            ]\n          ],\n          [\n            [\n              3988.940256914657,\n              3744.08249666331\n            ],\n            [\n              931.7942802719359,\n              892.8021231461769\n            ]\n          ]\n        ],\n        \"type\": \"Polygon\"\n      },\n      \"id\": \"e9767554-550e-4464-a677-b8cf096073ab\",\n      \"name\": \"Asset-A\",\n      \"path\": \"https://storage.account\",\n      \"progress\": 0,\n      \"resolution\": 10,\n      \"status\": \"success\",\n      \"updated_at\": \"2022-11-14 12:55:49.125928+00:00\",\n      \"visualization_id\": \"e9767554-550e-4464-a677-b8cf096073ab\"\n    }\n  ],\n  \"pagination\": {\n    \"limit\": 10,\n    \"offset\": 0,\n    \"total\": 100\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce77f1c6-b09c-4857-91d0-a047992c9b83",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "aois",
+                    ":aoi_id",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "aoi_id",
+                      "description": "(Required) AOI ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57a0e6ba-b916-4656-8eb0-6a95101ab313",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "aois",
+                    ":aoi_id",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "aoi_id",
+                      "description": "(Required) AOI ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07aefb46-ccbc-4cd9-8a57-b8e355847a70",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "aois",
+                    ":aoi_id",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "aoi_id",
+                      "description": "(Required) AOI ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.pixxel.space",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e2ae6bb3-8599-4287-a8dc-dfb3cae77154",
+    "name": "stargate AOI Assets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Swagger doc for Stargate\n\nContact Support:\n Name: Team-Identity\n Email: identity@pixxel.co.in",
+      "type": "text/plain"
+    }
+  }
+}

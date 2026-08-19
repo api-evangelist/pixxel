@@ -1,0 +1,305 @@
+{
+  "item": [
+    {
+      "id": "420d2fed-0665-43c0-9923-c732f16756b4",
+      "name": "Search",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9a64543b-05e9-49ae-b663-84a7297f92e1",
+          "name": "Search satellite images",
+          "request": {
+            "name": "Search satellite images",
+            "description": {
+              "content": "Search for satellite images using various filters and parameters. This endpoint uses cursor-based pagination with next_token for efficient navigation through large result sets and consistent behaviour across external providers (Planetary, Element). Use the next_token from the response to fetch subsequent pages of results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"end_date\": \"<string>\",\n  \"geometry\": {\n    \"coordinates\": {},\n    \"type\": \"<string>\"\n  },\n  \"satellites\": [\n    {\n      \"collection_id\": \"<string>\",\n      \"satellite_id\": \"<string>\"\n    },\n    {\n      \"collection_id\": \"<string>\",\n      \"satellite_id\": \"<string>\"\n    }\n  ],\n  \"start_date\": \"<string>\",\n  \"filters\": [\n    {\n      \"id\": \"<string>\",\n      \"max\": \"<integer>\",\n      \"min\": \"<integer>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"max\": \"<integer>\",\n      \"min\": \"<integer>\"\n    }\n  ],\n  \"limit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "77e2c4c4-40f7-4762-abca-1b8c6a696e66",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"end_date\": \"2023-05-03T11:56:49.865Z\",\n  \"geometry\": {\n    \"coordinates\": {},\n    \"type\": \"Polygon\"\n  },\n  \"satellites\": [\n    {\n      \"collection_id\": \"sentinel-2-l2a\",\n      \"satellite_id\": \"0002a3a3-00a2-4b55-842b-44d8202c6d60\"\n    },\n    {\n      \"collection_id\": \"sentinel-2-l2a\",\n      \"satellite_id\": \"0002a3a3-00a2-4b55-842b-44d8202c6d60\"\n    }\n  ],\n  \"start_date\": \"2023-04-18T11:56:49.865Z\",\n  \"filters\": [\n    {\n      \"id\": \"eo:cloud_cover\",\n      \"max\": 100,\n      \"min\": 0\n    },\n    {\n      \"id\": \"eo:cloud_cover\",\n      \"max\": 100,\n      \"min\": 0\n    }\n  ],\n  \"limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": {\n    \"key_0\": {\n      \"id\": \"20201211_223832_CS25\",\n      \"type\": \"Feature\",\n      \"collection\": \"simple-collection_2\",\n      \"stac_version\": \"1.0.0\",\n      \"stac_extensions\": [\n        \"https://stac-extensions.github.io/eo/v1.0.0/schema.json\",\n        \"https://stac-extensions.github.io/projection/v1.0.0/schema.json\",\n        \"https://stac-extensions.github.io/view/v1.0.0/schema.json\"\n      ],\n      \"bbox\": [\n        \"172.91173669923782\",\n        \"1.3438851951615003\",\n        \"172.95469614953714\",\n        \"1.3690476620161975\"\n      ],\n      \"geometry\": {\n        \"type\": \"Polygon\",\n        \"coordinates\": {}\n      },\n      \"properties\": {\n        \"altitude\": 700,\n        \"constellation\": \"TD1\",\n        \"created\": \"2022-01-01T10:00:00Z\",\n        \"datetime\": \"2022-06-15T12:00:00Z\",\n        \"description\": \"Example description of the dataset\",\n        \"eo:cloud_cover\": 23.5,\n        \"gsd\": 30,\n        \"instruments\": [\n          \"VNIR\"\n        ],\n        \"license\": \"CC-BY-4.0\",\n        \"platform\": \"TD1\",\n        \"proj:code\": \"EPSG:4326\",\n        \"proj:shape\": [\n          10980,\n          10980\n        ],\n        \"proj:transform\": [\n          0,\n          10,\n          500000,\n          0,\n          -10,\n          1000000\n        ],\n        \"rd:anomalous_pixels\": 0.01,\n        \"rd:earth_sun_distance\": 1,\n        \"rd:product_level\": \"L2A\",\n        \"rd:sat_id\": \"SAT-123\",\n        \"rd:type\": \"Reflectance\",\n        \"sci:doi\": \"10.1234/sci_doi\",\n        \"startdatetime\": \"2022-01-01T00:00:00Z\",\n        \"title\": \"Example Title\",\n        \"updated\": \"2022-06-01T10:00:00Z\",\n        \"view:off_nadir\": 5,\n        \"view:scene_center_lat\": 12.3456,\n        \"view:scene_center_lon\": -76.5432,\n        \"view:sun_azimuth\": 135,\n        \"view:sun_elevation\": 45\n      },\n      \"assets\": {\n        \"key_0\": {\n          \"eo:bands\": [\n            {\n              \"center_wavelength\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"common_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fwhm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"solar_irradiance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"center_wavelength\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"common_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fwhm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"solar_irradiance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"href\": \"https://example.com/asset.tif\",\n          \"raster:bands\": [\n            {\n              \"nodata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"offset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"spatial_resolution\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"nodata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"offset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"spatial_resolution\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"roles\": [\n            \"data\",\n            \"metadata\"\n          ],\n          \"title\": \"Example Asset Title\",\n          \"type\": \"image/tiff\"\n        },\n        \"key_1\": {\n          \"eo:bands\": [\n            {\n              \"center_wavelength\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"common_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fwhm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"solar_irradiance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"center_wavelength\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"common_name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"fwhm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"solar_irradiance\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"href\": \"https://example.com/asset.tif\",\n          \"raster:bands\": [\n            {\n              \"nodata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"offset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"spatial_resolution\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"nodata\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"offset\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"scale\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"spatial_resolution\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"roles\": [\n            \"data\",\n            \"metadata\"\n          ],\n          \"title\": \"Example Asset Title\",\n          \"type\": \"image/tiff\"\n        }\n      },\n      \"links\": [\n        {\n          \"href\": \"https://example.com\",\n          \"rel\": \"self\",\n          \"title\": \"Example Link Title\",\n          \"type\": \"application/json\"\n        },\n        {\n          \"href\": \"https://example.com\",\n          \"rel\": \"self\",\n          \"title\": \"Example Link Title\",\n          \"type\": \"application/json\"\n        }\n      ]\n    }\n  },\n  \"pagination\": {\n    \"limit\": 10,\n    \"skip\": 0,\n    \"total\": 100\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e112a8b3-663b-4c86-bd0f-d110bc2d7a74",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"end_date\": \"2023-05-03T11:56:49.865Z\",\n  \"geometry\": {\n    \"coordinates\": {},\n    \"type\": \"Polygon\"\n  },\n  \"satellites\": [\n    {\n      \"collection_id\": \"sentinel-2-l2a\",\n      \"satellite_id\": \"0002a3a3-00a2-4b55-842b-44d8202c6d60\"\n    },\n    {\n      \"collection_id\": \"sentinel-2-l2a\",\n      \"satellite_id\": \"0002a3a3-00a2-4b55-842b-44d8202c6d60\"\n    }\n  ],\n  \"start_date\": \"2023-04-18T11:56:49.865Z\",\n  \"filters\": [\n    {\n      \"id\": \"eo:cloud_cover\",\n      \"max\": 100,\n      \"min\": 0\n    },\n    {\n      \"id\": \"eo:cloud_cover\",\n      \"max\": 100,\n      \"min\": 0\n    }\n  ],\n  \"limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af1be3a2-2af2-4e1b-b42e-733f59fdec2b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"end_date\": \"2023-05-03T11:56:49.865Z\",\n  \"geometry\": {\n    \"coordinates\": {},\n    \"type\": \"Polygon\"\n  },\n  \"satellites\": [\n    {\n      \"collection_id\": \"sentinel-2-l2a\",\n      \"satellite_id\": \"0002a3a3-00a2-4b55-842b-44d8202c6d60\"\n    },\n    {\n      \"collection_id\": \"sentinel-2-l2a\",\n      \"satellite_id\": \"0002a3a3-00a2-4b55-842b-44d8202c6d60\"\n    }\n  ],\n  \"start_date\": \"2023-04-18T11:56:49.865Z\",\n  \"filters\": [\n    {\n      \"id\": \"eo:cloud_cover\",\n      \"max\": 100,\n      \"min\": 0\n    },\n    {\n      \"id\": \"eo:cloud_cover\",\n      \"max\": 100,\n      \"min\": 0\n    }\n  ],\n  \"limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07416572-c9bc-4cbd-b6fa-21334a3eade1",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"end_date\": \"2023-05-03T11:56:49.865Z\",\n  \"geometry\": {\n    \"coordinates\": {},\n    \"type\": \"Polygon\"\n  },\n  \"satellites\": [\n    {\n      \"collection_id\": \"sentinel-2-l2a\",\n      \"satellite_id\": \"0002a3a3-00a2-4b55-842b-44d8202c6d60\"\n    },\n    {\n      \"collection_id\": \"sentinel-2-l2a\",\n      \"satellite_id\": \"0002a3a3-00a2-4b55-842b-44d8202c6d60\"\n    }\n  ],\n  \"start_date\": \"2023-04-18T11:56:49.865Z\",\n  \"filters\": [\n    {\n      \"id\": \"eo:cloud_cover\",\n      \"max\": 100,\n      \"min\": 0\n    },\n    {\n      \"id\": \"eo:cloud_cover\",\n      \"max\": 100,\n      \"min\": 0\n    }\n  ],\n  \"limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.pixxel.space",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4ca205aa-bdb3-4b1c-99db-d38911198f43",
+    "name": "stargate AOI Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Swagger doc for Stargate\n\nContact Support:\n Name: Team-Identity\n Email: identity@pixxel.co.in",
+      "type": "text/plain"
+    }
+  }
+}

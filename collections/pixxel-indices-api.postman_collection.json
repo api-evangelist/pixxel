@@ -1,0 +1,601 @@
+{
+  "item": [
+    {
+      "id": "a910f2f8-90e1-4bef-89ac-90288b0f6560",
+      "name": "Indices",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dfda341b-57d7-4b70-939e-16daa81c4111",
+          "name": "List all available indices",
+          "request": {
+            "name": "List all available indices",
+            "description": {
+              "content": "Returns a list of all available indices (both custom and preset) with their formulas and metadata. Use the type query parameter to filter by custom or preset.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "indices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Limit for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "satellite_id",
+                  "value": "<string>",
+                  "description": "Filter by satellite ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by index type (custom/preset)"
+                },
+                {
+                  "disabled": false,
+                  "key": "expression_type",
+                  "value": "<string>",
+                  "description": "Filter by expression type"
+                },
+                {
+                  "disabled": false,
+                  "key": "index_id",
+                  "value": "<string>",
+                  "description": "Filter by index ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4df1734e-8efa-4626-981f-1e3aaeecba9a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "indices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "satellite_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expression_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "index_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"indices\": [\n    {\n      \"bands\": [\n        \"string\",\n        \"string\"\n      ],\n      \"colormap\": \"string\",\n      \"created_at\": \"string\",\n      \"description\": \"string\",\n      \"expression\": \"string\",\n      \"expression_type\": \"index\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"rescale\": [\n        5567,\n        3996\n      ],\n      \"satellite_id\": \"string\",\n      \"type\": \"preset\",\n      \"updated_at\": \"string\"\n    },\n    {\n      \"bands\": [\n        \"string\",\n        \"string\"\n      ],\n      \"colormap\": \"string\",\n      \"created_at\": \"string\",\n      \"description\": \"string\",\n      \"expression\": \"string\",\n      \"expression_type\": \"index\",\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"rescale\": [\n        9299,\n        8892\n      ],\n      \"satellite_id\": \"string\",\n      \"type\": \"custom\",\n      \"updated_at\": \"string\"\n    }\n  ],\n  \"pagination\": {\n    \"limit\": 10,\n    \"offset\": 0,\n    \"total\": 100\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af40ce74-d075-48db-8515-9cb382e0055d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "indices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "satellite_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expression_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "index_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01e9ba9a-e4b8-4b94-bb67-5df5925b9bc1",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "indices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "satellite_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expression_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "index_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f4f6e76b-e7b0-423d-a200-69f9ebd3a99b",
+          "name": "Create a new index",
+          "request": {
+            "name": "Create a new index",
+            "description": {
+              "content": "Creates a new custom index with the provided parameters. This endpoint is for creating custom indices only; preset indices are pre-generated and can be viewed using the list indices endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "indices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"colormap\": \"<string>\",\n  \"description\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"expression_type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"rescale\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"satellite_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9e33ce8d-c0e5-4ac7-8663-d27abd398485",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "indices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"colormap\": \"rplumbho\",\n  \"description\": \"This formula will give insights about vegetation\",\n  \"expression\": \"(B04-B08)/(B04+B08)\",\n  \"expression_type\": \"index\",\n  \"name\": \"NDVI\",\n  \"rescale\": [\n    0,\n    1\n  ],\n  \"satellite_id\": \"0002a3a3-00a2-4b55-842b-44d8202c6d60\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bands\": [\n    \"B01\",\n    \"B02\",\n    \"B03\"\n  ],\n  \"colormap\": \"rplumbho\",\n  \"created_at\": \"2022-11-14 12:55:49.125928+00:00\",\n  \"description\": \"This formula will give insights about vegetation\",\n  \"expression\": \"(B04-B08)/(B04+B08)\",\n  \"expression_type\": \"index\",\n  \"id\": \"e9767554-550e-4464-a677-b8cf096073ab\",\n  \"name\": \"NDVI\",\n  \"rescale\": [\n    0,\n    1\n  ],\n  \"satellite_id\": \"0002a3a3-00a2-4b55-842b-44d8202c6d60\",\n  \"type\": \"custom\",\n  \"updated_at\": \"2022-11-14 12:55:49.125928+00:00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e6737b0-0382-496b-b003-a583a32670d5",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "indices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"colormap\": \"rplumbho\",\n  \"description\": \"This formula will give insights about vegetation\",\n  \"expression\": \"(B04-B08)/(B04+B08)\",\n  \"expression_type\": \"index\",\n  \"name\": \"NDVI\",\n  \"rescale\": [\n    0,\n    1\n  ],\n  \"satellite_id\": \"0002a3a3-00a2-4b55-842b-44d8202c6d60\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35b9ea51-5386-40af-9030-60d7a22114ac",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "indices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"colormap\": \"rplumbho\",\n  \"description\": \"This formula will give insights about vegetation\",\n  \"expression\": \"(B04-B08)/(B04+B08)\",\n  \"expression_type\": \"index\",\n  \"name\": \"NDVI\",\n  \"rescale\": [\n    0,\n    1\n  ],\n  \"satellite_id\": \"0002a3a3-00a2-4b55-842b-44d8202c6d60\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "729c2ab0-ef58-4c1c-93d2-c37ab1ad57f5",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "indices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"colormap\": \"rplumbho\",\n  \"description\": \"This formula will give insights about vegetation\",\n  \"expression\": \"(B04-B08)/(B04+B08)\",\n  \"expression_type\": \"index\",\n  \"name\": \"NDVI\",\n  \"rescale\": [\n    0,\n    1\n  ],\n  \"satellite_id\": \"0002a3a3-00a2-4b55-842b-44d8202c6d60\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.pixxel.space",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "71b9f7c0-0dd6-4eae-948c-f7978f25cddd",
+    "name": "stargate AOI Indices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Swagger doc for Stargate\n\nContact Support:\n Name: Team-Identity\n Email: identity@pixxel.co.in",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,211 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "stargate AOI Order API",
+    "version": "v0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Order",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pixxel.space/v0/orders",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "User ID"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List of all orders in the workspace."
+        },
+        {
+          "info": {
+            "name": "Create an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pixxel.space/v0/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new order with tasking or/and archive orderitems"
+        },
+        {
+          "info": {
+            "name": "Get an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pixxel.space/v0/orders/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Order ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get an order by it's ID with it's associated orderitems."
+        },
+        {
+          "info": {
+            "name": "List all orderItems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pixxel.space/v0/order-items",
+            "params": [
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "User ID"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Status"
+              },
+              {
+                "name": "order_ids",
+                "value": "",
+                "type": "query",
+                "description": "Order IDs"
+              },
+              {
+                "name": "created_by",
+                "value": "",
+                "type": "query",
+                "description": "Created By"
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Created At Range"
+              },
+              {
+                "name": "project_ids",
+                "value": "",
+                "type": "query",
+                "description": "Project IDs"
+              },
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "IDs"
+              },
+              {
+                "name": "area",
+                "value": "",
+                "type": "query",
+                "description": "Area Range"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List of all order-items in the workspace, the response is paginated."
+        },
+        {
+          "info": {
+            "name": "Get an orderItem",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pixxel.space/v0/order-items/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "OrderItem ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get an orderitem by it's ID, it will also return the list of tasks associated with the ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

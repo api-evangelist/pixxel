@@ -1,0 +1,160 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "stargate AOI Jobs API",
+    "version": "v0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pixxel.space/v0/workflows/:workflow_id/jobs",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the workflow to list jobs from"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by specific job ID"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter jobs by their current status (e.g., running, completed)"
+              },
+              {
+                "name": "created_by",
+                "value": "",
+                "type": "query",
+                "description": "Filter jobs by user who created them"
+              },
+              {
+                "name": "created_on",
+                "value": "",
+                "type": "query",
+                "description": "Filter jobs by creation date"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List Jobs for a given workflow id"
+        },
+        {
+          "info": {
+            "name": "Create a job from a given workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pixxel.space/v0/workflows/:workflow_id/jobs",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the workflow to create a job from"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "Project identifier the workflow belongs to"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a job from a given workflow"
+        },
+        {
+          "info": {
+            "name": "Get Job by Id and WF Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pixxel.space/v0/workflows/:workflow_id/jobs/:job_id",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the workflow"
+              },
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the job within the workflow"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get Job by Id and WF Id"
+        },
+        {
+          "info": {
+            "name": "Download Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.pixxel.space/v0/workflows/:workflow_id/jobs/:job_id/download",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID of the workflow to download assets from"
+              },
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "Specific job ID within the workflow from which to create download package"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a download package containing the specified input and output files from a job run of a workflow."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

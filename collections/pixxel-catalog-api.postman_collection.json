@@ -1,0 +1,1637 @@
+{
+  "item": [
+    {
+      "id": "3b4d84b6-8c7c-4511-a796-1f9b007d551e",
+      "name": "Catalog",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f355034d-e6bc-40bc-b39d-a3b940616541",
+          "name": "List all deliveries",
+          "request": {
+            "name": "List all deliveries",
+            "description": {
+              "content": "List of all deliveries for the workspace",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "catalogs",
+                "deliveries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "delivery_id",
+                  "value": "<string>",
+                  "description": "Delivery ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "catalog_id",
+                  "value": "<string>",
+                  "description": "Catalog ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "task_id",
+                  "value": "<string>",
+                  "description": "Task ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_item_id",
+                  "value": "<string>",
+                  "description": "Order Item ID"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7cf5122d-93cf-4188-866f-d6b20db88d64",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "catalogs",
+                    "deliveries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "delivery_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "catalog_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "task_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_item_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deliveries\": [\n    {\n      \"catalog_id\": \"47435e2b-d8c4-51ff-9de9-2be3bfc92276\",\n      \"cloud_delivery\": {\n        \"config\": \"9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6\",\n        \"path\": \"path/subdirectory1/\"\n      },\n      \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"created_by\": \"60795589-8759-4d00-9162-b1537b66fb3e\",\n      \"delivery_id\": \"47435e2b-d8c4-41ff-9de9-2be3cfc92276\",\n      \"status\": \"SUCCESS\",\n      \"target_path\": \"order_1/catalogs.zip\",\n      \"task_id\": \"7f74a393-236f-4e02-9d22-b11dea4eac8a\",\n      \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"updated_by\": \"b23d9181-4de1-4856-950b-e83b2ac52830\"\n    },\n    {\n      \"catalog_id\": \"47435e2b-d8c4-51ff-9de9-2be3bfc92276\",\n      \"cloud_delivery\": {\n        \"config\": \"9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6\",\n        \"path\": \"path/subdirectory1/\"\n      },\n      \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"created_by\": \"60795589-8759-4d00-9162-b1537b66fb3e\",\n      \"delivery_id\": \"47435e2b-d8c4-41ff-9de9-2be3cfc92276\",\n      \"status\": \"SUCCESS\",\n      \"target_path\": \"order_1/catalogs.zip\",\n      \"task_id\": \"7f74a393-236f-4e02-9d22-b11dea4eac8a\",\n      \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"updated_by\": \"b23d9181-4de1-4856-950b-e83b2ac52830\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c8060bd-a376-4885-ba5d-c52fff403bc7",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "catalogs",
+                    "deliveries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "delivery_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "catalog_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "task_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_item_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7248c51-f8a8-40c2-ad4e-137555b27ac4",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "catalogs",
+                    "deliveries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "delivery_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "catalog_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "task_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_item_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04b9407a-f6dc-42f7-b59f-744cd734d771",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "catalogs",
+                    "deliveries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "delivery_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "catalog_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "task_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_item_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e689055-bce4-4f86-af8d-10864cffa041",
+          "name": "Create deliveries",
+          "request": {
+            "name": "Create deliveries",
+            "description": {
+              "content": "Create a delivery request which will be fulfilled async, only one of catalog id or order_item should be populated in a single delivery request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "catalogs",
+                "deliveries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"deliveries\": [\n    {\n      \"catalog_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"cloud_info\": {\n        \"config\": \"<string>\",\n        \"path\": \"<string>\"\n      },\n      \"order_item_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"catalog_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"cloud_info\": {\n        \"config\": \"<string>\",\n        \"path\": \"<string>\"\n      },\n      \"order_item_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b1f719f9-84c1-4f90-8fde-07b4fe0469e8",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "catalogs",
+                    "deliveries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"deliveries\": [\n    {\n      \"catalog_ids\": [\n        \"47435e2b-d8c4-51ff-9de9-2be3bfc92276\"\n      ],\n      \"cloud_info\": {\n        \"config\": \"9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6\",\n        \"path\": \"path/subdirectory1/\"\n      },\n      \"order_item_ids\": [\n        \"<string>\"\n      ]\n    },\n    {\n      \"catalog_ids\": [\n        \"47435e2b-d8c4-51ff-9de9-2be3bfc92276\"\n      ],\n      \"cloud_info\": {\n        \"config\": \"9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6\",\n        \"path\": \"path/subdirectory1/\"\n      },\n      \"order_item_ids\": [\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deliveries\": [\n    {\n      \"catalog_id\": \"47435e2b-d8c4-51ff-9de9-2be3bfc92276\",\n      \"cloud_delivery\": {\n        \"config\": \"9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6\",\n        \"path\": \"path/subdirectory1/\"\n      },\n      \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"created_by\": \"60795589-8759-4d00-9162-b1537b66fb3e\",\n      \"delivery_id\": \"47435e2b-d8c4-41ff-9de9-2be3cfc92276\",\n      \"status\": \"SUCCESS\",\n      \"target_path\": \"order_1/catalogs.zip\",\n      \"task_id\": \"7f74a393-236f-4e02-9d22-b11dea4eac8a\",\n      \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"updated_by\": \"b23d9181-4de1-4856-950b-e83b2ac52830\"\n    },\n    {\n      \"catalog_id\": \"47435e2b-d8c4-51ff-9de9-2be3bfc92276\",\n      \"cloud_delivery\": {\n        \"config\": \"9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6\",\n        \"path\": \"path/subdirectory1/\"\n      },\n      \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"created_by\": \"60795589-8759-4d00-9162-b1537b66fb3e\",\n      \"delivery_id\": \"47435e2b-d8c4-41ff-9de9-2be3cfc92276\",\n      \"status\": \"SUCCESS\",\n      \"target_path\": \"order_1/catalogs.zip\",\n      \"task_id\": \"7f74a393-236f-4e02-9d22-b11dea4eac8a\",\n      \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"updated_by\": \"b23d9181-4de1-4856-950b-e83b2ac52830\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "93564f72-80d9-48fc-a4ec-af20c9bd9a98",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "catalogs",
+                    "deliveries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"deliveries\": [\n    {\n      \"catalog_ids\": [\n        \"47435e2b-d8c4-51ff-9de9-2be3bfc92276\"\n      ],\n      \"cloud_info\": {\n        \"config\": \"9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6\",\n        \"path\": \"path/subdirectory1/\"\n      },\n      \"order_item_ids\": [\n        \"<string>\"\n      ]\n    },\n    {\n      \"catalog_ids\": [\n        \"47435e2b-d8c4-51ff-9de9-2be3bfc92276\"\n      ],\n      \"cloud_info\": {\n        \"config\": \"9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6\",\n        \"path\": \"path/subdirectory1/\"\n      },\n      \"order_item_ids\": [\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d8f1ac8-f4ec-42c7-8929-7fd1d42200a1",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "catalogs",
+                    "deliveries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"deliveries\": [\n    {\n      \"catalog_ids\": [\n        \"47435e2b-d8c4-51ff-9de9-2be3bfc92276\"\n      ],\n      \"cloud_info\": {\n        \"config\": \"9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6\",\n        \"path\": \"path/subdirectory1/\"\n      },\n      \"order_item_ids\": [\n        \"<string>\"\n      ]\n    },\n    {\n      \"catalog_ids\": [\n        \"47435e2b-d8c4-51ff-9de9-2be3bfc92276\"\n      ],\n      \"cloud_info\": {\n        \"config\": \"9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6\",\n        \"path\": \"path/subdirectory1/\"\n      },\n      \"order_item_ids\": [\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd8e0d2f-5132-47cb-bfa5-92221cbb693f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "catalogs",
+                    "deliveries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"deliveries\": [\n    {\n      \"catalog_ids\": [\n        \"47435e2b-d8c4-51ff-9de9-2be3bfc92276\"\n      ],\n      \"cloud_info\": {\n        \"config\": \"9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6\",\n        \"path\": \"path/subdirectory1/\"\n      },\n      \"order_item_ids\": [\n        \"<string>\"\n      ]\n    },\n    {\n      \"catalog_ids\": [\n        \"47435e2b-d8c4-51ff-9de9-2be3bfc92276\"\n      ],\n      \"cloud_info\": {\n        \"config\": \"9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6\",\n        \"path\": \"path/subdirectory1/\"\n      },\n      \"order_item_ids\": [\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58cadc15-1a2b-430f-b756-0c79a2bdd487",
+          "name": "Create a download resource",
+          "request": {
+            "name": "Create a download resource",
+            "description": {
+              "content": "Create a download resource which will get populated with a signed url async. Only one of orderitem or catalog id should be populated in a single request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "catalogs",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"catalog_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"order_item_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8c41b25f-e73f-4753-94eb-1dbbdbd9e668",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "catalogs",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"catalog_ids\": [\n    \"47435e2b-d8c4-51ff-9de9-2be3bfc92276\"\n  ],\n  \"order_item_ids\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n  \"signed_url\": \"http://signed_url_link\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b787d3ac-96bd-426b-8f2e-037ff3175ff2",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "catalogs",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"catalog_ids\": [\n    \"47435e2b-d8c4-51ff-9de9-2be3bfc92276\"\n  ],\n  \"order_item_ids\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf2b6fae-f142-4c04-9a73-0570bde15a81",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "catalogs",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"catalog_ids\": [\n    \"47435e2b-d8c4-51ff-9de9-2be3bfc92276\"\n  ],\n  \"order_item_ids\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a118b750-85b0-41a9-af01-27cffc7c99bd",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "catalogs",
+                    "download"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"catalog_ids\": [\n    \"47435e2b-d8c4-51ff-9de9-2be3bfc92276\"\n  ],\n  \"order_item_ids\": [\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "55ca9b24-a26f-4fe2-a7d5-f83eccdfa1ee",
+          "name": "Get download status",
+          "request": {
+            "name": "Get download status",
+            "description": {
+              "content": "Get the current status of a download resource, signed_url field will be populated only if the operation is successful.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "catalogs",
+                "download",
+                ":download_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "download_id",
+                  "description": "(Required) Download ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3c9d4023-ab95-46eb-b515-c2098598ba69",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "catalogs",
+                    "download",
+                    ":download_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "download_id",
+                      "description": "(Required) Download ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n  \"signed_url\": \"http://signed_url_link\",\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3816293-aaa9-4610-992a-7b4e55cf4add",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "catalogs",
+                    "download",
+                    ":download_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "download_id",
+                      "description": "(Required) Download ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1af3ff9-0bf2-406c-a8b1-9e1741c5c61a",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "catalogs",
+                    "download",
+                    ":download_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "download_id",
+                      "description": "(Required) Download ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de0909fb-287e-41fc-a5d9-08055bccccd8",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "catalogs",
+                    "download",
+                    ":download_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "download_id",
+                      "description": "(Required) Download ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8932447d-4cb3-42c4-a4a6-c5d10510a61e",
+          "name": "Search all catalogs",
+          "request": {
+            "name": "Search all catalogs",
+            "description": {
+              "content": "Search all catalogs owned by the workspace",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "catalogs",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bbox\": [\n    \"<number>\",\n    \"<number>\"\n  ],\n  \"collections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"datetime\": \"<string>\",\n  \"ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"intersects\": {\n    \"coordinates\": [\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ],\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ]\n    ],\n    \"type\": \"<string>\"\n  },\n  \"item_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"limit\": 2,\n  \"offset\": 0,\n  \"order_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"order_item_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"query\": {\n    \"key_0\": {\n      \"key_0\": 9011,\n      \"key_1\": 3848\n    }\n  },\n  \"sort_by\": [\n    {\n      \"key_0\": \"<string>\"\n    },\n    {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7f1f5900-8108-4222-8d50-bc84a0193b46",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "catalogs",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bbox\": [\n    160.6,\n    -55.95,\n    -170,\n    -25.89\n  ],\n  \"collections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"datetime\": \"2020-04-05T11:56:49.865Z/2023-06-05T11:56:49.865Z\",\n  \"ids\": [\n    \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\"\n  ],\n  \"intersects\": {\n    \"coordinates\": [\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ],\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ]\n    ],\n    \"type\": \"Polygon\"\n  },\n  \"item_ids\": [\n    \"TD1_2024_ABC\"\n  ],\n  \"limit\": 50,\n  \"offset\": 50,\n  \"order_ids\": [\n    \"57435e2b-d8c4-41ff-9de9-2be3bfc92277\"\n  ],\n  \"order_item_ids\": [\n    \"57435e2b-d8c4-41ff-9de9-2be3bfc92278\"\n  ],\n  \"query\": {\n    \"key_0\": {\n      \"key_0\": 7427,\n      \"key_1\": 6304.66770888225\n    },\n    \"key_1\": {\n      \"key_0\": 7083.712268057867\n    },\n    \"key_2\": {\n      \"key_0\": \"string\"\n    },\n    \"key_3\": {\n      \"key_0\": 4125,\n      \"key_1\": true\n    }\n  },\n  \"sort_by\": [\n    {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"catalogs\": [\n    {\n      \"area\": 100,\n      \"bandset_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92277\",\n      \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"created_by\": \"0d7b3c5e-3b2a-4e77-bedb-5e0d2257cdb6\",\n      \"delivery_status\": \"SUCCESS\",\n      \"details\": {\n        \"assets\": {\n          \"key_0\": {\n            \"eo:bands\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"href\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"roles\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"key_1\": {\n            \"eo:bands\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"href\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"roles\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"key_2\": {\n            \"eo:bands\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"href\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"roles\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"bbox\": [\n          9300.936266820665,\n          8535.49593673596\n        ],\n        \"collection\": \"string\",\n        \"geometry\": {\n          \"coordinates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"type\": \"Polygon\"\n        },\n        \"id\": \"string\",\n        \"links\": [\n          {\n            \"href\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"href\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"properties\": {\n          \"constellation\": \"string\",\n          \"created\": \"string\",\n          \"datetime\": \"string\",\n          \"eo:cloud_cover\": 4616.8426652414055,\n          \"gsd\": 7709,\n          \"instruments\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"platform\": \"string\",\n          \"proj:epsg\": 7573,\n          \"proj:shape\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"proj:transform\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"proj:wkt2\": \"string\",\n          \"sat:orbit_state\": \"string\",\n          \"sat:relative_orbit\": 5410,\n          \"sci:doi\": \"string\",\n          \"updated\": \"string\",\n          \"view:off_nadir\": 8293.973817091872,\n          \"view:satellite_look_angle\": 3899.463505198539,\n          \"view:sun_azimuth\": 4815.237568000499,\n          \"view:sun_elevation\": 1914.7731267190827\n        },\n        \"stac_version\": \"string\",\n        \"type\": \"string\"\n      },\n      \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"org_id\": \"e31ab6f8-d359-4c6a-83c6-bfa322 29bb01\",\n      \"task_id\": \"ef8195b7-5ca6-4aca-a3fc-df6ffd58892d\",\n      \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"updated_by\": \"0ada9483-e3ed-4f31-8a69-372686966451\"\n    },\n    {\n      \"area\": 100,\n      \"bandset_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92277\",\n      \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"created_by\": \"0d7b3c5e-3b2a-4e77-bedb-5e0d2257cdb6\",\n      \"delivery_status\": \"CREATED\",\n      \"details\": {\n        \"assets\": {\n          \"key_0\": {\n            \"eo:bands\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"href\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"roles\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"key_1\": {\n            \"eo:bands\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"href\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"roles\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"bbox\": [\n          2150.910756196984,\n          2181.1079520243115\n        ],\n        \"collection\": \"string\",\n        \"geometry\": {\n          \"coordinates\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"type\": \"Polygon\"\n        },\n        \"id\": \"string\",\n        \"links\": [\n          {\n            \"href\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"href\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rel\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"title\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"properties\": {\n          \"constellation\": \"string\",\n          \"created\": \"string\",\n          \"datetime\": \"string\",\n          \"eo:cloud_cover\": 8991.610548634813,\n          \"gsd\": 422,\n          \"instruments\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"platform\": \"string\",\n          \"proj:epsg\": 4134,\n          \"proj:shape\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"proj:transform\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"proj:wkt2\": \"string\",\n          \"sat:orbit_state\": \"string\",\n          \"sat:relative_orbit\": 3385,\n          \"sci:doi\": \"string\",\n          \"updated\": \"string\",\n          \"view:off_nadir\": 2145.4054999064356,\n          \"view:satellite_look_angle\": 556.4591896349147,\n          \"view:sun_azimuth\": 9745.267286864142,\n          \"view:sun_elevation\": 4074.734169603641\n        },\n        \"stac_version\": \"string\",\n        \"type\": \"string\"\n      },\n      \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"org_id\": \"e31ab6f8-d359-4c6a-83c6-bfa322 29bb01\",\n      \"task_id\": \"ef8195b7-5ca6-4aca-a3fc-df6ffd58892d\",\n      \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"updated_by\": \"0ada9483-e3ed-4f31-8a69-372686966451\"\n    }\n  ],\n  \"pagination\": {\n    \"limit\": 10,\n    \"offset\": 0,\n    \"total\": 100\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2a8c14d-859f-4aeb-9746-aff12935c09e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "catalogs",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bbox\": [\n    160.6,\n    -55.95,\n    -170,\n    -25.89\n  ],\n  \"collections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"datetime\": \"2020-04-05T11:56:49.865Z/2023-06-05T11:56:49.865Z\",\n  \"ids\": [\n    \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\"\n  ],\n  \"intersects\": {\n    \"coordinates\": [\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ],\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ]\n    ],\n    \"type\": \"Polygon\"\n  },\n  \"item_ids\": [\n    \"TD1_2024_ABC\"\n  ],\n  \"limit\": 50,\n  \"offset\": 50,\n  \"order_ids\": [\n    \"57435e2b-d8c4-41ff-9de9-2be3bfc92277\"\n  ],\n  \"order_item_ids\": [\n    \"57435e2b-d8c4-41ff-9de9-2be3bfc92278\"\n  ],\n  \"query\": {\n    \"key_0\": {\n      \"key_0\": 7427,\n      \"key_1\": 6304.66770888225\n    },\n    \"key_1\": {\n      \"key_0\": 7083.712268057867\n    },\n    \"key_2\": {\n      \"key_0\": \"string\"\n    },\n    \"key_3\": {\n      \"key_0\": 4125,\n      \"key_1\": true\n    }\n  },\n  \"sort_by\": [\n    {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55b7560e-71e8-4492-a16d-b0c6c06b749b",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "catalogs",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bbox\": [\n    160.6,\n    -55.95,\n    -170,\n    -25.89\n  ],\n  \"collections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"datetime\": \"2020-04-05T11:56:49.865Z/2023-06-05T11:56:49.865Z\",\n  \"ids\": [\n    \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\"\n  ],\n  \"intersects\": {\n    \"coordinates\": [\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ],\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ]\n    ],\n    \"type\": \"Polygon\"\n  },\n  \"item_ids\": [\n    \"TD1_2024_ABC\"\n  ],\n  \"limit\": 50,\n  \"offset\": 50,\n  \"order_ids\": [\n    \"57435e2b-d8c4-41ff-9de9-2be3bfc92277\"\n  ],\n  \"order_item_ids\": [\n    \"57435e2b-d8c4-41ff-9de9-2be3bfc92278\"\n  ],\n  \"query\": {\n    \"key_0\": {\n      \"key_0\": 7427,\n      \"key_1\": 6304.66770888225\n    },\n    \"key_1\": {\n      \"key_0\": 7083.712268057867\n    },\n    \"key_2\": {\n      \"key_0\": \"string\"\n    },\n    \"key_3\": {\n      \"key_0\": 4125,\n      \"key_1\": true\n    }\n  },\n  \"sort_by\": [\n    {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "30418564-2849-4f88-a1d2-57979c9fbb6d",
+          "name": "Get a catalog",
+          "request": {
+            "name": "Get a catalog",
+            "description": {
+              "content": "Get a single catalog by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "catalogs",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Catalog ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b37841dd-93e8-4dfe-9992-5def550ca617",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "catalogs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Catalog ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"area\": 100,\n  \"bandset_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92277\",\n  \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n  \"created_by\": \"0d7b3c5e-3b2a-4e77-bedb-5e0d2257cdb6\",\n  \"delivery_status\": \"SUCCESS\",\n  \"details\": {\n    \"assets\": {\n      \"key_0\": {\n        \"eo:bands\": [\n          {\n            \"center_wavelength\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"common_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fwhm\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"center_wavelength\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"common_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"fwhm\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"href\": \"string\",\n        \"roles\": [\n          \"string\",\n          \"string\"\n        ],\n        \"title\": \"string\",\n        \"type\": \"string\"\n      }\n    },\n    \"bbox\": [\n      2145.3078746289434,\n      729.0910425665564\n    ],\n    \"collection\": \"string\",\n    \"geometry\": {\n      \"coordinates\": [\n        [\n          [\n            \"<number>\",\n            \"<number>\"\n          ],\n          [\n            \"<number>\",\n            \"<number>\"\n          ]\n        ],\n        [\n          [\n            \"<number>\",\n            \"<number>\"\n          ],\n          [\n            \"<number>\",\n            \"<number>\"\n          ]\n        ]\n      ],\n      \"type\": \"Polygon\"\n    },\n    \"id\": \"string\",\n    \"links\": [\n      {\n        \"href\": \"string\",\n        \"rel\": \"string\",\n        \"title\": \"string\",\n        \"type\": \"string\"\n      },\n      {\n        \"href\": \"string\",\n        \"rel\": \"string\",\n        \"title\": \"string\",\n        \"type\": \"string\"\n      }\n    ],\n    \"properties\": {\n      \"constellation\": \"string\",\n      \"created\": \"string\",\n      \"datetime\": \"string\",\n      \"eo:cloud_cover\": 9563.715641066305,\n      \"gsd\": 1232,\n      \"instruments\": [\n        \"string\",\n        \"string\"\n      ],\n      \"platform\": \"string\",\n      \"proj:epsg\": 1287,\n      \"proj:shape\": [\n        3140,\n        9064\n      ],\n      \"proj:transform\": [\n        6129.287014777798,\n        2231.15917875613\n      ],\n      \"proj:wkt2\": \"string\",\n      \"sat:orbit_state\": \"string\",\n      \"sat:relative_orbit\": 8292,\n      \"sci:doi\": \"string\",\n      \"updated\": \"string\",\n      \"view:off_nadir\": 4891.309071618757,\n      \"view:satellite_look_angle\": 6755.94308407314,\n      \"view:sun_azimuth\": 9884.313768341404,\n      \"view:sun_elevation\": 4006.839066734198\n    },\n    \"stac_version\": \"string\",\n    \"type\": \"string\"\n  },\n  \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n  \"org_id\": \"e31ab6f8-d359-4c6a-83c6-bfa322 29bb01\",\n  \"task_id\": \"ef8195b7-5ca6-4aca-a3fc-df6ffd58892d\",\n  \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n  \"updated_by\": \"0ada9483-e3ed-4f31-8a69-372686966451\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f439282-a1bc-46b1-a462-ff52198228e9",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "catalogs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Catalog ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b018886-6d9b-42ca-a62e-750b969b7fbe",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "catalogs",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Catalog ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.pixxel.space",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "be7e9351-5a1f-4615-afdd-f24f3323b1e9",
+    "name": "stargate AOI Catalog API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Swagger doc for Stargate\n\nContact Support:\n Name: Team-Identity\n Email: identity@pixxel.co.in",
+      "type": "text/plain"
+    }
+  }
+}

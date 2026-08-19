@@ -1,0 +1,254 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "stargate AOI Visualizations API",
+    "version": "v0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Visualizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List visualizations for an AOI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pixxel.space/v0/aois/:aoi_id/visualizations",
+            "params": [
+              {
+                "name": "aoi_id",
+                "value": "",
+                "type": "path",
+                "description": "AOI ID"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset for pagination"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit for pagination"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by type"
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by user ID"
+              },
+              {
+                "name": "expression_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by expression type"
+              },
+              {
+                "name": "index_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by index ID"
+              },
+              {
+                "name": "visualization_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by visualization ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Lists all visualizations for a given AOI with optional filtering"
+        },
+        {
+          "info": {
+            "name": "Create a new visualization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pixxel.space/v0/aois/:aoi_id/visualizations",
+            "params": [
+              {
+                "name": "aoi_id",
+                "value": "",
+                "type": "path",
+                "description": "AOI ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a new visualization for an AOI using the specified index and assets. For preset index types, both dynamic and theoretical legend metadata are auto-computed. For custom index types with expression_type INDEX, only dynamic legend metadata is computed. For custom index types with expression_type composite or grayscale, no legend metadata is generated."
+        },
+        {
+          "info": {
+            "name": "Update visualization metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.pixxel.space/v0/aois/:aoi_id/visualizations/:visualization_id/metadata",
+            "params": [
+              {
+                "name": "aoi_id",
+                "value": "",
+                "type": "path",
+                "description": "AOI ID"
+              },
+              {
+                "name": "visualization_id",
+                "value": "",
+                "type": "path",
+                "description": "Visualization ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Updates the visualization metadata legend for a specific mode (dynamic or theoretical). Only the specified mode is updated; the other mode is preserved."
+        },
+        {
+          "info": {
+            "name": "Rollback visualization metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.pixxel.space/v0/aois/:aoi_id/visualizations/:visualization_id/metadata",
+            "params": [
+              {
+                "name": "aoi_id",
+                "value": "",
+                "type": "path",
+                "description": "AOI ID"
+              },
+              {
+                "name": "visualization_id",
+                "value": "",
+                "type": "path",
+                "description": "Visualization ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Rolls back the visualization metadata for specified dates and mode. Recomputes the legend for the specified mode from source data, preserving the other mode."
+        },
+        {
+          "info": {
+            "name": "Generate an index PNG for a visualization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pixxel.space/v0/aois/:aoi_id/visualizations/:visualization_id/png",
+            "params": [
+              {
+                "name": "aoi_id",
+                "value": "",
+                "type": "path",
+                "description": "AOI ID"
+              },
+              {
+                "name": "visualization_id",
+                "value": "",
+                "type": "path",
+                "description": "Visualization ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Generates an on-the-fly PNG of the index for a given date and mode, with legend overlay. Returns the PNG image as binary data."
+        },
+        {
+          "info": {
+            "name": "Generate SLD styles for a visualization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pixxel.space/v0/aois/:aoi_id/visualizations/:visualization_id/sld",
+            "params": [
+              {
+                "name": "aoi_id",
+                "value": "",
+                "type": "path",
+                "description": "AOI ID"
+              },
+              {
+                "name": "visualization_id",
+                "value": "",
+                "type": "path",
+                "description": "Visualization ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Generates Styled Layer Descriptor (SLD) XML for the specified dates and visualization modes. Returns SLD grouped by mode and date."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

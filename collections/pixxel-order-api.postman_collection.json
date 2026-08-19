@@ -1,0 +1,1678 @@
+{
+  "item": [
+    {
+      "id": "7c0c062c-ab9d-4b29-b82d-2229b2b7f2f6",
+      "name": "Order",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "29635d1c-7f13-47c8-a6b7-682067bd9f82",
+          "name": "List all orders",
+          "request": {
+            "name": "List all orders",
+            "description": {
+              "content": "List of all orders in the workspace.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "user_id",
+                  "value": "<string>",
+                  "description": "User ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Limit"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "704c4e30-33a1-49e1-b72b-ecf392186cbf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"orders\": [\n    {\n      \"created_at\": \"2020-01-01T00:00:00+00:00\",\n      \"created_by\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92270\",\n      \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"order_items\": [\n        {\n          \"area\": 1000,\n          \"bandset\": {\n            \"bands\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bandset_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"custom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"base_amount\": 10000,\n          \"cloud_cover\": 0,\n          \"cloud_delivery\": {\n            \"config\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"path\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n          \"created_by\": \"b64d2c37-89c3-404d-8395-dedb0fe9131c\",\n          \"delivery_speed\": \"STANDARD\",\n          \"end_date\": \"2020-10-28T00:00:00Z\",\n          \"feasibility_status\": \"UNSPECIFIED\",\n          \"final_amount\": 12000,\n          \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"image_type\": \"VNIR\",\n          \"images\": [\n            {\n              \"geometry\": \"\",\n              \"item_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"geometry\": \"\",\n              \"item_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"last_feasibility_check\": \"2024-05-27T06:50:20.056549Z\",\n          \"name\": \"order item 1\",\n          \"no_of_occurrences\": 0,\n          \"number_of_bands\": 2,\n          \"occurrences\": [\n            {\n              \"end\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"start\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"end\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"start\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"off_nadir\": 0,\n          \"order_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"org_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"payment_status\": \"PARTIAL-REFUND\",\n          \"project_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"recurrence\": \"ONCE\",\n          \"start_date\": \"2020-10-22T00:00:00Z\",\n          \"status\": \"FULFILLED\",\n          \"tokens_used\": 100,\n          \"transaction_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"type\": \"RECURRING\",\n          \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n          \"updated_by\": \"274a30f5-9ff2-4cc7-8680-7b2e076b9faf\",\n          \"uplifts\": [\n            {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"item_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"percentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"subtitle\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"item_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"percentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"subtitle\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"usecase\": \"agriculture\",\n          \"user_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\"\n        },\n        {\n          \"area\": 1000,\n          \"bandset\": {\n            \"bands\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bandset_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"custom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"base_amount\": 10000,\n          \"cloud_cover\": 0,\n          \"cloud_delivery\": {\n            \"config\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"path\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n          \"created_by\": \"b64d2c37-89c3-404d-8395-dedb0fe9131c\",\n          \"delivery_speed\": \"STANDARD\",\n          \"end_date\": \"2020-10-28T00:00:00Z\",\n          \"feasibility_status\": \"SUCCESS\",\n          \"final_amount\": 12000,\n          \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"image_type\": \"VNIR\",\n          \"images\": [\n            {\n              \"geometry\": \"\",\n              \"item_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"geometry\": \"\",\n              \"item_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"last_feasibility_check\": \"2024-05-27T06:50:20.056549Z\",\n          \"name\": \"order item 1\",\n          \"no_of_occurrences\": 0,\n          \"number_of_bands\": 2,\n          \"occurrences\": [\n            {\n              \"end\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"start\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"end\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"start\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"off_nadir\": 0,\n          \"order_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"org_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"payment_status\": \"REFUND\",\n          \"project_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"recurrence\": \"ONCE\",\n          \"start_date\": \"2020-10-22T00:00:00Z\",\n          \"status\": \"FAILED\",\n          \"tokens_used\": 100,\n          \"transaction_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"type\": \"RECURRING\",\n          \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n          \"updated_by\": \"274a30f5-9ff2-4cc7-8680-7b2e076b9faf\",\n          \"uplifts\": [\n            {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"item_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"percentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"subtitle\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"item_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"percentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"subtitle\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"usecase\": \"agriculture\",\n          \"user_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\"\n        }\n      ],\n      \"org_id\": \"e31ab6f8-d359-4c6a-83c6-bfa32229bb01\",\n      \"paid_at\": \"\",\n      \"status\": \"PAID\",\n      \"total_amount\": 1000,\n      \"transaction_id\": \"3671066b-c4fd-4201-8e02-470cb6bc088e\",\n      \"updated_at\": \"2020-01-01T00:00:00+00:00\",\n      \"updated_by\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92270\",\n      \"user_id\": \"90afd20d-8447-4636-a60d-73102008856c\"\n    },\n    {\n      \"created_at\": \"2020-01-01T00:00:00+00:00\",\n      \"created_by\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92270\",\n      \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"order_items\": [\n        {\n          \"area\": 1000,\n          \"bandset\": {\n            \"bands\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bandset_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"custom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"base_amount\": 10000,\n          \"cloud_cover\": 0,\n          \"cloud_delivery\": {\n            \"config\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"path\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n          \"created_by\": \"b64d2c37-89c3-404d-8395-dedb0fe9131c\",\n          \"delivery_speed\": \"STANDARD\",\n          \"end_date\": \"2020-10-28T00:00:00Z\",\n          \"feasibility_status\": \"UNSPECIFIED\",\n          \"final_amount\": 12000,\n          \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"image_type\": \"VNIR\",\n          \"images\": [\n            {\n              \"geometry\": \"\",\n              \"item_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"geometry\": \"\",\n              \"item_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"last_feasibility_check\": \"2024-05-27T06:50:20.056549Z\",\n          \"name\": \"order item 1\",\n          \"no_of_occurrences\": 0,\n          \"number_of_bands\": 2,\n          \"occurrences\": [\n            {\n              \"end\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"start\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"end\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"start\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"off_nadir\": 0,\n          \"order_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"org_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"payment_status\": \"UNPAID\",\n          \"project_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"recurrence\": \"ONCE\",\n          \"start_date\": \"2020-10-22T00:00:00Z\",\n          \"status\": \"ACTIVE\",\n          \"tokens_used\": 100,\n          \"transaction_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"type\": \"ARCHIVE\",\n          \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n          \"updated_by\": \"274a30f5-9ff2-4cc7-8680-7b2e076b9faf\",\n          \"uplifts\": [\n            {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"item_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"percentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"subtitle\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"item_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"percentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"subtitle\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"usecase\": \"agriculture\",\n          \"user_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\"\n        },\n        {\n          \"area\": 1000,\n          \"bandset\": {\n            \"bands\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"bandset_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"custom\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"base_amount\": 10000,\n          \"cloud_cover\": 0,\n          \"cloud_delivery\": {\n            \"config\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"path\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n          \"created_by\": \"b64d2c37-89c3-404d-8395-dedb0fe9131c\",\n          \"delivery_speed\": \"STANDARD\",\n          \"end_date\": \"2020-10-28T00:00:00Z\",\n          \"feasibility_status\": \"UNSPECIFIED\",\n          \"final_amount\": 12000,\n          \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"image_type\": \"VNIR\",\n          \"images\": [\n            {\n              \"geometry\": \"\",\n              \"item_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"geometry\": \"\",\n              \"item_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"last_feasibility_check\": \"2024-05-27T06:50:20.056549Z\",\n          \"name\": \"order item 1\",\n          \"no_of_occurrences\": 0,\n          \"number_of_bands\": 2,\n          \"occurrences\": [\n            {\n              \"end\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"start\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"end\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"start\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"off_nadir\": 0,\n          \"order_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"org_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"payment_status\": \"REFUND\",\n          \"project_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"recurrence\": \"ONCE\",\n          \"start_date\": \"2020-10-22T00:00:00Z\",\n          \"status\": \"FULFILLED\",\n          \"tokens_used\": 100,\n          \"transaction_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"type\": \"TASKING\",\n          \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n          \"updated_by\": \"274a30f5-9ff2-4cc7-8680-7b2e076b9faf\",\n          \"uplifts\": [\n            {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"item_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"percentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"subtitle\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"amount\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"item_id\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"percentage\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"subtitle\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"title\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"usecase\": \"agriculture\",\n          \"user_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\"\n        }\n      ],\n      \"org_id\": \"e31ab6f8-d359-4c6a-83c6-bfa32229bb01\",\n      \"paid_at\": \"\",\n      \"status\": \"PAID\",\n      \"total_amount\": 1000,\n      \"transaction_id\": \"3671066b-c4fd-4201-8e02-470cb6bc088e\",\n      \"updated_at\": \"2020-01-01T00:00:00+00:00\",\n      \"updated_by\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92270\",\n      \"user_id\": \"90afd20d-8447-4636-a60d-73102008856c\"\n    }\n  ],\n  \"pagination\": {\n    \"limit\": 10,\n    \"offset\": 0,\n    \"total\": 100\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09dac657-a266-4418-82e0-a78de1020f32",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "528ce6d9-1940-4885-aff2-5b86c1fcfc4f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05dd0af8-d479-4944-ba04-6fb791ebc78f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f822669-12cf-42d0-80b8-3ebfcd9f44b3",
+          "name": "Create an order",
+          "request": {
+            "name": "Create an order",
+            "description": {
+              "content": "Create a new order with tasking or/and archive orderitems",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"order_items\": [\n    {\n      \"geometry\": {\n        \"features\": [\n          {\n            \"geometry\": {\n              \"coordinates\": [\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              ],\n              \"type\": \"<string>\"\n            },\n            \"type\": \"<string>\"\n          },\n          {\n            \"geometry\": {\n              \"coordinates\": [\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              ],\n              \"type\": \"<string>\"\n            },\n            \"type\": \"<string>\"\n          }\n        ],\n        \"type\": \"<string>\"\n      },\n      \"project_id\": \"<string>\",\n      \"usecase\": \"<string>\",\n      \"name\": \"<string>\",\n      \"recurrence\": \"<string>\",\n      \"start_date\": \"<string>\",\n      \"end_date\": \"<string>\",\n      \"no_of_occurrences\": \"<integer>\",\n      \"cloud_cover\": \"<integer>\",\n      \"off_nadir\": \"<integer>\",\n      \"bandset\": {\n        \"bandset_id\": \"<string>\"\n      },\n      \"delivery_speed\": \"<string>\",\n      \"item_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"cloud_delivery\": {\n        \"config\": \"<string>\",\n        \"path\": \"<string>\"\n      }\n    },\n    {\n      \"geometry\": {\n        \"features\": [\n          {\n            \"geometry\": {\n              \"coordinates\": [\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              ],\n              \"type\": \"<string>\"\n            },\n            \"type\": \"<string>\"\n          },\n          {\n            \"geometry\": {\n              \"coordinates\": [\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              ],\n              \"type\": \"<string>\"\n            },\n            \"type\": \"<string>\"\n          }\n        ],\n        \"type\": \"<string>\"\n      },\n      \"project_id\": \"<string>\",\n      \"usecase\": \"<string>\",\n      \"name\": \"<string>\",\n      \"recurrence\": \"<string>\",\n      \"start_date\": \"<string>\",\n      \"end_date\": \"<string>\",\n      \"no_of_occurrences\": \"<integer>\",\n      \"cloud_cover\": \"<integer>\",\n      \"off_nadir\": \"<integer>\",\n      \"bandset\": {\n        \"bandset_id\": \"<string>\"\n      },\n      \"delivery_speed\": \"<string>\",\n      \"item_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"cloud_delivery\": {\n        \"config\": \"<string>\",\n        \"path\": \"<string>\"\n      }\n    }\n  ],\n  \"dry_run\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "12c62998-8512-45dc-8f45-2cfd52d3932c",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"order_items\": [\n    {\n      \"geometry\": {\n        \"features\": [\n          {\n            \"geometry\": {\n              \"coordinates\": [\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              ],\n              \"type\": \"<string>\"\n            },\n            \"type\": \"<string>\"\n          },\n          {\n            \"geometry\": {\n              \"coordinates\": [\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              ],\n              \"type\": \"<string>\"\n            },\n            \"type\": \"<string>\"\n          }\n        ],\n        \"type\": \"<string>\"\n      },\n      \"project_id\": \"1234567890\",\n      \"usecase\": \"agriculture\",\n      \"name\": \"Order Item 1\",\n      \"recurrence\": \"ONCE\",\n      \"start_date\": \"2020-10-22T00:00:00Z\",\n      \"end_date\": \"2020-10-28T00:00:00Z\",\n      \"no_of_occurrences\": 0,\n      \"cloud_cover\": 20,\n      \"off_nadir\": 20,\n      \"bandset\": {\n        \"bandset_id\": \"<string>\"\n      },\n      \"delivery_speed\": \"STANDARD\",\n      \"item_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"cloud_delivery\": {\n        \"config\": \"d5f40033-4abd-48a1-a2f1-276df6edfeaf\",\n        \"path\": \"my-bucket/my-folder\"\n      }\n    },\n    {\n      \"geometry\": {\n        \"features\": [\n          {\n            \"geometry\": {\n              \"coordinates\": [\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              ],\n              \"type\": \"<string>\"\n            },\n            \"type\": \"<string>\"\n          },\n          {\n            \"geometry\": {\n              \"coordinates\": [\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              ],\n              \"type\": \"<string>\"\n            },\n            \"type\": \"<string>\"\n          }\n        ],\n        \"type\": \"<string>\"\n      },\n      \"project_id\": \"1234567890\",\n      \"usecase\": \"agriculture\",\n      \"name\": \"Order Item 1\",\n      \"recurrence\": \"ONCE\",\n      \"start_date\": \"2020-10-22T00:00:00Z\",\n      \"end_date\": \"2020-10-28T00:00:00Z\",\n      \"no_of_occurrences\": 0,\n      \"cloud_cover\": 20,\n      \"off_nadir\": 20,\n      \"bandset\": {\n        \"bandset_id\": \"<string>\"\n      },\n      \"delivery_speed\": \"STANDARD\",\n      \"item_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"cloud_delivery\": {\n        \"config\": \"d5f40033-4abd-48a1-a2f1-276df6edfeaf\",\n        \"path\": \"my-bucket/my-folder\"\n      }\n    }\n  ],\n  \"dry_run\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"2020-01-01T00:00:00+00:00\",\n  \"created_by\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92270\",\n  \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n  \"order_items\": [\n    {\n      \"area\": 1000,\n      \"bandset\": {\n        \"bands\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wavelength\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wavelength\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"bandset_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n        \"custom\": [\n          [\n            3936,\n            4006\n          ],\n          [\n            353,\n            5314\n          ]\n        ]\n      },\n      \"base_amount\": 10000,\n      \"cloud_cover\": 0,\n      \"cloud_delivery\": {\n        \"config\": \"9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6\",\n        \"path\": \"path/subdirectory1/\"\n      },\n      \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"created_by\": \"b64d2c37-89c3-404d-8395-dedb0fe9131c\",\n      \"delivery_speed\": \"STANDARD\",\n      \"end_date\": \"2020-10-28T00:00:00Z\",\n      \"feasibility_status\": \"WEAK_SUCCESS\",\n      \"final_amount\": 12000,\n      \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"image_type\": \"VNIR\",\n      \"images\": [\n        {\n          \"geometry\": \"\",\n          \"item_id\": \"string\"\n        },\n        {\n          \"geometry\": \"\",\n          \"item_id\": \"string\"\n        }\n      ],\n      \"last_feasibility_check\": \"2024-05-27T06:50:20.056549Z\",\n      \"name\": \"order item 1\",\n      \"no_of_occurrences\": 0,\n      \"number_of_bands\": 2,\n      \"occurrences\": [\n        {\n          \"end\": \"2020-01-01T00:00:00+00:00\",\n          \"start\": \"2020-01-01T00:00:00+00:00\"\n        },\n        {\n          \"end\": \"2020-01-01T00:00:00+00:00\",\n          \"start\": \"2020-01-01T00:00:00+00:00\"\n        }\n      ],\n      \"off_nadir\": 0,\n      \"order_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"org_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"payment_status\": \"UNPAID\",\n      \"project_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"recurrence\": \"ONCE\",\n      \"start_date\": \"2020-10-22T00:00:00Z\",\n      \"status\": \"DRAFT\",\n      \"tokens_used\": 100,\n      \"transaction_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"type\": \"ARCHIVE\",\n      \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"updated_by\": \"274a30f5-9ff2-4cc7-8680-7b2e076b9faf\",\n      \"uplifts\": [\n        {\n          \"amount\": 2321,\n          \"item_id\": \"string\",\n          \"percentage\": 6300,\n          \"subtitle\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"amount\": 7091,\n          \"item_id\": \"string\",\n          \"percentage\": 807,\n          \"subtitle\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"usecase\": \"agriculture\",\n      \"user_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\"\n    },\n    {\n      \"area\": 1000,\n      \"bandset\": {\n        \"bands\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wavelength\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wavelength\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"bandset_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n        \"custom\": [\n          [\n            3036,\n            8172\n          ],\n          [\n            8065,\n            1328\n          ]\n        ]\n      },\n      \"base_amount\": 10000,\n      \"cloud_cover\": 0,\n      \"cloud_delivery\": {\n        \"config\": \"9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6\",\n        \"path\": \"path/subdirectory1/\"\n      },\n      \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"created_by\": \"b64d2c37-89c3-404d-8395-dedb0fe9131c\",\n      \"delivery_speed\": \"STANDARD\",\n      \"end_date\": \"2020-10-28T00:00:00Z\",\n      \"feasibility_status\": \"SUCCESS\",\n      \"final_amount\": 12000,\n      \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"image_type\": \"VNIR\",\n      \"images\": [\n        {\n          \"geometry\": \"\",\n          \"item_id\": \"string\"\n        },\n        {\n          \"geometry\": \"\",\n          \"item_id\": \"string\"\n        }\n      ],\n      \"last_feasibility_check\": \"2024-05-27T06:50:20.056549Z\",\n      \"name\": \"order item 1\",\n      \"no_of_occurrences\": 0,\n      \"number_of_bands\": 2,\n      \"occurrences\": [\n        {\n          \"end\": \"2020-01-01T00:00:00+00:00\",\n          \"start\": \"2020-01-01T00:00:00+00:00\"\n        },\n        {\n          \"end\": \"2020-01-01T00:00:00+00:00\",\n          \"start\": \"2020-01-01T00:00:00+00:00\"\n        }\n      ],\n      \"off_nadir\": 0,\n      \"order_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"org_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"payment_status\": \"PARTIAL-REFUND\",\n      \"project_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"recurrence\": \"ONCE\",\n      \"start_date\": \"2020-10-22T00:00:00Z\",\n      \"status\": \"FAILED\",\n      \"tokens_used\": 100,\n      \"transaction_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"type\": \"TASKING\",\n      \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"updated_by\": \"274a30f5-9ff2-4cc7-8680-7b2e076b9faf\",\n      \"uplifts\": [\n        {\n          \"amount\": 9634,\n          \"item_id\": \"string\",\n          \"percentage\": 2833,\n          \"subtitle\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"amount\": 996,\n          \"item_id\": \"string\",\n          \"percentage\": 3076,\n          \"subtitle\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"usecase\": \"agriculture\",\n      \"user_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\"\n    }\n  ],\n  \"org_id\": \"e31ab6f8-d359-4c6a-83c6-bfa32229bb01\",\n  \"paid_at\": \"\",\n  \"status\": \"PAID\",\n  \"total_amount\": 1000,\n  \"transaction_id\": \"3671066b-c4fd-4201-8e02-470cb6bc088e\",\n  \"updated_at\": \"2020-01-01T00:00:00+00:00\",\n  \"updated_by\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92270\",\n  \"user_id\": \"90afd20d-8447-4636-a60d-73102008856c\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e16ee964-6d90-411c-8e00-51b760d17998",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"order_items\": [\n    {\n      \"geometry\": {\n        \"features\": [\n          {\n            \"geometry\": {\n              \"coordinates\": [\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              ],\n              \"type\": \"<string>\"\n            },\n            \"type\": \"<string>\"\n          },\n          {\n            \"geometry\": {\n              \"coordinates\": [\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              ],\n              \"type\": \"<string>\"\n            },\n            \"type\": \"<string>\"\n          }\n        ],\n        \"type\": \"<string>\"\n      },\n      \"project_id\": \"1234567890\",\n      \"usecase\": \"agriculture\",\n      \"name\": \"Order Item 1\",\n      \"recurrence\": \"ONCE\",\n      \"start_date\": \"2020-10-22T00:00:00Z\",\n      \"end_date\": \"2020-10-28T00:00:00Z\",\n      \"no_of_occurrences\": 0,\n      \"cloud_cover\": 20,\n      \"off_nadir\": 20,\n      \"bandset\": {\n        \"bandset_id\": \"<string>\"\n      },\n      \"delivery_speed\": \"STANDARD\",\n      \"item_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"cloud_delivery\": {\n        \"config\": \"d5f40033-4abd-48a1-a2f1-276df6edfeaf\",\n        \"path\": \"my-bucket/my-folder\"\n      }\n    },\n    {\n      \"geometry\": {\n        \"features\": [\n          {\n            \"geometry\": {\n              \"coordinates\": [\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              ],\n              \"type\": \"<string>\"\n            },\n            \"type\": \"<string>\"\n          },\n          {\n            \"geometry\": {\n              \"coordinates\": [\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              ],\n              \"type\": \"<string>\"\n            },\n            \"type\": \"<string>\"\n          }\n        ],\n        \"type\": \"<string>\"\n      },\n      \"project_id\": \"1234567890\",\n      \"usecase\": \"agriculture\",\n      \"name\": \"Order Item 1\",\n      \"recurrence\": \"ONCE\",\n      \"start_date\": \"2020-10-22T00:00:00Z\",\n      \"end_date\": \"2020-10-28T00:00:00Z\",\n      \"no_of_occurrences\": 0,\n      \"cloud_cover\": 20,\n      \"off_nadir\": 20,\n      \"bandset\": {\n        \"bandset_id\": \"<string>\"\n      },\n      \"delivery_speed\": \"STANDARD\",\n      \"item_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"cloud_delivery\": {\n        \"config\": \"d5f40033-4abd-48a1-a2f1-276df6edfeaf\",\n        \"path\": \"my-bucket/my-folder\"\n      }\n    }\n  ],\n  \"dry_run\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c6b1ba61-cc3a-416b-9c56-c465e70a4154",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"order_items\": [\n    {\n      \"geometry\": {\n        \"features\": [\n          {\n            \"geometry\": {\n              \"coordinates\": [\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              ],\n              \"type\": \"<string>\"\n            },\n            \"type\": \"<string>\"\n          },\n          {\n            \"geometry\": {\n              \"coordinates\": [\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              ],\n              \"type\": \"<string>\"\n            },\n            \"type\": \"<string>\"\n          }\n        ],\n        \"type\": \"<string>\"\n      },\n      \"project_id\": \"1234567890\",\n      \"usecase\": \"agriculture\",\n      \"name\": \"Order Item 1\",\n      \"recurrence\": \"ONCE\",\n      \"start_date\": \"2020-10-22T00:00:00Z\",\n      \"end_date\": \"2020-10-28T00:00:00Z\",\n      \"no_of_occurrences\": 0,\n      \"cloud_cover\": 20,\n      \"off_nadir\": 20,\n      \"bandset\": {\n        \"bandset_id\": \"<string>\"\n      },\n      \"delivery_speed\": \"STANDARD\",\n      \"item_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"cloud_delivery\": {\n        \"config\": \"d5f40033-4abd-48a1-a2f1-276df6edfeaf\",\n        \"path\": \"my-bucket/my-folder\"\n      }\n    },\n    {\n      \"geometry\": {\n        \"features\": [\n          {\n            \"geometry\": {\n              \"coordinates\": [\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              ],\n              \"type\": \"<string>\"\n            },\n            \"type\": \"<string>\"\n          },\n          {\n            \"geometry\": {\n              \"coordinates\": [\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              ],\n              \"type\": \"<string>\"\n            },\n            \"type\": \"<string>\"\n          }\n        ],\n        \"type\": \"<string>\"\n      },\n      \"project_id\": \"1234567890\",\n      \"usecase\": \"agriculture\",\n      \"name\": \"Order Item 1\",\n      \"recurrence\": \"ONCE\",\n      \"start_date\": \"2020-10-22T00:00:00Z\",\n      \"end_date\": \"2020-10-28T00:00:00Z\",\n      \"no_of_occurrences\": 0,\n      \"cloud_cover\": 20,\n      \"off_nadir\": 20,\n      \"bandset\": {\n        \"bandset_id\": \"<string>\"\n      },\n      \"delivery_speed\": \"STANDARD\",\n      \"item_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"cloud_delivery\": {\n        \"config\": \"d5f40033-4abd-48a1-a2f1-276df6edfeaf\",\n        \"path\": \"my-bucket/my-folder\"\n      }\n    }\n  ],\n  \"dry_run\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba4334b3-8f38-41e7-b33e-ba22515b74b6",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"order_items\": [\n    {\n      \"geometry\": {\n        \"features\": [\n          {\n            \"geometry\": {\n              \"coordinates\": [\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              ],\n              \"type\": \"<string>\"\n            },\n            \"type\": \"<string>\"\n          },\n          {\n            \"geometry\": {\n              \"coordinates\": [\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              ],\n              \"type\": \"<string>\"\n            },\n            \"type\": \"<string>\"\n          }\n        ],\n        \"type\": \"<string>\"\n      },\n      \"project_id\": \"1234567890\",\n      \"usecase\": \"agriculture\",\n      \"name\": \"Order Item 1\",\n      \"recurrence\": \"ONCE\",\n      \"start_date\": \"2020-10-22T00:00:00Z\",\n      \"end_date\": \"2020-10-28T00:00:00Z\",\n      \"no_of_occurrences\": 0,\n      \"cloud_cover\": 20,\n      \"off_nadir\": 20,\n      \"bandset\": {\n        \"bandset_id\": \"<string>\"\n      },\n      \"delivery_speed\": \"STANDARD\",\n      \"item_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"cloud_delivery\": {\n        \"config\": \"d5f40033-4abd-48a1-a2f1-276df6edfeaf\",\n        \"path\": \"my-bucket/my-folder\"\n      }\n    },\n    {\n      \"geometry\": {\n        \"features\": [\n          {\n            \"geometry\": {\n              \"coordinates\": [\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              ],\n              \"type\": \"<string>\"\n            },\n            \"type\": \"<string>\"\n          },\n          {\n            \"geometry\": {\n              \"coordinates\": [\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ],\n                [\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  },\n                  {\n                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                  }\n                ]\n              ],\n              \"type\": \"<string>\"\n            },\n            \"type\": \"<string>\"\n          }\n        ],\n        \"type\": \"<string>\"\n      },\n      \"project_id\": \"1234567890\",\n      \"usecase\": \"agriculture\",\n      \"name\": \"Order Item 1\",\n      \"recurrence\": \"ONCE\",\n      \"start_date\": \"2020-10-22T00:00:00Z\",\n      \"end_date\": \"2020-10-28T00:00:00Z\",\n      \"no_of_occurrences\": 0,\n      \"cloud_cover\": 20,\n      \"off_nadir\": 20,\n      \"bandset\": {\n        \"bandset_id\": \"<string>\"\n      },\n      \"delivery_speed\": \"STANDARD\",\n      \"item_ids\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"cloud_delivery\": {\n        \"config\": \"d5f40033-4abd-48a1-a2f1-276df6edfeaf\",\n        \"path\": \"my-bucket/my-folder\"\n      }\n    }\n  ],\n  \"dry_run\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5ca7987-8aff-4e4a-832e-ed27153768cd",
+          "name": "Get an order",
+          "request": {
+            "name": "Get an order",
+            "description": {
+              "content": "Get an order by it's ID with it's associated orderitems.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "orders",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Order ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5764e005-dc4f-4ccc-b6d7-0115cce5347b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "orders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"2020-01-01T00:00:00+00:00\",\n  \"created_by\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92270\",\n  \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n  \"order_items\": [\n    {\n      \"area\": 1000,\n      \"bandset\": {\n        \"bands\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wavelength\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wavelength\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"bandset_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n        \"custom\": [\n          [\n            3424,\n            2709\n          ],\n          [\n            9924,\n            1975\n          ]\n        ]\n      },\n      \"base_amount\": 10000,\n      \"cloud_cover\": 0,\n      \"cloud_delivery\": {\n        \"config\": \"9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6\",\n        \"path\": \"path/subdirectory1/\"\n      },\n      \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"created_by\": \"b64d2c37-89c3-404d-8395-dedb0fe9131c\",\n      \"delivery_speed\": \"STANDARD\",\n      \"end_date\": \"2020-10-28T00:00:00Z\",\n      \"feasibility_status\": \"UNSPECIFIED\",\n      \"final_amount\": 12000,\n      \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"image_type\": \"VNIR\",\n      \"images\": [\n        {\n          \"geometry\": \"\",\n          \"item_id\": \"string\"\n        },\n        {\n          \"geometry\": \"\",\n          \"item_id\": \"string\"\n        }\n      ],\n      \"last_feasibility_check\": \"2024-05-27T06:50:20.056549Z\",\n      \"name\": \"order item 1\",\n      \"no_of_occurrences\": 0,\n      \"number_of_bands\": 2,\n      \"occurrences\": [\n        {\n          \"end\": \"2020-01-01T00:00:00+00:00\",\n          \"start\": \"2020-01-01T00:00:00+00:00\"\n        },\n        {\n          \"end\": \"2020-01-01T00:00:00+00:00\",\n          \"start\": \"2020-01-01T00:00:00+00:00\"\n        }\n      ],\n      \"off_nadir\": 0,\n      \"order_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"org_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"payment_status\": \"PAID\",\n      \"project_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"recurrence\": \"ONCE\",\n      \"start_date\": \"2020-10-22T00:00:00Z\",\n      \"status\": \"FAILED\",\n      \"tokens_used\": 100,\n      \"transaction_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"type\": \"ARCHIVE\",\n      \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"updated_by\": \"274a30f5-9ff2-4cc7-8680-7b2e076b9faf\",\n      \"uplifts\": [\n        {\n          \"amount\": 4673,\n          \"item_id\": \"string\",\n          \"percentage\": 317,\n          \"subtitle\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"amount\": 205,\n          \"item_id\": \"string\",\n          \"percentage\": 7857,\n          \"subtitle\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"usecase\": \"agriculture\",\n      \"user_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\"\n    },\n    {\n      \"area\": 1000,\n      \"bandset\": {\n        \"bands\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wavelength\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wavelength\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"bandset_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n        \"custom\": [\n          [\n            3969,\n            6759\n          ],\n          [\n            4047,\n            6349\n          ]\n        ]\n      },\n      \"base_amount\": 10000,\n      \"cloud_cover\": 0,\n      \"cloud_delivery\": {\n        \"config\": \"9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6\",\n        \"path\": \"path/subdirectory1/\"\n      },\n      \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"created_by\": \"b64d2c37-89c3-404d-8395-dedb0fe9131c\",\n      \"delivery_speed\": \"STANDARD\",\n      \"end_date\": \"2020-10-28T00:00:00Z\",\n      \"feasibility_status\": \"SUCCESS\",\n      \"final_amount\": 12000,\n      \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"image_type\": \"VNIR\",\n      \"images\": [\n        {\n          \"geometry\": \"\",\n          \"item_id\": \"string\"\n        },\n        {\n          \"geometry\": \"\",\n          \"item_id\": \"string\"\n        }\n      ],\n      \"last_feasibility_check\": \"2024-05-27T06:50:20.056549Z\",\n      \"name\": \"order item 1\",\n      \"no_of_occurrences\": 0,\n      \"number_of_bands\": 2,\n      \"occurrences\": [\n        {\n          \"end\": \"2020-01-01T00:00:00+00:00\",\n          \"start\": \"2020-01-01T00:00:00+00:00\"\n        },\n        {\n          \"end\": \"2020-01-01T00:00:00+00:00\",\n          \"start\": \"2020-01-01T00:00:00+00:00\"\n        }\n      ],\n      \"off_nadir\": 0,\n      \"order_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"org_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"payment_status\": \"PAID\",\n      \"project_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"recurrence\": \"ONCE\",\n      \"start_date\": \"2020-10-22T00:00:00Z\",\n      \"status\": \"FULFILLED\",\n      \"tokens_used\": 100,\n      \"transaction_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"type\": \"RECURRING\",\n      \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"updated_by\": \"274a30f5-9ff2-4cc7-8680-7b2e076b9faf\",\n      \"uplifts\": [\n        {\n          \"amount\": 8345,\n          \"item_id\": \"string\",\n          \"percentage\": 4243,\n          \"subtitle\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"amount\": 6714,\n          \"item_id\": \"string\",\n          \"percentage\": 4367,\n          \"subtitle\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"usecase\": \"agriculture\",\n      \"user_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\"\n    }\n  ],\n  \"org_id\": \"e31ab6f8-d359-4c6a-83c6-bfa32229bb01\",\n  \"paid_at\": \"\",\n  \"status\": \"PAID\",\n  \"total_amount\": 1000,\n  \"transaction_id\": \"3671066b-c4fd-4201-8e02-470cb6bc088e\",\n  \"updated_at\": \"2020-01-01T00:00:00+00:00\",\n  \"updated_by\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92270\",\n  \"user_id\": \"90afd20d-8447-4636-a60d-73102008856c\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e026f170-413f-4b41-8e30-f87d5eed1371",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "orders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d022784-72b7-4add-b840-1a3620cf4467",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "orders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "929362fe-edc4-4cb9-8d3b-463bb6a6d383",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "orders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "46a566e4-827d-41c1-90ee-22acd6a09172",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "orders",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Order ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "268a99bd-74da-4283-b518-698f3e4d0cec",
+          "name": "List all orderItems",
+          "request": {
+            "name": "List all orderItems",
+            "description": {
+              "content": "List of all order-items in the workspace, the response is paginated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "order-items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "user_id",
+                  "value": "<string>",
+                  "description": "User ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Type"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Status"
+                },
+                {
+                  "disabled": false,
+                  "key": "order_ids",
+                  "value": "<string>",
+                  "description": "Order IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_by",
+                  "value": "<string>",
+                  "description": "Created By"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at",
+                  "value": "<string>",
+                  "description": "Created At Range"
+                },
+                {
+                  "disabled": false,
+                  "key": "project_ids",
+                  "value": "<string>",
+                  "description": "Project IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "IDs"
+                },
+                {
+                  "disabled": false,
+                  "key": "area",
+                  "value": "<string>",
+                  "description": "Area Range"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Limit"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "35357b19-4290-4afb-988f-d3e5567e4bb6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "order-items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "area",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"order_items\": [\n    {\n      \"area\": 1000,\n      \"bandset\": {\n        \"bands\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wavelength\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wavelength\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"bandset_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n        \"custom\": [\n          [\n            8503,\n            4752\n          ],\n          [\n            2273,\n            8119\n          ]\n        ]\n      },\n      \"base_amount\": 10000,\n      \"cloud_cover\": 0,\n      \"cloud_delivery\": {\n        \"config\": \"9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6\",\n        \"path\": \"path/subdirectory1/\"\n      },\n      \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"created_by\": \"b64d2c37-89c3-404d-8395-dedb0fe9131c\",\n      \"delivery_speed\": \"STANDARD\",\n      \"end_date\": \"2020-10-28T00:00:00Z\",\n      \"feasibility_status\": \"SUCCESS\",\n      \"final_amount\": 12000,\n      \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"image_type\": \"VNIR\",\n      \"images\": [\n        {\n          \"geometry\": \"\",\n          \"item_id\": \"string\"\n        },\n        {\n          \"geometry\": \"\",\n          \"item_id\": \"string\"\n        }\n      ],\n      \"last_feasibility_check\": \"2024-05-27T06:50:20.056549Z\",\n      \"name\": \"order item 1\",\n      \"no_of_occurrences\": 0,\n      \"number_of_bands\": 2,\n      \"occurrences\": [\n        {\n          \"end\": \"2020-01-01T00:00:00+00:00\",\n          \"start\": \"2020-01-01T00:00:00+00:00\"\n        },\n        {\n          \"end\": \"2020-01-01T00:00:00+00:00\",\n          \"start\": \"2020-01-01T00:00:00+00:00\"\n        }\n      ],\n      \"off_nadir\": 0,\n      \"order_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"org_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"payment_status\": \"UNPAID\",\n      \"project_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"recurrence\": \"ONCE\",\n      \"start_date\": \"2020-10-22T00:00:00Z\",\n      \"status\": \"DRAFT\",\n      \"tasks\": [\n        {\n          \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n          \"created_by\": \"e3ff4960-2d5a-4737-90dd-9cfb31bfa71e\",\n          \"delivery_status\": \"SUCCESS\",\n          \"end_date\": \"25-05-2024\",\n          \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"number_of_strips\": 4,\n          \"order_item_id\": \"TD1_006800_20230528_L2A_20230615_03001067\",\n          \"start_date\": \"15-05-2024\",\n          \"status\": \"FULFILLED\",\n          \"tokens_used\": 10,\n          \"transaction_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"type\": \"ARCHIVE\",\n          \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n          \"updated_by\": \"77345b90-0677-4889-b4d8-2ddb93c0467f\"\n        },\n        {\n          \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n          \"created_by\": \"e3ff4960-2d5a-4737-90dd-9cfb31bfa71e\",\n          \"delivery_status\": \"FAILED\",\n          \"end_date\": \"25-05-2024\",\n          \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"number_of_strips\": 4,\n          \"order_item_id\": \"TD1_006800_20230528_L2A_20230615_03001067\",\n          \"start_date\": \"15-05-2024\",\n          \"status\": \"FULFILLED\",\n          \"tokens_used\": 10,\n          \"transaction_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"type\": \"ARCHIVE\",\n          \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n          \"updated_by\": \"77345b90-0677-4889-b4d8-2ddb93c0467f\"\n        }\n      ],\n      \"tokens_used\": 100,\n      \"transaction_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"type\": \"ARCHIVE\",\n      \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"updated_by\": \"274a30f5-9ff2-4cc7-8680-7b2e076b9faf\",\n      \"uplifts\": [\n        {\n          \"amount\": 3591,\n          \"item_id\": \"string\",\n          \"percentage\": 9457,\n          \"subtitle\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"amount\": 342,\n          \"item_id\": \"string\",\n          \"percentage\": 3069,\n          \"subtitle\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"usecase\": \"agriculture\",\n      \"user_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"validation_errors\": [\n        {\n          \"key_0\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"key_0\": [\n            \"string\",\n            \"string\"\n          ],\n          \"key_1\": [\n            \"string\",\n            \"string\"\n          ],\n          \"key_2\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    },\n    {\n      \"area\": 1000,\n      \"bandset\": {\n        \"bands\": [\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wavelength\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"wavelength\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"bandset_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n        \"custom\": [\n          [\n            9818,\n            2887\n          ],\n          [\n            4524,\n            1154\n          ]\n        ]\n      },\n      \"base_amount\": 10000,\n      \"cloud_cover\": 0,\n      \"cloud_delivery\": {\n        \"config\": \"9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6\",\n        \"path\": \"path/subdirectory1/\"\n      },\n      \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"created_by\": \"b64d2c37-89c3-404d-8395-dedb0fe9131c\",\n      \"delivery_speed\": \"STANDARD\",\n      \"end_date\": \"2020-10-28T00:00:00Z\",\n      \"feasibility_status\": \"FAILED\",\n      \"final_amount\": 12000,\n      \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"image_type\": \"VNIR\",\n      \"images\": [\n        {\n          \"geometry\": \"\",\n          \"item_id\": \"string\"\n        },\n        {\n          \"geometry\": \"\",\n          \"item_id\": \"string\"\n        }\n      ],\n      \"last_feasibility_check\": \"2024-05-27T06:50:20.056549Z\",\n      \"name\": \"order item 1\",\n      \"no_of_occurrences\": 0,\n      \"number_of_bands\": 2,\n      \"occurrences\": [\n        {\n          \"end\": \"2020-01-01T00:00:00+00:00\",\n          \"start\": \"2020-01-01T00:00:00+00:00\"\n        },\n        {\n          \"end\": \"2020-01-01T00:00:00+00:00\",\n          \"start\": \"2020-01-01T00:00:00+00:00\"\n        }\n      ],\n      \"off_nadir\": 0,\n      \"order_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"org_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"payment_status\": \"PAID\",\n      \"project_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"recurrence\": \"ONCE\",\n      \"start_date\": \"2020-10-22T00:00:00Z\",\n      \"status\": \"PARTIALLY_FULFILLED\",\n      \"tasks\": [\n        {\n          \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n          \"created_by\": \"e3ff4960-2d5a-4737-90dd-9cfb31bfa71e\",\n          \"delivery_status\": \"UNSPECIFIED\",\n          \"end_date\": \"25-05-2024\",\n          \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"number_of_strips\": 4,\n          \"order_item_id\": \"TD1_006800_20230528_L2A_20230615_03001067\",\n          \"start_date\": \"15-05-2024\",\n          \"status\": \"FULFILLED\",\n          \"tokens_used\": 10,\n          \"transaction_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"type\": \"ARCHIVE\",\n          \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n          \"updated_by\": \"77345b90-0677-4889-b4d8-2ddb93c0467f\"\n        },\n        {\n          \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n          \"created_by\": \"e3ff4960-2d5a-4737-90dd-9cfb31bfa71e\",\n          \"delivery_status\": \"UNSPECIFIED\",\n          \"end_date\": \"25-05-2024\",\n          \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"number_of_strips\": 4,\n          \"order_item_id\": \"TD1_006800_20230528_L2A_20230615_03001067\",\n          \"start_date\": \"15-05-2024\",\n          \"status\": \"FULFILLED\",\n          \"tokens_used\": 10,\n          \"transaction_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n          \"type\": \"ARCHIVE\",\n          \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n          \"updated_by\": \"77345b90-0677-4889-b4d8-2ddb93c0467f\"\n        }\n      ],\n      \"tokens_used\": 100,\n      \"transaction_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"type\": \"RECURRING\",\n      \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"updated_by\": \"274a30f5-9ff2-4cc7-8680-7b2e076b9faf\",\n      \"uplifts\": [\n        {\n          \"amount\": 3719,\n          \"item_id\": \"string\",\n          \"percentage\": 6078,\n          \"subtitle\": \"string\",\n          \"title\": \"string\"\n        },\n        {\n          \"amount\": 5543,\n          \"item_id\": \"string\",\n          \"percentage\": 8899,\n          \"subtitle\": \"string\",\n          \"title\": \"string\"\n        }\n      ],\n      \"usecase\": \"agriculture\",\n      \"user_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"validation_errors\": [\n        {\n          \"key_0\": [\n            \"string\",\n            \"string\"\n          ]\n        },\n        {\n          \"key_0\": [\n            \"string\",\n            \"string\"\n          ],\n          \"key_1\": [\n            \"string\",\n            \"string\"\n          ],\n          \"key_2\": [\n            \"string\",\n            \"string\"\n          ]\n        }\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"limit\": 10,\n    \"offset\": 0,\n    \"total\": 100\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d961bec-d6e8-4bd7-a790-d79ef25ad267",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "order-items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "area",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14a4beeb-d395-49f6-904c-cbc2554efe75",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "order-items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "area",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b85e6505-6f35-40fe-a656-461c0d5a4ccb",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "order-items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "user_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_by",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "area",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "575305ec-7eed-4283-ac89-94f4b36bde1a",
+          "name": "Get an orderItem",
+          "request": {
+            "name": "Get an orderItem",
+            "description": {
+              "content": "Get an orderitem by it's ID, it will also return the list of tasks associated with the ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "order-items",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) OrderItem ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "16c85b15-3b36-4209-b5c7-23c307037b41",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "order-items",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) OrderItem ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"area\": 1000,\n  \"bandset\": {\n    \"bands\": [\n      {\n        \"name\": \"B001\",\n        \"wavelength\": 473\n      },\n      {\n        \"name\": \"B001\",\n        \"wavelength\": 473\n      }\n    ],\n    \"bandset_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n    \"custom\": [\n      [\n        5213,\n        6250\n      ],\n      [\n        260,\n        6798\n      ]\n    ]\n  },\n  \"base_amount\": 10000,\n  \"cloud_cover\": 0,\n  \"cloud_delivery\": {\n    \"config\": \"9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6\",\n    \"path\": \"path/subdirectory1/\"\n  },\n  \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n  \"created_by\": \"b64d2c37-89c3-404d-8395-dedb0fe9131c\",\n  \"delivery_speed\": \"STANDARD\",\n  \"end_date\": \"2020-10-28T00:00:00Z\",\n  \"feasibility_status\": \"FAILED\",\n  \"final_amount\": 12000,\n  \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n  \"image_type\": \"VNIR\",\n  \"images\": [\n    {\n      \"geometry\": \"\",\n      \"item_id\": \"string\"\n    },\n    {\n      \"geometry\": \"\",\n      \"item_id\": \"string\"\n    }\n  ],\n  \"last_feasibility_check\": \"2024-05-27T06:50:20.056549Z\",\n  \"name\": \"order item 1\",\n  \"no_of_occurrences\": 0,\n  \"number_of_bands\": 2,\n  \"occurrences\": [\n    {\n      \"end\": \"2020-01-01T00:00:00+00:00\",\n      \"start\": \"2020-01-01T00:00:00+00:00\"\n    },\n    {\n      \"end\": \"2020-01-01T00:00:00+00:00\",\n      \"start\": \"2020-01-01T00:00:00+00:00\"\n    }\n  ],\n  \"off_nadir\": 0,\n  \"order_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n  \"org_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n  \"payment_status\": \"PARTIAL-REFUND\",\n  \"project_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n  \"recurrence\": \"ONCE\",\n  \"start_date\": \"2020-10-22T00:00:00Z\",\n  \"status\": \"FAILED\",\n  \"tasks\": [\n    {\n      \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"created_by\": \"e3ff4960-2d5a-4737-90dd-9cfb31bfa71e\",\n      \"delivery_status\": \"SUCCESS\",\n      \"end_date\": \"25-05-2024\",\n      \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"number_of_strips\": 4,\n      \"order_item_id\": \"TD1_006800_20230528_L2A_20230615_03001067\",\n      \"start_date\": \"15-05-2024\",\n      \"status\": \"FULFILLED\",\n      \"tokens_used\": 10,\n      \"transaction_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"type\": \"ARCHIVE\",\n      \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"updated_by\": \"77345b90-0677-4889-b4d8-2ddb93c0467f\"\n    },\n    {\n      \"created_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"created_by\": \"e3ff4960-2d5a-4737-90dd-9cfb31bfa71e\",\n      \"delivery_status\": \"SUCCESS\",\n      \"end_date\": \"25-05-2024\",\n      \"id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"number_of_strips\": 4,\n      \"order_item_id\": \"TD1_006800_20230528_L2A_20230615_03001067\",\n      \"start_date\": \"15-05-2024\",\n      \"status\": \"FULFILLED\",\n      \"tokens_used\": 10,\n      \"transaction_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n      \"type\": \"ARCHIVE\",\n      \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n      \"updated_by\": \"77345b90-0677-4889-b4d8-2ddb93c0467f\"\n    }\n  ],\n  \"tokens_used\": 100,\n  \"transaction_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n  \"type\": \"RECURRING\",\n  \"updated_at\": \"2024-05-27T06:50:20.056549Z\",\n  \"updated_by\": \"274a30f5-9ff2-4cc7-8680-7b2e076b9faf\",\n  \"uplifts\": [\n    {\n      \"amount\": 3868,\n      \"item_id\": \"string\",\n      \"percentage\": 871,\n      \"subtitle\": \"string\",\n      \"title\": \"string\"\n    },\n    {\n      \"amount\": 3967,\n      \"item_id\": \"string\",\n      \"percentage\": 372,\n      \"subtitle\": \"string\",\n      \"title\": \"string\"\n    }\n  ],\n  \"usecase\": \"agriculture\",\n  \"user_id\": \"47435e2b-d8c4-41ff-9de9-2be3bfc92276\",\n  \"validation_errors\": [\n    {\n      \"key_0\": [\n        \"string\",\n        \"string\"\n      ],\n      \"key_1\": [\n        \"string\",\n        \"string\"\n      ],\n      \"key_2\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"key_0\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17db1cf1-26a4-4422-8ee4-b861e7dd28e5",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "order-items",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) OrderItem ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a095ece-2cd5-40d7-aab2-1304408c6e43",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "order-items",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) OrderItem ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3acc8e07-2a91-4c3a-ba11-936fe52c3842",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "order-items",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) OrderItem ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": {},\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.pixxel.space",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b63a8fd8-fc4e-42f3-8163-e0ffc4b86e01",
+    "name": "stargate AOI Order API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Swagger doc for Stargate\n\nContact Support:\n Name: Team-Identity\n Email: identity@pixxel.co.in",
+      "type": "text/plain"
+    }
+  }
+}

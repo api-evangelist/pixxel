@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "stargate AOI Report API",
+    "version": "v0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Report",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "download order report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pixxel.space/v0/reports",
+            "params": [
+              {
+                "name": "tz",
+                "value": "",
+                "type": "query",
+                "description": "local timezone of the client"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Download the entire order history report for the organization, successful response is in csv format."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

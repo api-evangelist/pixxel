@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "stargate AOI Downloads API",
+    "version": "v0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Downloads",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a download request for assets in an AOI",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pixxel.space/v0/aois/:aoi_id/downloads",
+            "params": [
+              {
+                "name": "aoi_id",
+                "value": "",
+                "type": "path",
+                "description": "AOI ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a download request for specified assets in an AOI"
+        },
+        {
+          "info": {
+            "name": "Get status of a download request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pixxel.space/v0/aois/:aoi_id/downloads/:download_id",
+            "params": [
+              {
+                "name": "aoi_id",
+                "value": "",
+                "type": "path",
+                "description": "AOI ID"
+              },
+              {
+                "name": "download_id",
+                "value": "",
+                "type": "path",
+                "description": "Download ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Gets the status of a download request for an AOI"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

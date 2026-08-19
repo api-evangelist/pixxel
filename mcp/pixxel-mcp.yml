@@ -1,4 +1,3 @@
-# Pixxel MCP server (candidate) - derived from OpenAPI
 generated: '2026-07-20'
 method: derived
 status: candidate
@@ -265,3 +264,9 @@ tools:
   method: POST
   path: /v0/aois/{aoi_id}/visualizations/{visualization_id}/sld
   source_operation: openapi/pixxel-openapi-original.json#GenerateVisualizationSLD
+deployment:
+  mode: none
+  verified: derived
+  tools: 51
+  checked: '2026-08-12'
+  source: catalog MCP census

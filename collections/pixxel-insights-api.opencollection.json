@@ -1,0 +1,168 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "stargate AOI Insights API",
+    "version": "v0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Insights",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Insights on an AOI",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pixxel.space/v0/aoi/:aoi_id/insights",
+            "params": [
+              {
+                "name": "aoi_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the AOI on which you want to run the insight"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates an insight or get the estimated cost of running the insight."
+        },
+        {
+          "info": {
+            "name": "List Insights",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pixxel.space/v0/aoi/:aoiId/insights",
+            "params": [
+              {
+                "name": "aoiId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the AOI"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Get a specific insight by it's unique id"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter insights by their status"
+              },
+              {
+                "name": "created_by",
+                "value": "",
+                "type": "query",
+                "description": "Filter insights by the creator's user id"
+              },
+              {
+                "name": "created_on",
+                "value": "",
+                "type": "query",
+                "description": "Filter insights by the time they were created on. Timestamps should be RFC3339 compliant. For dates, provide values like `2025-04-14T00:00:00Z`"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Responds with the list of inisghts details as JSON."
+        },
+        {
+          "info": {
+            "name": "Download Insights",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.pixxel.space/v0/aoi/:aoi_id/insights/:insight_id/download",
+            "params": [
+              {
+                "name": "aoi_id",
+                "value": "",
+                "type": "path",
+                "description": "aoiId"
+              },
+              {
+                "name": "insight_id",
+                "value": "",
+                "type": "path",
+                "description": "insightId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a download package containing the specified input and output files from an insight"
+        },
+        {
+          "info": {
+            "name": "Delete Insights",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.pixxel.space/v0/aoi/:aoi_id/insights/:insight_id",
+            "params": [
+              {
+                "name": "aoi_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the AOI"
+              },
+              {
+                "name": "insight_id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the insight which was run on the AOI"
+              },
+              {
+                "name": "project_id",
+                "value": "",
+                "type": "query",
+                "description": "ID of the project to which the AOI belongs"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Deletes an insight"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

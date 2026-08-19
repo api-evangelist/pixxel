@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "stargate AOI Search API",
+    "version": "v0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search satellite images",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pixxel.space/v0/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Search for satellite images using various filters and parameters. This endpoint uses cursor-based pagination with next_token for efficient navigation through large result sets and consistent behaviour across external providers (Planetary, Element). Use the next_token from the response to fetch subsequent pages of results."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

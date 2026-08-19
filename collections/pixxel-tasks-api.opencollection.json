@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "stargate AOI Tasks API",
+    "version": "v0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Download Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.pixxel.space/v0/workflows/:workflow_id/jobs/:job_id/tasks/:task_id/download",
+            "params": [
+              {
+                "name": "workflow_id",
+                "value": "",
+                "type": "path",
+                "description": "Unique ID for the workflow to download from"
+              },
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "path",
+                "description": "Specific job execution ID within the workflow"
+              },
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "path",
+                "description": "Target task ID containing assets to download"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Creates a download package containing the specified task assets from a job run of a workflow."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

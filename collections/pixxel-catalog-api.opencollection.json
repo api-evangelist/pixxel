@@ -1,0 +1,174 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "stargate AOI Catalog API",
+    "version": "v0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Catalog",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all deliveries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pixxel.space/v0/catalogs/deliveries",
+            "params": [
+              {
+                "name": "delivery_id",
+                "value": "",
+                "type": "query",
+                "description": "Delivery ID"
+              },
+              {
+                "name": "catalog_id",
+                "value": "",
+                "type": "query",
+                "description": "Catalog ID"
+              },
+              {
+                "name": "task_id",
+                "value": "",
+                "type": "query",
+                "description": "Task ID"
+              },
+              {
+                "name": "order_item_id",
+                "value": "",
+                "type": "query",
+                "description": "Order Item ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List of all deliveries for the workspace"
+        },
+        {
+          "info": {
+            "name": "Create deliveries",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pixxel.space/v0/catalogs/deliveries",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a delivery request which will be fulfilled async, only one of catalog id or order_item should be populated in a single delivery request."
+        },
+        {
+          "info": {
+            "name": "Create a download resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pixxel.space/v0/catalogs/download",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a download resource which will get populated with a signed url async. Only one of orderitem or catalog id should be populated in a single request."
+        },
+        {
+          "info": {
+            "name": "Get download status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pixxel.space/v0/catalogs/download/:download_id",
+            "params": [
+              {
+                "name": "download_id",
+                "value": "",
+                "type": "path",
+                "description": "Download ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get the current status of a download resource, signed_url field will be populated only if the operation is successful."
+        },
+        {
+          "info": {
+            "name": "Search all catalogs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.pixxel.space/v0/catalogs/search",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Search all catalogs owned by the workspace"
+        },
+        {
+          "info": {
+            "name": "Get a catalog",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pixxel.space/v0/catalogs/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Catalog ID"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Get a single catalog by ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

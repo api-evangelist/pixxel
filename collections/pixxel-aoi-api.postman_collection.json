@@ -1,0 +1,1181 @@
+{
+  "item": [
+    {
+      "id": "dddefbee-23b8-4121-9b59-28b982c77373",
+      "name": "AOI",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bf4bf1c8-7516-44be-8c08-75246c8867b7",
+          "name": "List all AOIs",
+          "request": {
+            "name": "List all AOIs",
+            "description": {
+              "content": "List all Areas of Interest (AOIs) with optional filtering",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "aois"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Offset for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Limit for pagination"
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at",
+                  "value": "<string>",
+                  "description": "Filter by creation date"
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_at",
+                  "value": "<string>",
+                  "description": "Filter by update date"
+                },
+                {
+                  "disabled": false,
+                  "key": "aoi_id",
+                  "value": "<string>",
+                  "description": "Filter by AOI ID"
+                },
+                {
+                  "disabled": false,
+                  "key": "aoi_name",
+                  "value": "<string>",
+                  "description": "Filter by AOI name"
+                },
+                {
+                  "disabled": false,
+                  "key": "project_ids",
+                  "value": "<string>",
+                  "description": "Filter by project IDs (comma separated)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "836df980-fe88-4cfd-8b8f-66d23353c6ae",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "aois"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "created_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "updated_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aoi_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aoi_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"aois\": [\n    {\n      \"aoi_id\": \"e9767554-550e-4464-a677-b8cf096073ab\",\n      \"name\": \"AOI-D2\",\n      \"description\": \"This AOI contains images of D2\",\n      \"satellite_id\": \"0005c5bb-0bd2-4c80-9393-4a808341c54c\",\n      \"project_id\": \"ce5dcc14-8291-4b0c-a278-8c05ec426d22\",\n      \"images\": {\n        \"key_0\": 2209.168714158075,\n        \"key_1\": 9329,\n        \"key_2\": true\n      },\n      \"eo_bands\": [\n        \"B01\",\n        \"B02\",\n        \"B03\"\n      ],\n      \"geometry\": {\n        \"coordinates\": [\n          [\n            [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          ],\n          [\n            [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          ]\n        ],\n        \"type\": \"Polygon\"\n      },\n      \"progress\": 100,\n      \"status\": \"success\",\n      \"is_favourite\": false,\n      \"created_at\": \"2022-11-14T12:55:49.125928+00:00\",\n      \"updated_at\": \"2022-11-14T12:55:49.125928+00:00\",\n      \"user_id\": \"user-123456\",\n      \"area_in_sq_m\": 123456.78,\n      \"centroid\": [\n        77.55,\n        12.95\n      ]\n    },\n    {\n      \"aoi_id\": \"e9767554-550e-4464-a677-b8cf096073ab\",\n      \"name\": \"AOI-D2\",\n      \"description\": \"This AOI contains images of D2\",\n      \"satellite_id\": \"0005c5bb-0bd2-4c80-9393-4a808341c54c\",\n      \"project_id\": \"ce5dcc14-8291-4b0c-a278-8c05ec426d22\",\n      \"images\": {\n        \"key_0\": true,\n        \"key_1\": 7512.983568105063\n      },\n      \"eo_bands\": [\n        \"B01\",\n        \"B02\",\n        \"B03\"\n      ],\n      \"geometry\": {\n        \"coordinates\": [\n          [\n            [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          ],\n          [\n            [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          ]\n        ],\n        \"type\": \"Polygon\"\n      },\n      \"progress\": 100,\n      \"status\": \"success\",\n      \"is_favourite\": false,\n      \"created_at\": \"2022-11-14T12:55:49.125928+00:00\",\n      \"updated_at\": \"2022-11-14T12:55:49.125928+00:00\",\n      \"user_id\": \"user-123456\",\n      \"area_in_sq_m\": 123456.78,\n      \"centroid\": [\n        77.55,\n        12.95\n      ]\n    }\n  ],\n  \"pagination\": {\n    \"limit\": 10,\n    \"offset\": 0,\n    \"total\": 100\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16b1edb7-6fa2-4e6b-9a22-3b662b5b408c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "aois"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "created_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "updated_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aoi_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aoi_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "552a8eaa-4b72-4ef2-a1ec-f7d2eb694c4c",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "aois"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "created_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "updated_at",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aoi_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "aoi_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "project_ids",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0771b055-1c0c-41ba-9c77-7f5eaf4a4b97",
+          "name": "Create a new AOI",
+          "request": {
+            "name": "Create a new AOI",
+            "description": {
+              "content": "Creates a new AOI with specified parameters",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "aois"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"geometry\": {\n    \"coordinates\": [\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ],\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ]\n    ],\n    \"type\": \"<string>\"\n  },\n  \"item_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"name\": \"<string>\",\n  \"project_id\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"satellite_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "29f3280a-753c-4900-8d0b-cec2a44d78d6",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "aois"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"This AOI contains images of D2\",\n  \"geometry\": {\n    \"coordinates\": [\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ],\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ]\n    ],\n    \"type\": \"Polygon\"\n  },\n  \"item_ids\": [\n    \"TD2_00056_20230815_L2A_004010_01001001\"\n  ],\n  \"name\": \"AOI-D2\",\n  \"project_id\": \"ce5dcc14-8291-4b0c-a278-8c05ec426d22\",\n  \"provider\": \"pixxel\",\n  \"satellite_id\": \"0005c5bb-0bd2-4c80-9393-4a808341c54c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"aoi_id\": \"e9767554-550e-4464-a677-b8cf096073ab\",\n  \"name\": \"AOI-D2\",\n  \"description\": \"This AOI contains images of D2\",\n  \"satellite_id\": \"0005c5bb-0bd2-4c80-9393-4a808341c54c\",\n  \"project_id\": \"ce5dcc14-8291-4b0c-a278-8c05ec426d22\",\n  \"images\": {\n    \"key_0\": \"string\"\n  },\n  \"eo_bands\": [\n    \"B01\",\n    \"B02\",\n    \"B03\"\n  ],\n  \"geometry\": {\n    \"coordinates\": [\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ],\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ]\n    ],\n    \"type\": \"Polygon\"\n  },\n  \"progress\": 100,\n  \"status\": \"success\",\n  \"is_favourite\": false,\n  \"created_at\": \"2022-11-14T12:55:49.125928+00:00\",\n  \"updated_at\": \"2022-11-14T12:55:49.125928+00:00\",\n  \"user_id\": \"user-123456\",\n  \"area_in_sq_m\": 123456.78,\n  \"centroid\": [\n    77.55,\n    12.95\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d21a5278-7c49-4e9d-bf75-0cdd2f655c91",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "aois"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"This AOI contains images of D2\",\n  \"geometry\": {\n    \"coordinates\": [\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ],\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ]\n    ],\n    \"type\": \"Polygon\"\n  },\n  \"item_ids\": [\n    \"TD2_00056_20230815_L2A_004010_01001001\"\n  ],\n  \"name\": \"AOI-D2\",\n  \"project_id\": \"ce5dcc14-8291-4b0c-a278-8c05ec426d22\",\n  \"provider\": \"pixxel\",\n  \"satellite_id\": \"0005c5bb-0bd2-4c80-9393-4a808341c54c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af6b2059-ceee-4aac-99d8-8c5d75313f36",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "aois"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"This AOI contains images of D2\",\n  \"geometry\": {\n    \"coordinates\": [\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ],\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ]\n    ],\n    \"type\": \"Polygon\"\n  },\n  \"item_ids\": [\n    \"TD2_00056_20230815_L2A_004010_01001001\"\n  ],\n  \"name\": \"AOI-D2\",\n  \"project_id\": \"ce5dcc14-8291-4b0c-a278-8c05ec426d22\",\n  \"provider\": \"pixxel\",\n  \"satellite_id\": \"0005c5bb-0bd2-4c80-9393-4a808341c54c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2efe8e62-3c3e-48ec-a40d-3af088576de1",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "aois"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"This AOI contains images of D2\",\n  \"geometry\": {\n    \"coordinates\": [\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ],\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ]\n    ],\n    \"type\": \"Polygon\"\n  },\n  \"item_ids\": [\n    \"TD2_00056_20230815_L2A_004010_01001001\"\n  ],\n  \"name\": \"AOI-D2\",\n  \"project_id\": \"ce5dcc14-8291-4b0c-a278-8c05ec426d22\",\n  \"provider\": \"pixxel\",\n  \"satellite_id\": \"0005c5bb-0bd2-4c80-9393-4a808341c54c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b64d581b-dff6-45c1-a135-111624963e75",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "aois"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"This AOI contains images of D2\",\n  \"geometry\": {\n    \"coordinates\": [\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ],\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ]\n    ],\n    \"type\": \"Polygon\"\n  },\n  \"item_ids\": [\n    \"TD2_00056_20230815_L2A_004010_01001001\"\n  ],\n  \"name\": \"AOI-D2\",\n  \"project_id\": \"ce5dcc14-8291-4b0c-a278-8c05ec426d22\",\n  \"provider\": \"pixxel\",\n  \"satellite_id\": \"0005c5bb-0bd2-4c80-9393-4a808341c54c\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec6bfd05-c9e5-4456-a710-34890ee9a3c9",
+          "name": "Get AOI",
+          "request": {
+            "name": "Get AOI",
+            "description": {
+              "content": "Get AOI by ID. Only the AOIs under current service user will be accessible.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "aoi",
+                ":aoi_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "aoi_id",
+                  "description": "(Required) AOI ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6659a55b-ffd6-43e5-aa9d-39442e8fdaa8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "aoi",
+                    ":aoi_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "aoi_id",
+                      "description": "(Required) AOI ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"aoi_id\": \"e9767554-550e-4464-a677-b8cf096073ab\",\n  \"name\": \"AOI-D2\",\n  \"description\": \"This AOI contains images of D2\",\n  \"satellite_id\": \"0005c5bb-0bd2-4c80-9393-4a808341c54c\",\n  \"project_id\": \"ce5dcc14-8291-4b0c-a278-8c05ec426d22\",\n  \"images\": {\n    \"key_0\": \"string\"\n  },\n  \"eo_bands\": [\n    \"B01\",\n    \"B02\",\n    \"B03\"\n  ],\n  \"geometry\": {\n    \"coordinates\": [\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ],\n      [\n        [\n          \"<number>\",\n          \"<number>\"\n        ],\n        [\n          \"<number>\",\n          \"<number>\"\n        ]\n      ]\n    ],\n    \"type\": \"Polygon\"\n  },\n  \"progress\": 100,\n  \"status\": \"success\",\n  \"is_favourite\": false,\n  \"created_at\": \"2022-11-14T12:55:49.125928+00:00\",\n  \"updated_at\": \"2022-11-14T12:55:49.125928+00:00\",\n  \"user_id\": \"user-123456\",\n  \"area_in_sq_m\": 123456.78,\n  \"centroid\": [\n    77.55,\n    12.95\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45ccfe8f-c9d3-4a49-bfe3-f3440a9d2c2b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "aoi",
+                    ":aoi_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "aoi_id",
+                      "description": "(Required) AOI ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e822a167-962c-4995-abf2-80f9a17455a9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "aoi",
+                    ":aoi_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "aoi_id",
+                      "description": "(Required) AOI ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14fbf341-5354-4147-bb22-8ad056678196",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "aoi",
+                    ":aoi_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "aoi_id",
+                      "description": "(Required) AOI ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63b37351-2c38-467e-8934-3b350fddfd37",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "aoi",
+                    ":aoi_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "aoi_id",
+                      "description": "(Required) AOI ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "78dbee33-268b-4a9e-a698-c8c2b99cc343",
+          "name": "List supported satellites",
+          "request": {
+            "name": "List supported satellites",
+            "description": {
+              "content": "List of supported satellites. This endpoint returns all available satellites in a single response; pagination is not required as the satellite catalog contains a limited set of entries.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v0",
+                "satellites"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "Authorization"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2b6b7805-dcf8-4ecd-ac2e-b85be959cb63",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "satellites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"satellites\": [\n    {\n      \"bands\": [\n        {\n          \"name\": \"string\",\n          \"offset\": 4640.0357518124165,\n          \"scale\": 966.7380000820358,\n          \"spatial_resolution\": 2225,\n          \"wavelength\": 5143.857306817815\n        },\n        {\n          \"name\": \"string\",\n          \"offset\": 2961.9688267107526,\n          \"scale\": 1819.6666691562734,\n          \"spatial_resolution\": 5819,\n          \"wavelength\": 7568.733835848704\n        }\n      ],\n      \"collections\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"provider\": \"string\",\n          \"queryables\": [\n            \"string\",\n            \"string\"\n          ],\n          \"rescale\": [\n            9245,\n            2384\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"provider\": \"string\",\n          \"queryables\": [\n            \"string\",\n            \"string\"\n          ],\n          \"rescale\": [\n            9303,\n            1657\n          ]\n        }\n      ],\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"rgb_composite\": {\n        \"blue\": \"string\",\n        \"green\": \"string\",\n        \"red\": \"string\"\n      }\n    },\n    {\n      \"bands\": [\n        {\n          \"name\": \"string\",\n          \"offset\": 7111.384068036997,\n          \"scale\": 7478.744071131874,\n          \"spatial_resolution\": 6919,\n          \"wavelength\": 1786.454286852064\n        },\n        {\n          \"name\": \"string\",\n          \"offset\": 4820.958942659626,\n          \"scale\": 3303.0695322823676,\n          \"spatial_resolution\": 2148,\n          \"wavelength\": 4868.6697316806\n        }\n      ],\n      \"collections\": [\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"provider\": \"string\",\n          \"queryables\": [\n            \"string\",\n            \"string\"\n          ],\n          \"rescale\": [\n            90,\n            8984\n          ]\n        },\n        {\n          \"id\": \"string\",\n          \"name\": \"string\",\n          \"provider\": \"string\",\n          \"queryables\": [\n            \"string\",\n            \"string\"\n          ],\n          \"rescale\": [\n            2856,\n            6713\n          ]\n        }\n      ],\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"rgb_composite\": {\n        \"blue\": \"string\",\n        \"green\": \"string\",\n        \"red\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "311cbb15-023a-4280-ab05-08e38b95d585",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "satellites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57953259-76ea-4a00-a573-7ae30b3e553b",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v0",
+                    "satellites"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"details\": \"\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.pixxel.space",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4273fdbc-7f9d-4f1e-a711-56a529675d66",
+    "name": "stargate AOI API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Swagger doc for Stargate\n\nContact Support:\n Name: Team-Identity\n Email: identity@pixxel.co.in",
+      "type": "text/plain"
+    }
+  }
+}

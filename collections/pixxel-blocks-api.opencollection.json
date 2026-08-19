@@ -1,0 +1,99 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "stargate AOI Blocks API",
+    "version": "v0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Blocks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Blocks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pixxel.space/v0/blocks",
+            "params": [
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "mode is basically the execution mode. Possible values: insight or workflow"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Responds with the list of all blocks"
+        },
+        {
+          "info": {
+            "name": "Get Block Versions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pixxel.space/v0/blocks/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Block name"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Responds with all versions of a specific block"
+        },
+        {
+          "info": {
+            "name": "Get Block by Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.pixxel.space/v0/blocks/:name/versions/:version",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path",
+                "description": "Block name"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path",
+                "description": "Block version"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Responds with a specific version of a block"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

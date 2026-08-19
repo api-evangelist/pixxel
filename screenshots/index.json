@@ -1,0 +1,28 @@
+[
+  {
+    "repo": "pixxel",
+    "captured_at": "2026-08-17T081249",
+    "source_url": "https://docs.pixxel.space/developer",
+    "source_type": "DeveloperPortal",
+    "file": "pixxel-2026-08-17T081249.png",
+    "bytes": 101489
+  },
+  {
+    "repo": "pixxel",
+    "captured_at": "2026-08-17T082550",
+    "source_url": "https://docs.pixxel.space/developer",
+    "source_type": "DeveloperPortal",
+    "file": "pixxel-2026-08-17T082550.png",
+    "bytes": 106394,
+    "capture": "playwright-local"
+  },
+  {
+    "repo": "pixxel",
+    "captured_at": "2026-08-17T121353",
+    "source_url": "https://docs.pixxel.space/developer",
+    "source_type": "DeveloperPortal",
+    "file": "pixxel-2026-08-17T121353.png",
+    "bytes": 106394,
+    "capture": "playwright-local"
+  }
+]
