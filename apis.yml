@@ -158,6 +158,8 @@ apis:
   humanURL: https://docs.pixxel.space/
   baseURL: https://api.pixxel.space
   tags:
+  - External
+  tags_raw:
   - external
   properties:
   - type: OpenAPI
@@ -200,6 +202,8 @@ apis:
   humanURL: https://docs.pixxel.space/
   baseURL: https://api.pixxel.space
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
@@ -284,6 +288,8 @@ apis:
   humanURL: https://docs.pixxel.space/
   baseURL: https://api.pixxel.space
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
