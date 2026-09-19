@@ -317,6 +317,8 @@ apis:
   humanURL: https://docs.pixxel.space/
   baseURL: https://api.pixxel.space
   tags:
+  - Visualization
+  tags_raw:
   - Visualizations
   properties:
   - type: OpenAPI
