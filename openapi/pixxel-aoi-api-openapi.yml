@@ -1,4 +1,4 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   description: Swagger doc for Stargate
   title: stargate AOI API
@@ -212,6 +212,22 @@ paths:
         url: /developer/search/list-supported-satellites
 components:
   schemas:
+    atlas.AOIStatus:
+      type: string
+      enum:
+      - success
+      - started
+      - running
+      - failed
+      - updating
+      - partial_success
+      x-enum-varnames:
+      - AOIStatusSuccess
+      - AOIStatusStarted
+      - AOIStatusRunning
+      - AOIStatusFailed
+      - AOIStatusUpdating
+      - AOIStatusPartial_Success
     common.Error:
       type: object
       properties:
@@ -313,6 +329,11 @@ components:
           example:
           - 77.55
           - 12.95
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
     lens.modifiedSuccessResponse:
       type: object
       properties:
@@ -335,32 +356,6 @@ components:
           type: integer
           x-order: '10039'
           example: 100
-    common.ErrorResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/common.Error'
-    atlas.Polygon:
-      type: object
-      required:
-      - coordinates
-      - type
-      properties:
-        type:
-          description: GeoJSON geometry type. Must be "Polygon" for AOI boundaries
-          type: string
-          x-order: '100'
-          example: Polygon
-        coordinates:
-          description: 'Nested array of coordinates [[[lng,lat],...]] forming a closed polygon. Example: [[[49.32, 40.85], [49.32, 9.08], [110.7, 9.08], [110.7, 40.85], [49.32, 40.85]]]'
-          type: array
-          items:
-            type: array
-            items:
-              type: array
-              items:
-                type: number
-          x-order: '101'
     atlas.AOIListResponse:
       type: object
       properties:
@@ -370,22 +365,6 @@ components:
             $ref: '#/components/schemas/atlas.AOI'
         pagination:
           $ref: '#/components/schemas/common.Pagination'
-    atlas.AOIStatus:
-      type: string
-      enum:
-      - success
-      - started
-      - running
-      - failed
-      - updating
-      - partial_success
-      x-enum-varnames:
-      - AOIStatusSuccess
-      - AOIStatusStarted
-      - AOIStatusRunning
-      - AOIStatusFailed
-      - AOIStatusUpdating
-      - AOIStatusPartial_Success
     lens.originalSuccessResponse:
       type: object
       properties:
@@ -485,6 +464,27 @@ components:
           x-order: '106'
           example:
           - TD2_00056_20230815_L2A_004010_01001001
+    atlas.Polygon:
+      type: object
+      required:
+      - coordinates
+      - type
+      properties:
+        type:
+          description: GeoJSON geometry type. Must be "Polygon" for AOI boundaries
+          type: string
+          x-order: '100'
+          example: Polygon
+        coordinates:
+          description: 'Nested array of coordinates [[[lng,lat],...]] forming a closed polygon. Example: [[[49.32, 40.85], [49.32, 9.08], [110.7, 9.08], [110.7, 40.85], [49.32, 40.85]]]'
+          type: array
+          items:
+            type: array
+            items:
+              type: array
+              items:
+                type: number
+          x-order: '101'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

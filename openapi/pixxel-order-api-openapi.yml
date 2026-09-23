@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   description: Swagger doc for Stargate
-  title: stargate AOI Order API
+  title: stargate Order API
   contact:
     name: Team-Identity
     email: identity@pixxel.co.in
@@ -296,157 +296,6 @@ paths:
         url: /developer/orders/order-orderitem
 components:
   schemas:
-    clerk.Error:
-      type: object
-      properties:
-        code:
-          description: short string based code reflecting the type of error
-          type: string
-        details:
-          description: additional details on the error
-        message:
-          description: info message on the error
-          type: string
-    clerk.docOriginalOrderRequest:
-      type: object
-      required:
-      - order_items
-      properties:
-        dry_run:
-          description: default is false
-          type: boolean
-          x-order: '1'
-          example: false
-        order_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/clerk.docOriginalOrderItem'
-          x-order: '2'
-    clerk.OrderStatus:
-      type: string
-      enum:
-      - PAID
-      - REFUND
-      - UNPAID
-      - PAYMENT_IN_PROGRESS
-      x-enum-varnames:
-      - OrderStatusPaid
-      - OrderStatusRefund
-      - OrderStatusUnpaid
-      - OrderStatusPaymentInProgress
-    clerk.ErrorResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/clerk.Error'
-    clerk.Uplift:
-      type: object
-      properties:
-        amount:
-          description: delta amount due to the uplift
-          type: integer
-        item_id:
-          description: (only for archive order) the item id to which the uplift applies
-          type: string
-        percentage:
-          description: percentage of the uplift
-          type: integer
-        subtitle:
-          description: description of the uplift
-          type: string
-        title:
-          description: type/cause of the uplift
-          type: string
-    common.Pagination:
-      type: object
-      properties:
-        limit:
-          type: integer
-          x-order: '10037'
-          example: 10
-        offset:
-          type: integer
-          x-order: '10038'
-          example: 0
-        total:
-          type: integer
-          x-order: '10039'
-          example: 100
-    clerk.OrderItemType:
-      type: string
-      enum:
-      - TASKING
-      - ARCHIVE
-      - RECURRING
-      x-enum-varnames:
-      - OrderItemTypeTasking
-      - OrderItemTypeArchive
-      - OrderItemTypeRecurring
-    clerk.ListOrderItemsResponse:
-      type: object
-      properties:
-        order_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/clerk.OrderItemResponse'
-        pagination:
-          $ref: '#/components/schemas/common.Pagination'
-    clerk.OrderItemBandset:
-      type: object
-      properties:
-        bands:
-          description: list of bands in the bandset
-          type: array
-          items:
-            $ref: '#/components/schemas/clerk.Band'
-        bandset_id:
-          description: id of the bandset
-          type: string
-          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
-        custom:
-          type: array
-          items:
-            type: array
-            items:
-              type: integer
-    clerk.TaskStatus:
-      type: string
-      enum:
-      - DRAFT
-      - SUBMITTED
-      - IN_PROGRESS
-      - FULFILLED
-      - PARTIALLY_FULFILLED
-      - FAILED
-      - CANCELLED
-      - EXPIRED
-      x-enum-varnames:
-      - TaskStatusDraft
-      - TaskStatusSubmitted
-      - TaskStatusInProgress
-      - TaskStatusFulfilled
-      - TaskStatusPartiallyFulfilled
-      - TaskStatusFailed
-      - TaskStatusCancelled
-      - TaskStatusExpired
-    clerk.TaskType:
-      type: string
-      enum:
-      - ARCHIVE
-      - TASKING
-      x-enum-varnames:
-      - TaskTypeArchive
-      - TaskTypeTasking
-    clerk.OrderItemImageType:
-      type: string
-      enum:
-      - VNIR
-      - SWIR
-      - VSWIR
-      x-enum-varnames:
-      - OrderItemImageTypeVNIR
-      - OrderItemImageTypeSWIR
-      - OrderItemImageTypeVSWIR
     clerk.docOriginalOrderItem:
       type: object
       required:
@@ -565,6 +414,256 @@ components:
               type: string
               example: my-bucket/my-folder
           x-order: '113'
+    clerk.OrderItem:
+      type: object
+      properties:
+        area:
+          description: UTM based area of the current order in sq. km.
+          type: integer
+          example: 1000
+        bandset:
+          description: bandset configuration for the current order
+          allOf:
+          - $ref: '#/components/schemas/clerk.OrderItemBandset'
+        base_amount:
+          description: base amount of the order item without any uplifts or discounts
+          type: number
+          example: 10000
+        cloud_cover:
+          description: maximum cloud cover percentage for the tasking order
+          type: integer
+          example: 0
+        cloud_delivery:
+          description: cloud delivery configuration for the automated delivery of the current order
+          allOf:
+          - $ref: '#/components/schemas/clerk.CloudDelivery'
+        created_at:
+          description: timestamp of the creation of the order item
+          type: string
+          example: '2024-05-27T06:50:20.056549Z'
+        created_by:
+          description: uuid of the user who created the order item
+          type: string
+          example: b64d2c37-89c3-404d-8395-dedb0fe9131c
+        delivery_speed:
+          description: delivery speed of the tasking order
+          allOf:
+          - $ref: '#/components/schemas/clerk.OrderItemDeliverySpeed'
+          example: STANDARD
+        end_date:
+          description: end date of your tasking order, the utc date will be considered as the end date.
+          type: string
+          example: '2020-10-28T00:00:00Z'
+        feasibility_status:
+          description: (only for tasking) feasibility status of the order showing the probability of the actual capture
+          allOf:
+          - $ref: '#/components/schemas/clerk.OrderItemFeasibilityStatus'
+          example: FAILED/WEAK_SUCCESS/SUCCESS
+        final_amount:
+          description: final amount of the order item after applying uplifts and discounts
+          type: number
+          example: 12000
+        id:
+          description: unique identifier of the order item
+          type: string
+          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
+        image_type:
+          description: image type for the tasking order
+          allOf:
+          - $ref: '#/components/schemas/clerk.OrderItemImageType'
+          example: VNIR
+        images:
+          description: list of images associated with the order item
+          type: array
+          items:
+            $ref: '#/components/schemas/clerk.Image'
+        last_feasibility_check:
+          description: (only for tasking) timestamp of the feasibility status. Feasibility status can change wrt time for the same order.
+          type: string
+          example: '2024-05-27T06:50:20.056549Z'
+        name:
+          description: name of the order item
+          type: string
+          example: order item 1
+        no_of_occurrences:
+          description: number of occurrences of the recurring order.
+          type: integer
+          example: 0
+        number_of_bands:
+          description: number of bands in the tasking order
+          type: integer
+          example: 2
+        occurrences:
+          description: list of intervals of recurring orders.
+          type: array
+          items:
+            $ref: '#/components/schemas/clerk.Interval'
+        off_nadir:
+          description: maximum off nadir angle for the tasking order
+          type: integer
+          example: 0
+        order_id:
+          description: UUID  of the order
+          type: string
+          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
+        org_id:
+          description: UUID of the workspace
+          type: string
+          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
+        payment_status:
+          description: payment status of the order item
+          allOf:
+          - $ref: '#/components/schemas/clerk.OrderItemPaymentStatus'
+          example: PAID/PARTIAL-REFUND/REFUND/UNPAID/PARTIAL-MONTHLY
+        project_id:
+          description: UUID of the project
+          type: string
+          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
+        recurrence:
+          description: recurrence of the order item, (only for tasking and recurring orders)
+          allOf:
+          - $ref: '#/components/schemas/clerk.OrderItemRecurrence'
+          example: ONCE
+        start_date:
+          description: start date of your tasking order, the utc date will be considered as the start date.
+          type: string
+          example: '2020-10-22T00:00:00Z'
+        status:
+          description: status of the order item
+          allOf:
+          - $ref: '#/components/schemas/clerk.OrderItemStatus'
+          example: DRAFT/ACTIVE/FULFILLED/CANCELLED/FAILED/PARTIALLY_FULFILLED
+        tokens_used:
+          description: tokens used by the order item, populated only after payment
+          type: integer
+          example: 100
+        transaction_id:
+          description: transaction id assorciated with the order item
+          type: string
+          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
+        type:
+          description: type of the order item
+          allOf:
+          - $ref: '#/components/schemas/clerk.OrderItemType'
+          example: TASKING/ARCHIVE/RECURRING
+        updated_at:
+          description: timestamp of the last update of the order item
+          type: string
+          example: '2024-05-27T06:50:20.056549Z'
+        updated_by:
+          description: uuid of the user who last updated the order item
+          type: string
+          example: 274a30f5-9ff2-4cc7-8680-7b2e076b9faf
+        uplifts:
+          description: list of uplifts/discounts applied to the order
+          type: array
+          items:
+            $ref: '#/components/schemas/clerk.Uplift'
+        usecase:
+          description: usecase for which this order was requested
+          type: string
+          example: agriculture
+        user_id:
+          description: UUID of the user
+          type: string
+          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
+    clerk.OrderItemType:
+      type: string
+      enum:
+      - TASKING
+      - ARCHIVE
+      - RECURRING
+      x-enum-varnames:
+      - OrderItemTypeTasking
+      - OrderItemTypeArchive
+      - OrderItemTypeRecurring
+    clerk.Uplift:
+      type: object
+      properties:
+        amount:
+          description: delta amount due to the uplift
+          type: integer
+        item_id:
+          description: (only for archive order) the item id to which the uplift applies
+          type: string
+        percentage:
+          description: percentage of the uplift
+          type: integer
+        subtitle:
+          description: description of the uplift
+          type: string
+        title:
+          description: type/cause of the uplift
+          type: string
+    clerk.Error:
+      type: object
+      properties:
+        code:
+          description: short string based code reflecting the type of error
+          type: string
+        details:
+          description: additional details on the error
+        message:
+          description: info message on the error
+          type: string
+    clerk.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/clerk.Error'
+    clerk.Band:
+      type: object
+      properties:
+        name:
+          description: name of the band
+          type: string
+          example: B001
+        wavelength:
+          description: wavelength of the band in nm
+          type: number
+          example: 473
+    clerk.ListOrdersResponse:
+      type: object
+      properties:
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/clerk.Order'
+        pagination:
+          $ref: '#/components/schemas/common.Pagination'
+    clerk.TaskType:
+      type: string
+      enum:
+      - ARCHIVE
+      - TASKING
+      x-enum-varnames:
+      - TaskTypeArchive
+      - TaskTypeTasking
+    clerk.OrderStatus:
+      type: string
+      enum:
+      - PAID
+      - REFUND
+      - UNPAID
+      - PAYMENT_IN_PROGRESS
+      x-enum-varnames:
+      - OrderStatusPaid
+      - OrderStatusRefund
+      - OrderStatusUnpaid
+      - OrderStatusPaymentInProgress
+    clerk.CloudDelivery:
+      type: object
+      required:
+      - config
+      properties:
+        config:
+          description: id of the store
+          type: string
+          example: 9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6
+        path:
+          description: prefix path to which resource should be transferred to
+          type: string
+          example: path/subdirectory1/
     clerk.Order:
       type: object
       properties:
@@ -609,68 +708,30 @@ components:
         user_id:
           type: string
           example: 90afd20d-8447-4636-a60d-73102008856c
-    clerk.OrderItemDeliverySpeed:
+    clerk.OrderItemPaymentStatus:
       type: string
       enum:
-      - STANDARD
-      - NOT_APPLICABLE
+      - PAID
+      - PARTIAL-REFUND
+      - REFUND
+      - UNPAID
+      - PARTIAL-MONTHLY
       x-enum-varnames:
-      - OrderItemDeliverySpeedStandard
-      - OrderItemDeliverySpeedNotApplicable
-    clerk.ListOrdersResponse:
-      type: object
-      properties:
-        orders:
-          type: array
-          items:
-            $ref: '#/components/schemas/clerk.Order'
-        pagination:
-          $ref: '#/components/schemas/common.Pagination'
-    clerk.DeliveryStatus:
+      - OrderItemPaymentStatusPaid
+      - OrderItemPaymentStatusPartialRefund
+      - OrderItemPaymentStatusRefund
+      - OrderItemPaymentStatusUnpaid
+      - OrderItemPaymentStatusPartialMonthly
+    clerk.OrderItemImageType:
       type: string
       enum:
-      - UNSPECIFIED
-      - CREATED
-      - FAILED
-      - IN_PROGRESS
-      - SUCCESS
+      - VNIR
+      - SWIR
+      - VSWIR
       x-enum-varnames:
-      - DeliveryStatusUnspecified
-      - DeliveryStatusCreated
-      - DeliveryStatusFailed
-      - DeliveryStatusInProgress
-      - DeliveryStatusSuccess
-    clerk.Band:
-      type: object
-      properties:
-        name:
-          description: name of the band
-          type: string
-          example: B001
-        wavelength:
-          description: wavelength of the band in nm
-          type: number
-          example: 473
-    clerk.CloudDelivery:
-      type: object
-      required:
-      - config
-      properties:
-        config:
-          description: id of the store
-          type: string
-          example: 9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6
-        path:
-          description: prefix path to which resource should be transferred to
-          type: string
-          example: path/subdirectory1/
-    clerk.Image:
-      type: object
-      properties:
-        geometry: {}
-        item_id:
-          description: STAC item id for the image
-          type: string
+      - OrderItemImageTypeVNIR
+      - OrderItemImageTypeSWIR
+      - OrderItemImageTypeVSWIR
     clerk.OrderItemRecurrence:
       type: string
       enum:
@@ -685,22 +746,28 @@ components:
       - OrderItemRecurrenceBimonthly
       - OrderItemRecurrenceQuarterly
       - OrderItemRecurrenceNotApplicable
-    clerk.OrderItemStatus:
-      type: string
-      enum:
-      - DRAFT
-      - ACTIVE
-      - FULFILLED
-      - CANCELLED
-      - FAILED
-      - PARTIALLY_FULFILLED
-      x-enum-varnames:
-      - OrderItemStatusDraft
-      - OrderItemStatusActive
-      - OrderItemStatusFulfilled
-      - OrderItemStatusCancelled
-      - OrderItemStatusFailed
-      - OrderItemStatusPartiallyFulfilled
+    common.Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          x-order: '10037'
+          example: 10
+        offset:
+          type: integer
+          x-order: '10038'
+          example: 0
+        total:
+          type: integer
+          x-order: '10039'
+          example: 100
+    clerk.Image:
+      type: object
+      properties:
+        geometry: {}
+        item_id:
+          description: STAC item id for the image
+          type: string
     clerk.OrderItemResponse:
       type: object
       properties:
@@ -868,6 +935,45 @@ components:
               type: array
               items:
                 type: string
+    clerk.OrderItemStatus:
+      type: string
+      enum:
+      - DRAFT
+      - ACTIVE
+      - FULFILLED
+      - CANCELLED
+      - FAILED
+      - PARTIALLY_FULFILLED
+      x-enum-varnames:
+      - OrderItemStatusDraft
+      - OrderItemStatusActive
+      - OrderItemStatusFulfilled
+      - OrderItemStatusCancelled
+      - OrderItemStatusFailed
+      - OrderItemStatusPartiallyFulfilled
+    clerk.ListOrderItemsResponse:
+      type: object
+      properties:
+        order_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/clerk.OrderItemResponse'
+        pagination:
+          $ref: '#/components/schemas/common.Pagination'
+    clerk.OrderItemFeasibilityStatus:
+      type: string
+      enum:
+      - NOT_APPLICABLE
+      - FAILED
+      - WEAK_SUCCESS
+      - SUCCESS
+      - UNSPECIFIED
+      x-enum-varnames:
+      - OrderItemFeasibilityStatusNotApplicable
+      - OrderItemFeasibilityStatusFailed
+      - OrderItemFeasibilityStatusWeakSuccess
+      - OrderItemFeasibilityStatusSuccess
+      - OrderItemFeasibilityStatusUnspecified
     clerk.Task:
       type: object
       properties:
@@ -935,159 +1041,81 @@ components:
           description: uuid of the user who last updated the task
           type: string
           example: 77345b90-0677-4889-b4d8-2ddb93c0467f
-    clerk.OrderItem:
+    clerk.OrderItemBandset:
       type: object
       properties:
-        area:
-          description: UTM based area of the current order in sq. km.
-          type: integer
-          example: 1000
-        bandset:
-          description: bandset configuration for the current order
-          allOf:
-          - $ref: '#/components/schemas/clerk.OrderItemBandset'
-        base_amount:
-          description: base amount of the order item without any uplifts or discounts
-          type: number
-          example: 10000
-        cloud_cover:
-          description: maximum cloud cover percentage for the tasking order
-          type: integer
-          example: 0
-        cloud_delivery:
-          description: cloud delivery configuration for the automated delivery of the current order
-          allOf:
-          - $ref: '#/components/schemas/clerk.CloudDelivery'
-        created_at:
-          description: timestamp of the creation of the order item
-          type: string
-          example: '2024-05-27T06:50:20.056549Z'
-        created_by:
-          description: uuid of the user who created the order item
-          type: string
-          example: b64d2c37-89c3-404d-8395-dedb0fe9131c
-        delivery_speed:
-          description: delivery speed of the tasking order
-          allOf:
-          - $ref: '#/components/schemas/clerk.OrderItemDeliverySpeed'
-          example: STANDARD
-        end_date:
-          description: end date of your tasking order, the utc date will be considered as the end date.
-          type: string
-          example: '2020-10-28T00:00:00Z'
-        feasibility_status:
-          description: (only for tasking) feasibility status of the order showing the probability of the actual capture
-          allOf:
-          - $ref: '#/components/schemas/clerk.OrderItemFeasibilityStatus'
-          example: FAILED/WEAK_SUCCESS/SUCCESS
-        final_amount:
-          description: final amount of the order item after applying uplifts and discounts
-          type: number
-          example: 12000
-        id:
-          description: unique identifier of the order item
-          type: string
-          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
-        image_type:
-          description: image type for the tasking order
-          allOf:
-          - $ref: '#/components/schemas/clerk.OrderItemImageType'
-          example: VNIR
-        images:
-          description: list of images associated with the order item
+        bands:
+          description: list of bands in the bandset
           type: array
           items:
-            $ref: '#/components/schemas/clerk.Image'
-        last_feasibility_check:
-          description: (only for tasking) timestamp of the feasibility status. Feasibility status can change wrt time for the same order.
+            $ref: '#/components/schemas/clerk.Band'
+        bandset_id:
+          description: id of the bandset
           type: string
-          example: '2024-05-27T06:50:20.056549Z'
-        name:
-          description: name of the order item
-          type: string
-          example: order item 1
-        no_of_occurrences:
-          description: number of occurrences of the recurring order.
-          type: integer
-          example: 0
-        number_of_bands:
-          description: number of bands in the tasking order
-          type: integer
-          example: 2
-        occurrences:
-          description: list of intervals of recurring orders.
+          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
+        custom:
           type: array
           items:
-            $ref: '#/components/schemas/clerk.Interval'
-        off_nadir:
-          description: maximum off nadir angle for the tasking order
-          type: integer
-          example: 0
-        order_id:
-          description: UUID  of the order
-          type: string
-          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
-        org_id:
-          description: UUID of the workspace
-          type: string
-          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
-        payment_status:
-          description: payment status of the order item
-          allOf:
-          - $ref: '#/components/schemas/clerk.OrderItemPaymentStatus'
-          example: PAID/PARTIAL-REFUND/REFUND/UNPAID/PARTIAL-MONTHLY
-        project_id:
-          description: UUID of the project
-          type: string
-          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
-        recurrence:
-          description: recurrence of the order item, (only for tasking and recurring orders)
-          allOf:
-          - $ref: '#/components/schemas/clerk.OrderItemRecurrence'
-          example: ONCE
-        start_date:
-          description: start date of your tasking order, the utc date will be considered as the start date.
-          type: string
-          example: '2020-10-22T00:00:00Z'
-        status:
-          description: status of the order item
-          allOf:
-          - $ref: '#/components/schemas/clerk.OrderItemStatus'
-          example: DRAFT/ACTIVE/FULFILLED/CANCELLED/FAILED/PARTIALLY_FULFILLED
-        tokens_used:
-          description: tokens used by the order item, populated only after payment
-          type: integer
-          example: 100
-        transaction_id:
-          description: transaction id assorciated with the order item
-          type: string
-          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
-        type:
-          description: type of the order item
-          allOf:
-          - $ref: '#/components/schemas/clerk.OrderItemType'
-          example: TASKING/ARCHIVE/RECURRING
-        updated_at:
-          description: timestamp of the last update of the order item
-          type: string
-          example: '2024-05-27T06:50:20.056549Z'
-        updated_by:
-          description: uuid of the user who last updated the order item
-          type: string
-          example: 274a30f5-9ff2-4cc7-8680-7b2e076b9faf
-        uplifts:
-          description: list of uplifts/discounts applied to the order
+            type: array
+            items:
+              type: integer
+    clerk.OrderItemDeliverySpeed:
+      type: string
+      enum:
+      - STANDARD
+      - NOT_APPLICABLE
+      x-enum-varnames:
+      - OrderItemDeliverySpeedStandard
+      - OrderItemDeliverySpeedNotApplicable
+    clerk.TaskStatus:
+      type: string
+      enum:
+      - DRAFT
+      - SUBMITTED
+      - IN_PROGRESS
+      - FULFILLED
+      - PARTIALLY_FULFILLED
+      - FAILED
+      - CANCELLED
+      - EXPIRED
+      x-enum-varnames:
+      - TaskStatusDraft
+      - TaskStatusSubmitted
+      - TaskStatusInProgress
+      - TaskStatusFulfilled
+      - TaskStatusPartiallyFulfilled
+      - TaskStatusFailed
+      - TaskStatusCancelled
+      - TaskStatusExpired
+    clerk.docOriginalOrderRequest:
+      type: object
+      required:
+      - order_items
+      properties:
+        dry_run:
+          description: default is false
+          type: boolean
+          x-order: '1'
+          example: false
+        order_items:
           type: array
           items:
-            $ref: '#/components/schemas/clerk.Uplift'
-        usecase:
-          description: usecase for which this order was requested
-          type: string
-          example: agriculture
-        user_id:
-          description: UUID of the user
-          type: string
-          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
+            $ref: '#/components/schemas/clerk.docOriginalOrderItem'
+          x-order: '2'
+    clerk.DeliveryStatus:
+      type: string
+      enum:
+      - UNSPECIFIED
+      - CREATED
+      - FAILED
+      - IN_PROGRESS
+      - SUCCESS
+      x-enum-varnames:
+      - DeliveryStatusUnspecified
+      - DeliveryStatusCreated
+      - DeliveryStatusFailed
+      - DeliveryStatusInProgress
+      - DeliveryStatusSuccess
     clerk.Interval:
       type: object
       properties:
@@ -1099,34 +1127,6 @@ components:
           description: start time of the interval
           type: string
           example: '2020-01-01T00:00:00+00:00'
-    clerk.OrderItemFeasibilityStatus:
-      type: string
-      enum:
-      - NOT_APPLICABLE
-      - FAILED
-      - WEAK_SUCCESS
-      - SUCCESS
-      - UNSPECIFIED
-      x-enum-varnames:
-      - OrderItemFeasibilityStatusNotApplicable
-      - OrderItemFeasibilityStatusFailed
-      - OrderItemFeasibilityStatusWeakSuccess
-      - OrderItemFeasibilityStatusSuccess
-      - OrderItemFeasibilityStatusUnspecified
-    clerk.OrderItemPaymentStatus:
-      type: string
-      enum:
-      - PAID
-      - PARTIAL-REFUND
-      - REFUND
-      - UNPAID
-      - PARTIAL-MONTHLY
-      x-enum-varnames:
-      - OrderItemPaymentStatusPaid
-      - OrderItemPaymentStatusPartialRefund
-      - OrderItemPaymentStatusRefund
-      - OrderItemPaymentStatusUnpaid
-      - OrderItemPaymentStatusPartialMonthly
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

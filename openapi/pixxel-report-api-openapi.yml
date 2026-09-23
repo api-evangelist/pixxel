@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   description: Swagger doc for Stargate
-  title: stargate AOI Report API
+  title: stargate Report API
   contact:
     name: Team-Identity
     email: identity@pixxel.co.in
@@ -58,11 +58,6 @@ paths:
                 $ref: '#/components/schemas/clerk.ErrorResponse'
 components:
   schemas:
-    clerk.ErrorResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/clerk.Error'
     clerk.Error:
       type: object
       properties:
@@ -74,6 +69,11 @@ components:
         message:
           description: info message on the error
           type: string
+    clerk.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/clerk.Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

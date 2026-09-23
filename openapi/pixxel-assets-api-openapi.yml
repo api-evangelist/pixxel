@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   description: Swagger doc for Stargate
-  title: stargate AOI Assets API
+  title: stargate Assets API
   contact:
     name: Team-Identity
     email: identity@pixxel.co.in
@@ -69,37 +69,6 @@ paths:
         url: /developer/assets/list-assets
 components:
   schemas:
-    atlas.AssetStatus:
-      type: string
-      enum:
-      - success
-      - failed
-      - started
-      - creating
-      x-enum-varnames:
-      - AssetStatusSuccess
-      - AssetStatusFailed
-      - AssetStatusStarted
-      - AssetStatusCreating
-    atlas.AssetType:
-      type: string
-      enum:
-      - mosaic
-      - stac_item
-      - visualization
-      x-enum-varnames:
-      - MosaicAssetType
-      - STACItemAssetType
-      - VisualizationAssetType
-    atlas.AssetListResponseModel:
-      type: object
-      properties:
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/atlas.AssetReadModel'
-        pagination:
-          $ref: '#/components/schemas/common.Pagination'
     common.Error:
       type: object
       properties:
@@ -108,47 +77,6 @@ components:
         details: {}
         message:
           type: string
-    common.Pagination:
-      type: object
-      properties:
-        limit:
-          type: integer
-          x-order: '10037'
-          example: 10
-        offset:
-          type: integer
-          x-order: '10038'
-          example: 0
-        total:
-          type: integer
-          x-order: '10039'
-          example: 100
-    common.ErrorResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/common.Error'
-    atlas.Polygon:
-      type: object
-      required:
-      - coordinates
-      - type
-      properties:
-        type:
-          description: GeoJSON geometry type. Must be "Polygon" for AOI boundaries
-          type: string
-          x-order: '100'
-          example: Polygon
-        coordinates:
-          description: 'Nested array of coordinates [[[lng,lat],...]] forming a closed polygon. Example: [[[49.32, 40.85], [49.32, 9.08], [110.7, 9.08], [110.7, 40.85], [49.32, 40.85]]]'
-          type: array
-          items:
-            type: array
-            items:
-              type: array
-              items:
-                type: number
-          x-order: '101'
     atlas.AssetReadModel:
       type: object
       properties:
@@ -212,6 +140,78 @@ components:
         visualization_id:
           type: string
           example: e9767554-550e-4464-a677-b8cf096073ab
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
+    common.Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          x-order: '10037'
+          example: 10
+        offset:
+          type: integer
+          x-order: '10038'
+          example: 0
+        total:
+          type: integer
+          x-order: '10039'
+          example: 100
+    atlas.AssetListResponseModel:
+      type: object
+      properties:
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/atlas.AssetReadModel'
+        pagination:
+          $ref: '#/components/schemas/common.Pagination'
+    atlas.AssetType:
+      type: string
+      enum:
+      - mosaic
+      - stac_item
+      - visualization
+      x-enum-varnames:
+      - MosaicAssetType
+      - STACItemAssetType
+      - VisualizationAssetType
+    atlas.AssetStatus:
+      type: string
+      enum:
+      - success
+      - failed
+      - started
+      - creating
+      x-enum-varnames:
+      - AssetStatusSuccess
+      - AssetStatusFailed
+      - AssetStatusStarted
+      - AssetStatusCreating
+    atlas.Polygon:
+      type: object
+      required:
+      - coordinates
+      - type
+      properties:
+        type:
+          description: GeoJSON geometry type. Must be "Polygon" for AOI boundaries
+          type: string
+          x-order: '100'
+          example: Polygon
+        coordinates:
+          description: 'Nested array of coordinates [[[lng,lat],...]] forming a closed polygon. Example: [[[49.32, 40.85], [49.32, 9.08], [110.7, 9.08], [110.7, 40.85], [49.32, 40.85]]]'
+          type: array
+          items:
+            type: array
+            items:
+              type: array
+              items:
+                type: number
+          x-order: '101'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

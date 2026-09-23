@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   description: Swagger doc for Stargate
-  title: stargate AOI Indices API
+  title: stargate Indices API
   contact:
     name: Team-Identity
     email: identity@pixxel.co.in
@@ -120,119 +120,6 @@ paths:
         url: /developer/indices/create-index
 components:
   schemas:
-    atlas.IndexEntity:
-      type: object
-      properties:
-        bands:
-          type: array
-          items:
-            type: string
-        colormap:
-          type: string
-        created_at:
-          type: string
-        description:
-          type: string
-        expression:
-          type: string
-        expression_type:
-          $ref: '#/components/schemas/atlas.ExpressionType'
-        id:
-          type: string
-        name:
-          type: string
-        rescale:
-          type: array
-          items:
-            type: integer
-        satellite_id:
-          type: string
-        type:
-          $ref: '#/components/schemas/atlas.IndexType'
-        updated_at:
-          type: string
-    common.Error:
-      type: object
-      properties:
-        code:
-          type: string
-        details: {}
-        message:
-          type: string
-    atlas.IndexCreateRequest:
-      type: object
-      required:
-      - colormap
-      - description
-      - expression
-      - expression_type
-      - name
-      - rescale
-      - satellite_id
-      properties:
-        name:
-          type: string
-          x-order: '100'
-          example: NDVI
-        description:
-          type: string
-          x-order: '101'
-          example: This formula will give insights about vegetation
-        rescale:
-          type: array
-          items:
-            type: integer
-          x-order: '102'
-          example:
-          - 0
-          - 1
-        expression:
-          type: string
-          x-order: '103'
-          example: (B04-B08)/(B04+B08)
-        colormap:
-          type: string
-          x-order: '104'
-          example: rplumbho
-        satellite_id:
-          type: string
-          x-order: '105'
-          example: 0002a3a3-00a2-4b55-842b-44d8202c6d60
-        expression_type:
-          allOf:
-          - $ref: '#/components/schemas/atlas.ExpressionType'
-          x-order: '106'
-          example: index
-    common.Pagination:
-      type: object
-      properties:
-        limit:
-          type: integer
-          x-order: '10037'
-          example: 10
-        offset:
-          type: integer
-          x-order: '10038'
-          example: 0
-        total:
-          type: integer
-          x-order: '10039'
-          example: 100
-    common.ErrorResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/common.Error'
-    atlas.ExpressionType:
-      type: string
-      enum:
-      - composite
-      - index
-      - grayscale
-      x-enum-varnames:
-      - ExpressionTypeComposite
-      - ExpressionTypeIndex
-      - ExpressionTypeGrayscale
     atlas.ListIndicesResponse:
       type: object
       properties:
@@ -300,6 +187,119 @@ components:
         updated_at:
           type: string
           example: '2022-11-14 12:55:49.125928+00:00'
+    atlas.IndexEntity:
+      type: object
+      properties:
+        bands:
+          type: array
+          items:
+            type: string
+        colormap:
+          type: string
+        created_at:
+          type: string
+        description:
+          type: string
+        expression:
+          type: string
+        expression_type:
+          $ref: '#/components/schemas/atlas.ExpressionType'
+        id:
+          type: string
+        name:
+          type: string
+        rescale:
+          type: array
+          items:
+            type: integer
+        satellite_id:
+          type: string
+        type:
+          $ref: '#/components/schemas/atlas.IndexType'
+        updated_at:
+          type: string
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
+    atlas.IndexCreateRequest:
+      type: object
+      required:
+      - colormap
+      - description
+      - expression
+      - expression_type
+      - name
+      - rescale
+      - satellite_id
+      properties:
+        name:
+          type: string
+          x-order: '100'
+          example: NDVI
+        description:
+          type: string
+          x-order: '101'
+          example: This formula will give insights about vegetation
+        rescale:
+          type: array
+          items:
+            type: integer
+          x-order: '102'
+          example:
+          - 0
+          - 1
+        expression:
+          type: string
+          x-order: '103'
+          example: (B04-B08)/(B04+B08)
+        colormap:
+          type: string
+          x-order: '104'
+          example: rplumbho
+        satellite_id:
+          type: string
+          x-order: '105'
+          example: 0002a3a3-00a2-4b55-842b-44d8202c6d60
+        expression_type:
+          allOf:
+          - $ref: '#/components/schemas/atlas.ExpressionType'
+          x-order: '106'
+          example: index
+    atlas.ExpressionType:
+      type: string
+      enum:
+      - composite
+      - index
+      - grayscale
+      x-enum-varnames:
+      - ExpressionTypeComposite
+      - ExpressionTypeIndex
+      - ExpressionTypeGrayscale
+    common.Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          x-order: '10037'
+          example: 10
+        offset:
+          type: integer
+          x-order: '10038'
+          example: 0
+        total:
+          type: integer
+          x-order: '10039'
+          example: 100
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

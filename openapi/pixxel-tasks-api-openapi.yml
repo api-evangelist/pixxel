@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   description: Swagger doc for Stargate
-  title: stargate AOI Tasks API
+  title: stargate Tasks API
   contact:
     name: Team-Identity
     email: identity@pixxel.co.in
@@ -63,6 +63,11 @@ paths:
         url: /developer/jobs/download-task
 components:
   schemas:
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
     dexter.PutTaskUpstreamResponseBody:
       type: object
       properties:
@@ -86,11 +91,6 @@ components:
           description: SignedUrl is the URL where the packaged assets can be downloaded from
           type: string
           x-order: '50'
-    common.ErrorResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/common.Error'
     common.Error:
       type: object
       properties:

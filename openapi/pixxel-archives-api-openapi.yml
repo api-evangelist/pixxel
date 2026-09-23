@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   description: Swagger doc for Stargate
-  title: stargate AOI Archives API
+  title: stargate Archives API
   contact:
     name: Team-Identity
     email: identity@pixxel.co.in
@@ -310,17 +310,123 @@ components:
         updated_at:
           type: string
           example: '2023-08-06T20:46:56.815552Z'
-    cosmos.Geometry:
+    cosmos.Search:
       type: object
       properties:
-        type:
-          description: The type of the geometry
+        bbox:
+          description: 'Only features that have a geometry that intersects the bounding box are selected. The bounding box is provided as four numbers:
+
+
+            Lower left corner, coordinate axis 1
+
+            Lower left corner, coordinate axis 2
+
+            Upper right corner, coordinate axis 1
+
+            Upper right corner, coordinate axis 2
+
+            The coordinate reference system of the values is WGS84 longitude/latitude (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless a different coordinate reference system is specified in the parameter bbox-crs.
+
+
+            For WGS84 longitude/latitude the values are in most cases the sequence of minimum longitude, minimum latitude, maximum longitude and maximum latitude. However, in cases where the box spans the antimeridian the first value (west-most box edge) is larger than the third value (east-most box edge).
+
+
+            If a feature has multiple spatial geometry properties, it is the decision of the server whether only a single spatial geometry property is used to determine the extent or all relevant geometries.
+
+
+            Example: The bounding box of the New Zealand Exclusive Economic Zone in WGS 84 (from 160.6°E to 170°W and from 55.95°S to 25.89°S) would be represented in JSON as [160.6, -55.95, -170, -25.89] and in a query as bbox=160.6,-55.95,-170,-25.89'
+          type: array
+          items:
+            type: number
+          example:
+          - 3
+          - 4
+          - 5
+          - 6
+        collections:
+          description: Array of Collection IDs to include in the search for items. Only Item objects in one of the provided collections will be searched.
+          type: array
+          items:
+            type: string
+        datetime:
+          description: 'Either a date-time or an interval, open or closed. Date and time expressions adhere to RFC 3339. Open intervals are expressed using double-dots.
+
+
+            Examples:
+
+
+            A date-time: "2018-02-12T23:20:50Z"
+
+            A closed interval: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z"
+
+            Open intervals: "2018-02-12T00:00:00Z/.." or "../2018-03-18T12:31:12Z"
+
+            Only features that have a temporal property that intersects the value of datetime are selected.
+
+
+            If a feature has multiple temporal properties, it is the decision of the server whether only a single temporal property is used to determine the extent or all relevant temporal properties.'
+          type: string
+          example: 2020-04-05T11:56:49.865Z/2023-06-05T11:56:49.865Z
+        ids:
+          type: array
+          items:
+            type: string
+        intersects:
+          description: 'pointGeoJSON (object) or multipointGeoJSON (object) or linestringGeoJSON (object) or multilinestringGeoJSON (object) or polygonGeoJSON (object) or multipolygonGeoJSON (object) or geometrycollectionGeoJSON (object) (geometryGeoJSON)
+
+            The optional intersects parameter filters the result Items in the same was as bbox, only with a GeoJSON Geometry rather than a bbox.'
           allOf:
-          - $ref: '#/components/schemas/cosmos.GeometryType'
-          x-order: '30'
-          example: Polygon
-        coordinates:
-          x-order: '31'
+          - $ref: '#/components/schemas/cosmos.Geometry'
+        limit:
+          type: integer
+          default: 10
+          example: 10
+        offset:
+          type: integer
+          example: 0
+        query:
+          description: "a query object to search/filter according to the properites of the stac-item\n `\"query\": {\n   \"cloudcover\": {\n       \"gt\": 0,\n       \"lt\": 10\n   },\n   \"bands\": {\n       \"eq\": [\n           \"RGB\",\n           \"B001\",\n           \"B002\"\n       ]\n   }\n  },`"
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties: true
+        sortby:
+          description: "a sortby object to sort the items by the properties of the stac-item\n\"sortby\": [\n{\n    \"field\": \"properties->>'datetime'\",\n    \"direction\": \"desc\"\n}\n]"
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: string
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
+    cosmos.Link:
+      type: object
+      required:
+      - href
+      - rel
+      properties:
+        href:
+          description: The URL or reference the link points to
+          type: string
+          example: https://example.com
+        rel:
+          description: The relationship of the link (e.g., "self", "parent", "child")
+          type: string
+          example: self
+        title:
+          description: A human-readable title for the link
+          type: string
+          example: Example Link Title
+        type:
+          description: The MIME type of the linked resource (e.g., "application/json")
+          type: string
+          example: application/json
     cosmos.RasterBand:
       type: object
       properties:
@@ -340,32 +446,36 @@ components:
           description: The spatial resolution of the band in meters
           type: number
           example: 10
-    common.Error:
+    cosmos.EoBand:
       type: object
       properties:
-        code:
+        center_wavelength:
+          description: The center wavelength of the band in micrometers
+          type: number
+          example: 0.443
+        common_name:
+          description: The common name of the band (e.g., "coastal", "blue", "green")
           type: string
-        details: {}
-        message:
+          example: coastal
+        fwhm:
+          description: The full width at half maximum (FWHM) of the band in micrometers
+          type: number
+          example: 0.027
+        name:
+          description: The unique name of the band
           type: string
-    cosmos.GeometryType:
-      type: string
-      enum:
-      - Point
-      - MultiPoint
-      - LineString
-      - MultiLineString
-      - Polygon
-      - MultiPolygon
-      - GeometryCollection
-      x-enum-varnames:
-      - GeometryPoint
-      - GeometryMultiPoint
-      - GeometryLineString
-      - GeometryMultiLineString
-      - GeometryPolygon
-      - GeometryMultiPolygon
-      - GeometryCollection
+          example: B01
+        solar_irradiance:
+          description: The solar irradiance at the top of the atmosphere for the band in W/m²/μm
+          type: number
+          example: 1901
+    cosmos.modifiedSuccessResponse:
+      type: object
+      properties:
+        collections:
+          type: array
+          items:
+            $ref: '#/components/schemas/cosmos.originalCollectionSuccessResponse'
     cosmos.Item:
       type: object
       required:
@@ -433,61 +543,6 @@ components:
           items:
             $ref: '#/components/schemas/cosmos.Link'
           x-order: '19'
-    cosmos.Asset:
-      type: object
-      properties:
-        eo:bands:
-          description: "Example\n```\n[\n\t{\n\t\t\"fwhm\": 0,\n\t\t\"name\": \"B013\",\n\t\t\"common_name\": \"blue\",\n\t\t\"solar_irradiance\": 1965.25,\n\t\t\"center_wavelength\": 493\n\t}\n]"
-          type: array
-          items:
-            $ref: '#/components/schemas/cosmos.EoBand'
-        href:
-          description: The HREF of the asset
-          type: string
-          example: https://example.com/asset.tif
-        raster:bands:
-          description: "Example\n```\n[\n\t{\n\t\t\"scale\": 0.00002,\n\t\t\"nodata\": 0,\n\t\t\"offset\": 0,\n\t\t\"spatial_resolution\": 30\n\t}\n]"
-          type: array
-          items:
-            $ref: '#/components/schemas/cosmos.RasterBand'
-        roles:
-          description: The roles of the asset (e.g., "data", "metadata")
-          type: array
-          items:
-            type: string
-          example:
-          - data
-          - metadata
-        title:
-          description: A human-readable title for the asset
-          type: string
-          example: Example Asset Title
-        type:
-          description: The MIME type of the asset
-          type: string
-          example: image/tiff
-    cosmos.Link:
-      type: object
-      required:
-      - href
-      - rel
-      properties:
-        href:
-          description: The URL or reference the link points to
-          type: string
-          example: https://example.com
-        rel:
-          description: The relationship of the link (e.g., "self", "parent", "child")
-          type: string
-          example: self
-        title:
-          description: A human-readable title for the link
-          type: string
-          example: Example Link Title
-        type:
-          description: The MIME type of the linked resource (e.g., "application/json")
-          type: string
-          example: application/json
     cosmos.Properties:
       type: object
       properties:
@@ -612,128 +667,62 @@ components:
           description: The angle between the sun and the horizon
           type: number
           example: 45
-    cosmos.EoBand:
+    cosmos.Asset:
       type: object
       properties:
-        center_wavelength:
-          description: The center wavelength of the band in micrometers
-          type: number
-          example: 0.443
-        common_name:
-          description: The common name of the band (e.g., "coastal", "blue", "green")
+        eo:bands:
+          description: "Example\n```\n[\n\t{\n\t\t\"fwhm\": 0,\n\t\t\"name\": \"B013\",\n\t\t\"common_name\": \"blue\",\n\t\t\"solar_irradiance\": 1965.25,\n\t\t\"center_wavelength\": 493\n\t}\n]"
+          type: array
+          items:
+            $ref: '#/components/schemas/cosmos.EoBand'
+        href:
+          description: The HREF of the asset
           type: string
-          example: coastal
-        fwhm:
-          description: The full width at half maximum (FWHM) of the band in micrometers
-          type: number
-          example: 0.027
-        name:
-          description: The unique name of the band
+          example: https://example.com/asset.tif
+        raster:bands:
+          description: "Example\n```\n[\n\t{\n\t\t\"scale\": 0.00002,\n\t\t\"nodata\": 0,\n\t\t\"offset\": 0,\n\t\t\"spatial_resolution\": 30\n\t}\n]"
+          type: array
+          items:
+            $ref: '#/components/schemas/cosmos.RasterBand'
+        roles:
+          description: The roles of the asset (e.g., "data", "metadata")
+          type: array
+          items:
+            type: string
+          example:
+          - data
+          - metadata
+        title:
+          description: A human-readable title for the asset
           type: string
-          example: B01
-        solar_irradiance:
-          description: The solar irradiance at the top of the atmosphere for the band in W/m²/μm
-          type: number
-          example: 1901
+          example: Example Asset Title
+        type:
+          description: The MIME type of the asset
+          type: string
+          example: image/tiff
     common.ErrorResponse:
       type: object
       properties:
         error:
           $ref: '#/components/schemas/common.Error'
-    cosmos.Search:
-      type: object
-      properties:
-        bbox:
-          description: 'Only features that have a geometry that intersects the bounding box are selected. The bounding box is provided as four numbers:
-
-
-            Lower left corner, coordinate axis 1
-
-            Lower left corner, coordinate axis 2
-
-            Upper right corner, coordinate axis 1
-
-            Upper right corner, coordinate axis 2
-
-            The coordinate reference system of the values is WGS84 longitude/latitude (http://www.opengis.net/def/crs/OGC/1.3/CRS84) unless a different coordinate reference system is specified in the parameter bbox-crs.
-
-
-            For WGS84 longitude/latitude the values are in most cases the sequence of minimum longitude, minimum latitude, maximum longitude and maximum latitude. However, in cases where the box spans the antimeridian the first value (west-most box edge) is larger than the third value (east-most box edge).
-
-
-            If a feature has multiple spatial geometry properties, it is the decision of the server whether only a single spatial geometry property is used to determine the extent or all relevant geometries.
-
-
-            Example: The bounding box of the New Zealand Exclusive Economic Zone in WGS 84 (from 160.6°E to 170°W and from 55.95°S to 25.89°S) would be represented in JSON as [160.6, -55.95, -170, -25.89] and in a query as bbox=160.6,-55.95,-170,-25.89'
-          type: array
-          items:
-            type: number
-          example:
-          - 3
-          - 4
-          - 5
-          - 6
-        collections:
-          description: Array of Collection IDs to include in the search for items. Only Item objects in one of the provided collections will be searched.
-          type: array
-          items:
-            type: string
-        datetime:
-          description: 'Either a date-time or an interval, open or closed. Date and time expressions adhere to RFC 3339. Open intervals are expressed using double-dots.
-
-
-            Examples:
-
-
-            A date-time: "2018-02-12T23:20:50Z"
-
-            A closed interval: "2018-02-12T00:00:00Z/2018-03-18T12:31:12Z"
-
-            Open intervals: "2018-02-12T00:00:00Z/.." or "../2018-03-18T12:31:12Z"
-
-            Only features that have a temporal property that intersects the value of datetime are selected.
-
-
-            If a feature has multiple temporal properties, it is the decision of the server whether only a single temporal property is used to determine the extent or all relevant temporal properties.'
-          type: string
-          example: 2020-04-05T11:56:49.865Z/2023-06-05T11:56:49.865Z
-        ids:
-          type: array
-          items:
-            type: string
-        intersects:
-          description: 'pointGeoJSON (object) or multipointGeoJSON (object) or linestringGeoJSON (object) or multilinestringGeoJSON (object) or polygonGeoJSON (object) or multipolygonGeoJSON (object) or geometrycollectionGeoJSON (object) (geometryGeoJSON)
-
-            The optional intersects parameter filters the result Items in the same was as bbox, only with a GeoJSON Geometry rather than a bbox.'
-          allOf:
-          - $ref: '#/components/schemas/cosmos.Geometry'
-        limit:
-          type: integer
-          default: 10
-          example: 10
-        offset:
-          type: integer
-          example: 0
-        query:
-          description: "a query object to search/filter according to the properites of the stac-item\n `\"query\": {\n   \"cloudcover\": {\n       \"gt\": 0,\n       \"lt\": 10\n   },\n   \"bands\": {\n       \"eq\": [\n           \"RGB\",\n           \"B001\",\n           \"B002\"\n       ]\n   }\n  },`"
-          type: object
-          additionalProperties:
-            type: object
-            additionalProperties: true
-        sortby:
-          description: "a sortby object to sort the items by the properties of the stac-item\n\"sortby\": [\n{\n    \"field\": \"properties->>'datetime'\",\n    \"direction\": \"desc\"\n}\n]"
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: string
-    cosmos.modifiedSuccessResponse:
-      type: object
-      properties:
-        collections:
-          type: array
-          items:
-            $ref: '#/components/schemas/cosmos.originalCollectionSuccessResponse'
+    cosmos.GeometryType:
+      type: string
+      enum:
+      - Point
+      - MultiPoint
+      - LineString
+      - MultiLineString
+      - Polygon
+      - MultiPolygon
+      - GeometryCollection
+      x-enum-varnames:
+      - GeometryPoint
+      - GeometryMultiPoint
+      - GeometryLineString
+      - GeometryMultiLineString
+      - GeometryPolygon
+      - GeometryMultiPolygon
+      - GeometryCollection
     cosmos.FeatureCollection:
       type: object
       properties:
@@ -752,6 +741,17 @@ components:
           items:
             $ref: '#/components/schemas/cosmos.Link'
           x-order: '3'
+    cosmos.Geometry:
+      type: object
+      properties:
+        type:
+          description: The type of the geometry
+          allOf:
+          - $ref: '#/components/schemas/cosmos.GeometryType'
+          x-order: '30'
+          example: Polygon
+        coordinates:
+          x-order: '31'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

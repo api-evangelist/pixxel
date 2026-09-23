@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   description: Swagger doc for Stargate
-  title: stargate AOI Project API
+  title: stargate Project API
   contact:
     name: Team-Identity
     email: identity@pixxel.co.in
@@ -111,40 +111,6 @@ paths:
         url: /developer/projects/list-get-projects
 components:
   schemas:
-    frontier.getProjectById:
-      type: object
-      properties:
-        project:
-          type: object
-          properties:
-            id:
-              description: ID of the project
-              type: string
-              x-order: '0'
-            name:
-              description: Project slug
-              type: string
-              x-order: '1'
-            title:
-              description: Project name
-              type: string
-              x-order: '2'
-            org_id:
-              description: Workspace ID this project belongs to
-              type: string
-              x-order: '3'
-            created_at:
-              description: Project creation datetime
-              type: string
-              x-order: '4'
-            updated_at:
-              description: Project update datetime
-              type: string
-              x-order: '5'
-            metadata:
-              description: Additional data in the form of key-value pairs
-              type: object
-              x-order: '6'
     frontier.listProjects:
       type: object
       properties:
@@ -188,6 +154,40 @@ components:
                 description: Additional data in the form of key-value pairs
                 type: object
                 x-order: '7'
+    frontier.getProjectById:
+      type: object
+      properties:
+        project:
+          type: object
+          properties:
+            id:
+              description: ID of the project
+              type: string
+              x-order: '0'
+            name:
+              description: Project slug
+              type: string
+              x-order: '1'
+            title:
+              description: Project name
+              type: string
+              x-order: '2'
+            org_id:
+              description: Workspace ID this project belongs to
+              type: string
+              x-order: '3'
+            created_at:
+              description: Project creation datetime
+              type: string
+              x-order: '4'
+            updated_at:
+              description: Project update datetime
+              type: string
+              x-order: '5'
+            metadata:
+              description: Additional data in the form of key-value pairs
+              type: object
+              x-order: '6'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

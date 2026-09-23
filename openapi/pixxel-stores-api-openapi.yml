@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   description: Swagger doc for Stargate
-  title: stargate AOI Stores API
+  title: stargate Stores API
   contact:
     name: Team-Identity
     email: identity@pixxel.co.in
@@ -133,6 +133,40 @@ paths:
         url: /developer/orders/stores
 components:
   schemas:
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
+    domain.StoreConfigs:
+      type: object
+      required:
+      - bucket
+      - region
+      properties:
+        bucket:
+          description: Name of the bucket to be used for data transfers
+          type: string
+          x-order: '1'
+          example: my-data-bucket
+        region:
+          description: Region as defined by cloud provider
+          type: string
+          x-order: '2'
+          example: us-east-2
+        path_prefix:
+          description: Path prefix to be used for all transfers.
+          type: string
+          x-order: '3'
+          example: data/processed/
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
     courier.CreateStoreResponse:
       type: object
       properties:
@@ -180,40 +214,23 @@ components:
           type: string
           x-order: '80'
           example: ea2a79fc-6f68-40d7-8b79-18195bf74872
-    domain.StoreConfigs:
-      type: object
-      required:
-      - bucket
-      - region
-      properties:
-        bucket:
-          description: Name of the bucket to be used for data transfers
-          type: string
-          x-order: '1'
-          example: my-data-bucket
-        region:
-          description: Region as defined by cloud provider
-          type: string
-          x-order: '2'
-          example: us-east-2
-        path_prefix:
-          description: Path prefix to be used for all transfers.
-          type: string
-          x-order: '3'
-          example: data/processed/
-    common.Error:
+    courier.ListStoresResponse:
       type: object
       properties:
-        code:
-          type: string
-        details: {}
-        message:
-          type: string
-    common.ErrorResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/common.Error'
+        stores:
+          type: array
+          items:
+            $ref: '#/components/schemas/domain.Store'
+    domain.BucketType:
+      type: string
+      enum:
+      - S3
+      - GCS
+      - AZBLOB
+      x-enum-varnames:
+      - BucketTypeAWSS3
+      - BucketTypeGCS
+      - BucketTypeAZBLOB
     domain.Store:
       type: object
       properties:
@@ -261,16 +278,6 @@ components:
           type: string
           x-order: '80'
           example: ea2a79fc-6f68-40d7-8b79-18195bf74872
-    domain.BucketType:
-      type: string
-      enum:
-      - S3
-      - GCS
-      - AZBLOB
-      x-enum-varnames:
-      - BucketTypeAWSS3
-      - BucketTypeGCS
-      - BucketTypeAZBLOB
     courier.CreateStoreRequest:
       type: object
       required:
@@ -309,13 +316,6 @@ components:
           example:
             env: prod
             team: data
-    courier.ListStoresResponse:
-      type: object
-      properties:
-        stores:
-          type: array
-          items:
-            $ref: '#/components/schemas/domain.Store'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

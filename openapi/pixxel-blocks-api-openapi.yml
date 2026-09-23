@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   description: Swagger doc for Stargate
-  title: stargate AOI Blocks API
+  title: stargate Blocks API
   contact:
     name: Team-Identity
     email: identity@pixxel.co.in
@@ -47,6 +47,8 @@ paths:
       externalDocs:
         description: View developer guide to learn more
         url: /developer/blocks/list-blocks
+      operationId: getV0Blocks
+      x-operation-id-source: derived
   /v0/blocks/{name}:
     get:
       security:
@@ -90,6 +92,8 @@ paths:
       externalDocs:
         description: View developer guide to learn more
         url: /developer/blocks/get-block-versions
+      operationId: getV0BlocksByName
+      x-operation-id-source: derived
   /v0/blocks/{name}/versions/{version}:
     get:
       security:
@@ -139,24 +143,10 @@ paths:
       externalDocs:
         description: View developer guide to learn more
         url: /developer/blocks/get-block-by-version
+      operationId: getV0BlocksByNameVersionsByVersion
+      x-operation-id-source: derived
 components:
   schemas:
-    dexter.ListBlocksTransformerResponse:
-      type: object
-      properties:
-        blocks:
-          type: array
-          items:
-            $ref: '#/components/schemas/dexter.BlockSpecItem'
-          x-order: '10'
-    common.Error:
-      type: object
-      properties:
-        code:
-          type: string
-        details: {}
-        message:
-          type: string
     dexter.BlockSpec:
       type: object
       properties:
@@ -218,11 +208,22 @@ components:
           description: Version indicates the current version number of the block
           type: string
           x-order: '90'
-    common.ErrorResponse:
+    dexter.ListBlocksTransformerResponse:
       type: object
       properties:
-        error:
-          $ref: '#/components/schemas/common.Error'
+        blocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/dexter.BlockSpecItem'
+          x-order: '10'
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
     dexter.GetBlockVersionsTransformerResponse:
       type: object
       properties:
@@ -231,6 +232,11 @@ components:
           items:
             $ref: '#/components/schemas/dexter.BlockSpecItem'
           x-order: '10'
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
     dexter.BlockSpecItem:
       type: object
       properties:

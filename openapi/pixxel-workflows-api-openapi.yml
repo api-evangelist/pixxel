@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   description: Swagger doc for Stargate
-  title: stargate AOI Workflows API
+  title: stargate Workflows API
   contact:
     name: Team-Identity
     email: identity@pixxel.co.in
@@ -133,7 +133,6 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: Get Workflow Cost estimate
       tags:
       - Workflows
       summary: Get Workflow Cost estimate
@@ -169,14 +168,6 @@ paths:
         url: /developer/workflows/workflow-cost-estimate
 components:
   schemas:
-    common.Error:
-      type: object
-      properties:
-        code:
-          type: string
-        details: {}
-        message:
-          type: string
     dexter.GetWorkflowsByIdTransformerResponse:
       type: object
       properties:
@@ -224,28 +215,6 @@ components:
           description: Identifier of the project this workflow belongs to
           type: string
           x-order: '90'
-    common.Pagination:
-      type: object
-      properties:
-        limit:
-          type: integer
-          x-order: '10037'
-          example: 10
-        offset:
-          type: integer
-          x-order: '10038'
-          example: 0
-        total:
-          type: integer
-          x-order: '10039'
-          example: 100
-    dexter.GetWorkflowCostEstimateTransformerResponse:
-      type: object
-      properties:
-        estimated_cost:
-          description: The calculated cost of running the workflow, in credits
-          type: integer
-          x-order: '10'
     dexter.ListWorkflowItem:
       type: object
       properties:
@@ -281,6 +250,21 @@ components:
           description: Timestamp when the workflow was last modified
           type: string
           x-order: '80'
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
+    dexter.GetWorkflowCostEstimateTransformerResponse:
+      type: object
+      properties:
+        estimated_cost:
+          description: The calculated cost of running the workflow, in credits
+          type: integer
+          x-order: '10'
     common.ErrorResponse:
       type: object
       properties:
@@ -321,6 +305,21 @@ components:
           description: Specific component that generated the error
           type: string
           x-order: '50'
+    common.Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          x-order: '10037'
+          example: 10
+        offset:
+          type: integer
+          x-order: '10038'
+          example: 0
+        total:
+          type: integer
+          x-order: '10039'
+          example: 100
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

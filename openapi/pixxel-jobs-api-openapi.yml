@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   description: Swagger doc for Stargate
-  title: stargate AOI Jobs API
+  title: stargate Jobs API
   contact:
     name: Team-Identity
     email: identity@pixxel.co.in
@@ -72,7 +72,6 @@ paths:
     post:
       security:
       - ApiKeyAuth: []
-      description: Create a job from a given workflow
       tags:
       - Jobs
       summary: Create a job from a given workflow
@@ -116,7 +115,6 @@ paths:
     get:
       security:
       - ApiKeyAuth: []
-      description: Get Job by Id and WF Id
       tags:
       - Jobs
       summary: Get Job by Id and WF Id
@@ -202,46 +200,6 @@ paths:
         url: /developer/jobs/download-job
 components:
   schemas:
-    common.Error:
-      type: object
-      properties:
-        code:
-          type: string
-        details: {}
-        message:
-          type: string
-    common.ErrorResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/common.Error'
-    dexter.PutJobUpstreamResponseBody:
-      type: object
-      properties:
-        id:
-          description: Unique identifier of the insight
-          type: string
-          x-order: '10'
-        status:
-          description: Current status of the download operation
-          type: string
-          x-order: '20'
-        signed_url:
-          description: URL where the packaged assets can be downloaded from
-          type: string
-          x-order: '30'
-        workflowId:
-          description: WorkflowId of the Job
-          type: string
-          x-order: '40'
-    dexter.ListJobsTransformerResponse:
-      type: object
-      properties:
-        jobs:
-          type: array
-          items:
-            $ref: '#/components/schemas/dexter.ListJobsItem'
-          x-order: '10'
     dexter.PostWorkflowTaskGet:
       type: object
       properties:
@@ -353,149 +311,6 @@ components:
           description: Categorizes the specific error that occurred
           type: string
           x-order: '90'
-    dexter.ListJobsItem:
-      type: object
-      properties:
-        created_by:
-          description: ID of the user who created the job
-          type: string
-          x-order: '10'
-        id:
-          description: unique identifier for the job
-          type: string
-          x-order: '100'
-        cost:
-          description: cost of the job
-          type: integer
-          x-order: '110'
-        workflow_id:
-          description: unique identifier of the workflow the job belongs to
-          type: string
-          x-order: '20'
-        created_at:
-          description: timestamp when the job was created
-          type: string
-          x-order: '30'
-        updated_at:
-          description: timestamp when the job was last updated
-          type: string
-          x-order: '40'
-        finished_at:
-          description: timestamp when the job was completed
-          type: string
-          x-order: '50'
-        estimated_duration:
-          description: expected time to complete the job in seconds
-          type: integer
-          x-order: '60'
-        progress:
-          description: current completion percentage of the job
-          type: string
-          x-order: '70'
-        status:
-          description: current state of the job
-          type: string
-          x-order: '80'
-        time_taken:
-          description: actual duration the job took to complete
-          type: string
-          x-order: '90'
-    dexter.ValError:
-      type: object
-      properties:
-        from:
-          description: Source component of the validation error
-          type: string
-          x-order: '10'
-        to:
-          description: Target component of the validation error
-          type: string
-          x-order: '20'
-        err:
-          description: Error message
-          type: string
-          x-order: '30'
-        reason:
-          description: Additional context about why the error occurred
-          type: string
-          x-order: '40'
-        component_name:
-          description: Specific component that generated the error
-          type: string
-          x-order: '50'
-    dexter.PostWorkflowRunTransformerResponse:
-      type: object
-      properties:
-        created_by:
-          description: Unique identifier of the user who created the job
-          type: string
-          x-order: '10'
-        status:
-          description: Current status of the job
-          type: string
-          x-order: '100'
-        time_taken:
-          description: Actual duration the job took to complete
-          type: string
-          x-order: '110'
-        id:
-          description: Unique identifier for the job
-          type: string
-          x-order: '120'
-        tasks:
-          description: List of tasks in this job
-          type: array
-          items:
-            $ref: '#/components/schemas/dexter.PostWorkflowTaskGet'
-          x-order: '130'
-        val_errors:
-          description: Validation errors encountered
-          type: array
-          items:
-            $ref: '#/components/schemas/dexter.ValError'
-          x-order: '140'
-        spec:
-          description: Raw specification data for the job
-          type: array
-          items:
-            type: integer
-          x-order: '150'
-        cost:
-          description: Token cost of the job
-          type: integer
-          x-order: '160'
-        workflow_id:
-          description: Unique identifier of the workflow this job belongs to
-          type: string
-          x-order: '20'
-        updated_at:
-          description: Timestamp when the job was last updated
-          type: string
-          x-order: '30'
-        finished_at:
-          description: Timestamp when the job was completed
-          type: string
-          x-order: '40'
-        exec_created_at:
-          description: Timestamp when the job execution was created
-          type: string
-          x-order: '50'
-        exec_updated_at:
-          description: Timestamp when the job execution was last updated
-          type: string
-          x-order: '60'
-        created_at:
-          description: Timestamp when the job was created
-          type: string
-          x-order: '70'
-        estimated_duration:
-          description: Expected time in seconds to complete the job
-          type: integer
-          x-order: '80'
-        progress:
-          description: Completion percentage of the job
-          type: string
-          x-order: '90'
     dexter.GetJobByIdTransformerResponse:
       type: object
       properties:
@@ -569,6 +384,189 @@ components:
           description: Completion percentage of the job
           type: string
           x-order: '90'
+    dexter.PostWorkflowRunTransformerResponse:
+      type: object
+      properties:
+        created_by:
+          description: Unique identifier of the user who created the job
+          type: string
+          x-order: '10'
+        status:
+          description: Current status of the job
+          type: string
+          x-order: '100'
+        time_taken:
+          description: Actual duration the job took to complete
+          type: string
+          x-order: '110'
+        id:
+          description: Unique identifier for the job
+          type: string
+          x-order: '120'
+        tasks:
+          description: List of tasks in this job
+          type: array
+          items:
+            $ref: '#/components/schemas/dexter.PostWorkflowTaskGet'
+          x-order: '130'
+        val_errors:
+          description: Validation errors encountered
+          type: array
+          items:
+            $ref: '#/components/schemas/dexter.ValError'
+          x-order: '140'
+        spec:
+          description: Raw specification data for the job
+          type: array
+          items:
+            type: integer
+          x-order: '150'
+        cost:
+          description: Token cost of the job
+          type: integer
+          x-order: '160'
+        workflow_id:
+          description: Unique identifier of the workflow this job belongs to
+          type: string
+          x-order: '20'
+        updated_at:
+          description: Timestamp when the job was last updated
+          type: string
+          x-order: '30'
+        finished_at:
+          description: Timestamp when the job was completed
+          type: string
+          x-order: '40'
+        exec_created_at:
+          description: Timestamp when the job execution was created
+          type: string
+          x-order: '50'
+        exec_updated_at:
+          description: Timestamp when the job execution was last updated
+          type: string
+          x-order: '60'
+        created_at:
+          description: Timestamp when the job was created
+          type: string
+          x-order: '70'
+        estimated_duration:
+          description: Expected time in seconds to complete the job
+          type: integer
+          x-order: '80'
+        progress:
+          description: Completion percentage of the job
+          type: string
+          x-order: '90'
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
+    dexter.ListJobsItem:
+      type: object
+      properties:
+        created_by:
+          description: ID of the user who created the job
+          type: string
+          x-order: '10'
+        id:
+          description: unique identifier for the job
+          type: string
+          x-order: '100'
+        cost:
+          description: cost of the job
+          type: integer
+          x-order: '110'
+        workflow_id:
+          description: unique identifier of the workflow the job belongs to
+          type: string
+          x-order: '20'
+        created_at:
+          description: timestamp when the job was created
+          type: string
+          x-order: '30'
+        updated_at:
+          description: timestamp when the job was last updated
+          type: string
+          x-order: '40'
+        finished_at:
+          description: timestamp when the job was completed
+          type: string
+          x-order: '50'
+        estimated_duration:
+          description: expected time to complete the job in seconds
+          type: integer
+          x-order: '60'
+        progress:
+          description: current completion percentage of the job
+          type: string
+          x-order: '70'
+        status:
+          description: current state of the job
+          type: string
+          x-order: '80'
+        time_taken:
+          description: actual duration the job took to complete
+          type: string
+          x-order: '90'
+    dexter.ValError:
+      type: object
+      properties:
+        from:
+          description: Source component of the validation error
+          type: string
+          x-order: '10'
+        to:
+          description: Target component of the validation error
+          type: string
+          x-order: '20'
+        err:
+          description: Error message
+          type: string
+          x-order: '30'
+        reason:
+          description: Additional context about why the error occurred
+          type: string
+          x-order: '40'
+        component_name:
+          description: Specific component that generated the error
+          type: string
+          x-order: '50'
+    dexter.PutJobUpstreamResponseBody:
+      type: object
+      properties:
+        id:
+          description: Unique identifier of the insight
+          type: string
+          x-order: '10'
+        status:
+          description: Current status of the download operation
+          type: string
+          x-order: '20'
+        signed_url:
+          description: URL where the packaged assets can be downloaded from
+          type: string
+          x-order: '30'
+        workflowId:
+          description: WorkflowId of the Job
+          type: string
+          x-order: '40'
+    dexter.ListJobsTransformerResponse:
+      type: object
+      properties:
+        jobs:
+          type: array
+          items:
+            $ref: '#/components/schemas/dexter.ListJobsItem'
+          x-order: '10'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

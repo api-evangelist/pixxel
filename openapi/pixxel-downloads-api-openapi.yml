@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   description: Swagger doc for Stargate
-  title: stargate AOI Downloads API
+  title: stargate Downloads API
   contact:
     name: Team-Identity
     email: identity@pixxel.co.in
@@ -114,31 +114,11 @@ paths:
         url: /developer/assets/get-status-download-request
 components:
   schemas:
-    atlas.DownloadReadModel:
-      type: object
-      properties:
-        download_id:
-          type: string
-          example: dc01addf-b6c3-4fa9-9a49-dcdcb4c99229
-        signed_url:
-          type: string
-          example: https://storage.account/download
-        status:
-          type: string
-          example: SUCCESS
     common.ErrorResponse:
       type: object
       properties:
         error:
           $ref: '#/components/schemas/common.Error'
-    common.Error:
-      type: object
-      properties:
-        code:
-          type: string
-        details: {}
-        message:
-          type: string
     atlas.DownloadCreateModel:
       type: object
       required:
@@ -151,6 +131,26 @@ components:
           example:
           - 00173fc9-7ea6-49a6-b030-620df1cf822d
           - 49a6-b030-620df1cf822d-00173fc9-7ea6
+    atlas.DownloadReadModel:
+      type: object
+      properties:
+        download_id:
+          type: string
+          example: dc01addf-b6c3-4fa9-9a49-dcdcb4c99229
+        signed_url:
+          type: string
+          example: https://storage.account/download
+        status:
+          type: string
+          example: SUCCESS
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
