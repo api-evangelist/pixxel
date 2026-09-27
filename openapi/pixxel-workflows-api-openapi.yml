@@ -168,6 +168,41 @@ paths:
         url: /developer/workflows/workflow-cost-estimate
 components:
   schemas:
+    dexter.ListWorkflowsTransformerResponse:
+      type: object
+      properties:
+        workflows:
+          type: array
+          items:
+            $ref: '#/components/schemas/dexter.ListWorkflowItem'
+          x-order: '10'
+        pagination:
+          allOf:
+          - $ref: '#/components/schemas/common.Pagination'
+          x-order: '20'
+    dexter.ValError:
+      type: object
+      properties:
+        from:
+          description: Source component of the validation error
+          type: string
+          x-order: '10'
+        to:
+          description: Target component of the validation error
+          type: string
+          x-order: '20'
+        err:
+          description: Error message
+          type: string
+          x-order: '30'
+        reason:
+          description: Additional context about why the error occurred
+          type: string
+          x-order: '40'
+        component_name:
+          description: Specific component that generated the error
+          type: string
+          x-order: '50'
     dexter.GetWorkflowsByIdTransformerResponse:
       type: object
       properties:
@@ -215,6 +250,34 @@ components:
           description: Identifier of the project this workflow belongs to
           type: string
           x-order: '90'
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
+    common.Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          x-order: '10037'
+          example: 10
+        offset:
+          type: integer
+          x-order: '10038'
+          example: 0
+        total:
+          type: integer
+          x-order: '10039'
+          example: 100
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
     dexter.ListWorkflowItem:
       type: object
       properties:
@@ -250,14 +313,6 @@ components:
           description: Timestamp when the workflow was last modified
           type: string
           x-order: '80'
-    common.Error:
-      type: object
-      properties:
-        code:
-          type: string
-        details: {}
-        message:
-          type: string
     dexter.GetWorkflowCostEstimateTransformerResponse:
       type: object
       properties:
@@ -265,61 +320,6 @@ components:
           description: The calculated cost of running the workflow, in credits
           type: integer
           x-order: '10'
-    common.ErrorResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/common.Error'
-    dexter.ListWorkflowsTransformerResponse:
-      type: object
-      properties:
-        workflows:
-          type: array
-          items:
-            $ref: '#/components/schemas/dexter.ListWorkflowItem'
-          x-order: '10'
-        pagination:
-          allOf:
-          - $ref: '#/components/schemas/common.Pagination'
-          x-order: '20'
-    dexter.ValError:
-      type: object
-      properties:
-        from:
-          description: Source component of the validation error
-          type: string
-          x-order: '10'
-        to:
-          description: Target component of the validation error
-          type: string
-          x-order: '20'
-        err:
-          description: Error message
-          type: string
-          x-order: '30'
-        reason:
-          description: Additional context about why the error occurred
-          type: string
-          x-order: '40'
-        component_name:
-          description: Specific component that generated the error
-          type: string
-          x-order: '50'
-    common.Pagination:
-      type: object
-      properties:
-        limit:
-          type: integer
-          x-order: '10037'
-          example: 10
-        offset:
-          type: integer
-          x-order: '10038'
-          example: 0
-        total:
-          type: integer
-          x-order: '10039'
-          example: 100
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

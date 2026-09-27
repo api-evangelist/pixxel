@@ -133,105 +133,7 @@ paths:
         url: /developer/orders/stores
 components:
   schemas:
-    common.Error:
-      type: object
-      properties:
-        code:
-          type: string
-        details: {}
-        message:
-          type: string
-    domain.StoreConfigs:
-      type: object
-      required:
-      - bucket
-      - region
-      properties:
-        bucket:
-          description: Name of the bucket to be used for data transfers
-          type: string
-          x-order: '1'
-          example: my-data-bucket
-        region:
-          description: Region as defined by cloud provider
-          type: string
-          x-order: '2'
-          example: us-east-2
-        path_prefix:
-          description: Path prefix to be used for all transfers.
-          type: string
-          x-order: '3'
-          example: data/processed/
-    common.ErrorResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/common.Error'
     courier.CreateStoreResponse:
-      type: object
-      properties:
-        id:
-          description: Identifier to be used while transferring data
-          type: string
-          x-order: '10'
-          example: 576d8241-6e78-40ad-b3e6-295edbfe71f5
-        name:
-          description: Unique user friendly name for easier identification
-          type: string
-          x-order: '20'
-          example: my-analysis-store
-        type:
-          description: Type of bucket depending on the cloud provider. Currently Supported - S3, AZBLOB, GCS
-          allOf:
-          - $ref: '#/components/schemas/domain.BucketType'
-          x-order: '30'
-          example: S3
-        configs:
-          allOf:
-          - $ref: '#/components/schemas/domain.StoreConfigs'
-          x-order: '40'
-        labels:
-          description: User defined labels for metadata
-          type: object
-          additionalProperties:
-            type: string
-          x-order: '50'
-          example:
-            env: prod
-            team: data
-        created_at:
-          description: Store creation time
-          type: string
-          x-order: '60'
-          example: '2024-03-20T15:04:05Z'
-        updated_at:
-          description: Store last updated time
-          type: string
-          x-order: '70'
-          example: '2024-03-20T15:04:05Z'
-        created_by:
-          description: Identifier of the user that created store
-          type: string
-          x-order: '80'
-          example: ea2a79fc-6f68-40d7-8b79-18195bf74872
-    courier.ListStoresResponse:
-      type: object
-      properties:
-        stores:
-          type: array
-          items:
-            $ref: '#/components/schemas/domain.Store'
-    domain.BucketType:
-      type: string
-      enum:
-      - S3
-      - GCS
-      - AZBLOB
-      x-enum-varnames:
-      - BucketTypeAWSS3
-      - BucketTypeGCS
-      - BucketTypeAZBLOB
-    domain.Store:
       type: object
       properties:
         id:
@@ -316,6 +218,104 @@ components:
           example:
             env: prod
             team: data
+    domain.StoreConfigs:
+      type: object
+      required:
+      - bucket
+      - region
+      properties:
+        bucket:
+          description: Name of the bucket to be used for data transfers
+          type: string
+          x-order: '1'
+          example: my-data-bucket
+        region:
+          description: Region as defined by cloud provider
+          type: string
+          x-order: '2'
+          example: us-east-2
+        path_prefix:
+          description: Path prefix to be used for all transfers.
+          type: string
+          x-order: '3'
+          example: data/processed/
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
+    domain.BucketType:
+      type: string
+      enum:
+      - S3
+      - GCS
+      - AZBLOB
+      x-enum-varnames:
+      - BucketTypeAWSS3
+      - BucketTypeGCS
+      - BucketTypeAZBLOB
+    domain.Store:
+      type: object
+      properties:
+        id:
+          description: Identifier to be used while transferring data
+          type: string
+          x-order: '10'
+          example: 576d8241-6e78-40ad-b3e6-295edbfe71f5
+        name:
+          description: Unique user friendly name for easier identification
+          type: string
+          x-order: '20'
+          example: my-analysis-store
+        type:
+          description: Type of bucket depending on the cloud provider. Currently Supported - S3, AZBLOB, GCS
+          allOf:
+          - $ref: '#/components/schemas/domain.BucketType'
+          x-order: '30'
+          example: S3
+        configs:
+          allOf:
+          - $ref: '#/components/schemas/domain.StoreConfigs'
+          x-order: '40'
+        labels:
+          description: User defined labels for metadata
+          type: object
+          additionalProperties:
+            type: string
+          x-order: '50'
+          example:
+            env: prod
+            team: data
+        created_at:
+          description: Store creation time
+          type: string
+          x-order: '60'
+          example: '2024-03-20T15:04:05Z'
+        updated_at:
+          description: Store last updated time
+          type: string
+          x-order: '70'
+          example: '2024-03-20T15:04:05Z'
+        created_by:
+          description: Identifier of the user that created store
+          type: string
+          x-order: '80'
+          example: ea2a79fc-6f68-40d7-8b79-18195bf74872
+    courier.ListStoresResponse:
+      type: object
+      properties:
+        stores:
+          type: array
+          items:
+            $ref: '#/components/schemas/domain.Store'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

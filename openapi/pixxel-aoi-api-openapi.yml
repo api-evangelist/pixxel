@@ -187,7 +187,7 @@ paths:
       tags:
       - AOI
       summary: List supported satellites
-      operationId: List Satellites
+      operationId: ListSatellites
       responses:
         '200':
           description: OK
@@ -210,32 +210,10 @@ paths:
       externalDocs:
         description: View developer guide to learn more
         url: /developer/search/list-supported-satellites
+      x-operation-id-source: normalized
+      x-operation-id-original: List Satellites
 components:
   schemas:
-    atlas.AOIStatus:
-      type: string
-      enum:
-      - success
-      - started
-      - running
-      - failed
-      - updating
-      - partial_success
-      x-enum-varnames:
-      - AOIStatusSuccess
-      - AOIStatusStarted
-      - AOIStatusRunning
-      - AOIStatusFailed
-      - AOIStatusUpdating
-      - AOIStatusPartial_Success
-    common.Error:
-      type: object
-      properties:
-        code:
-          type: string
-        details: {}
-        message:
-          type: string
     atlas.AOI:
       type: object
       properties:
@@ -334,37 +312,6 @@ components:
       properties:
         error:
           $ref: '#/components/schemas/common.Error'
-    lens.modifiedSuccessResponse:
-      type: object
-      properties:
-        satellites:
-          type: array
-          items:
-            $ref: '#/components/schemas/lens.originalSuccessResponse'
-    common.Pagination:
-      type: object
-      properties:
-        limit:
-          type: integer
-          x-order: '10037'
-          example: 10
-        offset:
-          type: integer
-          x-order: '10038'
-          example: 0
-        total:
-          type: integer
-          x-order: '10039'
-          example: 100
-    atlas.AOIListResponse:
-      type: object
-      properties:
-        aois:
-          type: array
-          items:
-            $ref: '#/components/schemas/atlas.AOI'
-        pagination:
-          $ref: '#/components/schemas/common.Pagination'
     lens.originalSuccessResponse:
       type: object
       properties:
@@ -415,6 +362,73 @@ components:
               type: string
             red:
               type: string
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
+    lens.modifiedSuccessResponse:
+      type: object
+      properties:
+        satellites:
+          type: array
+          items:
+            $ref: '#/components/schemas/lens.originalSuccessResponse'
+    atlas.Polygon:
+      type: object
+      required:
+      - coordinates
+      - type
+      properties:
+        type:
+          description: GeoJSON geometry type. Must be "Polygon" for AOI boundaries
+          type: string
+          x-order: '100'
+          example: Polygon
+        coordinates:
+          description: 'Nested array of coordinates [[[lng,lat],...]] forming a closed polygon. Example: [[[49.32, 40.85], [49.32, 9.08], [110.7, 9.08], [110.7, 40.85], [49.32, 40.85]]]'
+          type: array
+          items:
+            type: array
+            items:
+              type: array
+              items:
+                type: number
+          x-order: '101'
+    common.Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          x-order: '10037'
+          example: 10
+        offset:
+          type: integer
+          x-order: '10038'
+          example: 0
+        total:
+          type: integer
+          x-order: '10039'
+          example: 100
+    atlas.AOIStatus:
+      type: string
+      enum:
+      - success
+      - started
+      - running
+      - failed
+      - updating
+      - partial_success
+      x-enum-varnames:
+      - AOIStatusSuccess
+      - AOIStatusStarted
+      - AOIStatusRunning
+      - AOIStatusFailed
+      - AOIStatusUpdating
+      - AOIStatusPartial_Success
     atlas.AOICreateModelV2:
       type: object
       required:
@@ -464,27 +478,15 @@ components:
           x-order: '106'
           example:
           - TD2_00056_20230815_L2A_004010_01001001
-    atlas.Polygon:
+    atlas.AOIListResponse:
       type: object
-      required:
-      - coordinates
-      - type
       properties:
-        type:
-          description: GeoJSON geometry type. Must be "Polygon" for AOI boundaries
-          type: string
-          x-order: '100'
-          example: Polygon
-        coordinates:
-          description: 'Nested array of coordinates [[[lng,lat],...]] forming a closed polygon. Example: [[[49.32, 40.85], [49.32, 9.08], [110.7, 9.08], [110.7, 40.85], [49.32, 40.85]]]'
+        aois:
           type: array
           items:
-            type: array
-            items:
-              type: array
-              items:
-                type: number
-          x-order: '101'
+            $ref: '#/components/schemas/atlas.AOI'
+        pagination:
+          $ref: '#/components/schemas/common.Pagination'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

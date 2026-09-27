@@ -166,7 +166,7 @@ apis:
   - type: Authentication
     url: authentication/pixxel-authentication.yml
 - aid: pixxel:pixxel-external-api
-  name: Pixxel external API
+  name: Pixxel External API
   description: The external API from Pixxel — 1 operation(s) for external.
   humanURL: https://docs.pixxel.space/
   baseURL: https://api.pixxel.space

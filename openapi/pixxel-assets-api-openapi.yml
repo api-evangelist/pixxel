@@ -69,14 +69,25 @@ paths:
         url: /developer/assets/list-assets
 components:
   schemas:
-    common.Error:
+    atlas.AssetType:
+      type: string
+      enum:
+      - mosaic
+      - stac_item
+      - visualization
+      x-enum-varnames:
+      - MosaicAssetType
+      - STACItemAssetType
+      - VisualizationAssetType
+    atlas.AssetListResponseModel:
       type: object
       properties:
-        code:
-          type: string
-        details: {}
-        message:
-          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/atlas.AssetReadModel'
+        pagination:
+          $ref: '#/components/schemas/common.Pagination'
     atlas.AssetReadModel:
       type: object
       properties:
@@ -140,45 +151,6 @@ components:
         visualization_id:
           type: string
           example: e9767554-550e-4464-a677-b8cf096073ab
-    common.ErrorResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/common.Error'
-    common.Pagination:
-      type: object
-      properties:
-        limit:
-          type: integer
-          x-order: '10037'
-          example: 10
-        offset:
-          type: integer
-          x-order: '10038'
-          example: 0
-        total:
-          type: integer
-          x-order: '10039'
-          example: 100
-    atlas.AssetListResponseModel:
-      type: object
-      properties:
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/atlas.AssetReadModel'
-        pagination:
-          $ref: '#/components/schemas/common.Pagination'
-    atlas.AssetType:
-      type: string
-      enum:
-      - mosaic
-      - stac_item
-      - visualization
-      x-enum-varnames:
-      - MosaicAssetType
-      - STACItemAssetType
-      - VisualizationAssetType
     atlas.AssetStatus:
       type: string
       enum:
@@ -191,6 +163,11 @@ components:
       - AssetStatusFailed
       - AssetStatusStarted
       - AssetStatusCreating
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
     atlas.Polygon:
       type: object
       required:
@@ -212,6 +189,29 @@ components:
               items:
                 type: number
           x-order: '101'
+    common.Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          x-order: '10037'
+          example: 10
+        offset:
+          type: integer
+          x-order: '10038'
+          example: 0
+        total:
+          type: integer
+          x-order: '10039'
+          example: 100
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

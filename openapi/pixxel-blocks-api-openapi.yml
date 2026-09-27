@@ -147,6 +147,27 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    dexter.ListBlocksTransformerResponse:
+      type: object
+      properties:
+        blocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/dexter.BlockSpecItem'
+          x-order: '10'
+    dexter.GetBlockVersionsTransformerResponse:
+      type: object
+      properties:
+        blocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/dexter.BlockSpecItem'
+          x-order: '10'
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
     dexter.BlockSpec:
       type: object
       properties:
@@ -208,35 +229,6 @@ components:
           description: Version indicates the current version number of the block
           type: string
           x-order: '90'
-    dexter.ListBlocksTransformerResponse:
-      type: object
-      properties:
-        blocks:
-          type: array
-          items:
-            $ref: '#/components/schemas/dexter.BlockSpecItem'
-          x-order: '10'
-    common.Error:
-      type: object
-      properties:
-        code:
-          type: string
-        details: {}
-        message:
-          type: string
-    dexter.GetBlockVersionsTransformerResponse:
-      type: object
-      properties:
-        blocks:
-          type: array
-          items:
-            $ref: '#/components/schemas/dexter.BlockSpecItem'
-          x-order: '10'
-    common.ErrorResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/common.Error'
     dexter.BlockSpecItem:
       type: object
       properties:
@@ -261,6 +253,14 @@ components:
           description: Err contains any error information
           type: string
           x-order: '50'
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

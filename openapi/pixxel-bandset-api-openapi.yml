@@ -44,6 +44,17 @@ paths:
         url: /developer/orders/bandsets
 components:
   schemas:
+    clerk.Band:
+      type: object
+      properties:
+        name:
+          description: name of the band
+          type: string
+          example: B001
+        wavelength:
+          description: wavelength of the band in nm
+          type: number
+          example: 473
     clerk.Bandset:
       type: object
       properties:
@@ -84,17 +95,6 @@ components:
       properties:
         error:
           $ref: '#/components/schemas/clerk.Error'
-    clerk.Band:
-      type: object
-      properties:
-        name:
-          description: name of the band
-          type: string
-          example: B001
-        wavelength:
-          description: wavelength of the band in nm
-          type: number
-          example: 473
     clerk.ListBandsets:
       type: object
       properties:
