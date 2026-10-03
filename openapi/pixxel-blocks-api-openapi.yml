@@ -147,27 +147,38 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    dexter.ListBlocksTransformerResponse:
+    common.Error:
       type: object
       properties:
-        blocks:
-          type: array
-          items:
-            $ref: '#/components/schemas/dexter.BlockSpecItem'
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
+    dexter.BlockSpecItem:
+      type: object
+      properties:
+        id:
+          description: ID is the unique identifier for this block
+          type: string
           x-order: '10'
-    dexter.GetBlockVersionsTransformerResponse:
-      type: object
-      properties:
-        blocks:
-          type: array
-          items:
-            $ref: '#/components/schemas/dexter.BlockSpecItem'
-          x-order: '10'
-    common.ErrorResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/common.Error'
+        block_status:
+          description: BlockStatus represents the current state of the block
+          type: string
+          x-order: '20'
+        spec:
+          description: Spec contains the block specification
+          allOf:
+          - $ref: '#/components/schemas/dexter.BlockSpec'
+          x-order: '30'
+        created_at:
+          description: CreatedAt indicates when the block was created
+          type: string
+          x-order: '40'
+        err:
+          description: Err contains any error information
+          type: string
+          x-order: '50'
     dexter.BlockSpec:
       type: object
       properties:
@@ -229,38 +240,27 @@ components:
           description: Version indicates the current version number of the block
           type: string
           x-order: '90'
-    dexter.BlockSpecItem:
+    dexter.GetBlockVersionsTransformerResponse:
       type: object
       properties:
-        id:
-          description: ID is the unique identifier for this block
-          type: string
+        blocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/dexter.BlockSpecItem'
           x-order: '10'
-        block_status:
-          description: BlockStatus represents the current state of the block
-          type: string
-          x-order: '20'
-        spec:
-          description: Spec contains the block specification
-          allOf:
-          - $ref: '#/components/schemas/dexter.BlockSpec'
-          x-order: '30'
-        created_at:
-          description: CreatedAt indicates when the block was created
-          type: string
-          x-order: '40'
-        err:
-          description: Err contains any error information
-          type: string
-          x-order: '50'
-    common.Error:
+    common.ErrorResponse:
       type: object
       properties:
-        code:
-          type: string
-        details: {}
-        message:
-          type: string
+        error:
+          $ref: '#/components/schemas/common.Error'
+    dexter.ListBlocksTransformerResponse:
+      type: object
+      properties:
+        blocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/dexter.BlockSpecItem'
+          x-order: '10'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -57,6 +57,154 @@ paths:
         url: /developer/search/satellite-image
 components:
   schemas:
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
+    cosmos.RasterBand:
+      type: object
+      properties:
+        nodata:
+          description: The nodata value of the band
+          type: number
+          example: -9999
+        offset:
+          description: The offset of the band
+          type: number
+          example: 0
+        scale:
+          description: The scale of the band
+          type: number
+          example: 1
+        spatial_resolution:
+          description: The spatial resolution of the band in meters
+          type: number
+          example: 10
+    cosmos.GeometryType:
+      type: string
+      enum:
+      - Point
+      - MultiPoint
+      - LineString
+      - MultiLineString
+      - Polygon
+      - MultiPolygon
+      - GeometryCollection
+      x-enum-varnames:
+      - GeometryPoint
+      - GeometryMultiPoint
+      - GeometryLineString
+      - GeometryMultiLineString
+      - GeometryPolygon
+      - GeometryMultiPolygon
+      - GeometryCollection
+    cosmos.EoBand:
+      type: object
+      properties:
+        center_wavelength:
+          description: The center wavelength of the band in micrometers
+          type: number
+          example: 0.443
+        common_name:
+          description: The common name of the band (e.g., "coastal", "blue", "green")
+          type: string
+          example: coastal
+        fwhm:
+          description: The full width at half maximum (FWHM) of the band in micrometers
+          type: number
+          example: 0.027
+        name:
+          description: The unique name of the band
+          type: string
+          example: B01
+        solar_irradiance:
+          description: The solar irradiance at the top of the atmosphere for the band in W/m²/μm
+          type: number
+          example: 1901
+    lens.V2Response:
+      type: object
+      properties:
+        items:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/cosmos.Item'
+          x-order: '100'
+        pagination:
+          type: object
+          properties:
+            limit:
+              type: integer
+              x-order: '100'
+              example: 10
+            skip:
+              type: integer
+              x-order: '101'
+              example: 0
+            total:
+              type: integer
+              x-order: '102'
+              example: 100
+          x-order: '101'
+    cosmos.Geometry:
+      type: object
+      properties:
+        type:
+          description: The type of the geometry
+          allOf:
+          - $ref: '#/components/schemas/cosmos.GeometryType'
+          x-order: '30'
+          example: Polygon
+        coordinates:
+          x-order: '31'
+    lens.Geometry:
+      type: object
+      properties:
+        coordinates:
+          x-order: '100'
+        type:
+          type: string
+          x-order: '101'
+          example: Polygon
+    lens.SatelliteInfo:
+      type: object
+      required:
+      - collection_id
+      - satellite_id
+      properties:
+        collection_id:
+          type: string
+          x-order: '100'
+          example: sentinel-2-l2a
+        satellite_id:
+          type: string
+          x-order: '101'
+          example: 0002a3a3-00a2-4b55-842b-44d8202c6d60
+    cosmos.Link:
+      type: object
+      required:
+      - href
+      - rel
+      properties:
+        href:
+          description: The URL or reference the link points to
+          type: string
+          example: https://example.com
+        rel:
+          description: The relationship of the link (e.g., "self", "parent", "child")
+          type: string
+          example: self
+        title:
+          description: A human-readable title for the link
+          type: string
+          example: Example Link Title
+        type:
+          description: The MIME type of the linked resource (e.g., "application/json")
+          type: string
+          example: application/json
     lens.V2Query:
       type: object
       required:
@@ -93,83 +241,6 @@ components:
           minimum: 1
           x-order: '107'
           example: 10
-    cosmos.Asset:
-      type: object
-      properties:
-        eo:bands:
-          description: "Example\n```\n[\n\t{\n\t\t\"fwhm\": 0,\n\t\t\"name\": \"B013\",\n\t\t\"common_name\": \"blue\",\n\t\t\"solar_irradiance\": 1965.25,\n\t\t\"center_wavelength\": 493\n\t}\n]"
-          type: array
-          items:
-            $ref: '#/components/schemas/cosmos.EoBand'
-        href:
-          description: The HREF of the asset
-          type: string
-          example: https://example.com/asset.tif
-        raster:bands:
-          description: "Example\n```\n[\n\t{\n\t\t\"scale\": 0.00002,\n\t\t\"nodata\": 0,\n\t\t\"offset\": 0,\n\t\t\"spatial_resolution\": 30\n\t}\n]"
-          type: array
-          items:
-            $ref: '#/components/schemas/cosmos.RasterBand'
-        roles:
-          description: The roles of the asset (e.g., "data", "metadata")
-          type: array
-          items:
-            type: string
-          example:
-          - data
-          - metadata
-        title:
-          description: A human-readable title for the asset
-          type: string
-          example: Example Asset Title
-        type:
-          description: The MIME type of the asset
-          type: string
-          example: image/tiff
-    cosmos.Geometry:
-      type: object
-      properties:
-        type:
-          description: The type of the geometry
-          allOf:
-          - $ref: '#/components/schemas/cosmos.GeometryType'
-          x-order: '30'
-          example: Polygon
-        coordinates:
-          x-order: '31'
-    lens.Geometry:
-      type: object
-      properties:
-        coordinates:
-          x-order: '100'
-        type:
-          type: string
-          x-order: '101'
-          example: Polygon
-    lens.V2Response:
-      type: object
-      properties:
-        items:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/cosmos.Item'
-          x-order: '100'
-        pagination:
-          type: object
-          properties:
-            limit:
-              type: integer
-              x-order: '100'
-              example: 10
-            skip:
-              type: integer
-              x-order: '101'
-              example: 0
-            total:
-              type: integer
-              x-order: '102'
-              example: 100
-          x-order: '101'
     cosmos.Item:
       type: object
       required:
@@ -237,6 +308,66 @@ components:
           items:
             $ref: '#/components/schemas/cosmos.Link'
           x-order: '19'
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
+    lens.Filter:
+      type: object
+      required:
+      - id
+      - max
+      - min
+      properties:
+        id:
+          description: eo:cloud_cover
+          type: string
+          x-order: '100'
+          example: eo:cloud_cover
+        min:
+          description: '0'
+          type: integer
+          x-order: '101'
+          example: 0
+        max:
+          description: '100'
+          type: integer
+          x-order: '102'
+          example: 100
+    cosmos.Asset:
+      type: object
+      properties:
+        eo:bands:
+          description: "Example\n```\n[\n\t{\n\t\t\"fwhm\": 0,\n\t\t\"name\": \"B013\",\n\t\t\"common_name\": \"blue\",\n\t\t\"solar_irradiance\": 1965.25,\n\t\t\"center_wavelength\": 493\n\t}\n]"
+          type: array
+          items:
+            $ref: '#/components/schemas/cosmos.EoBand'
+        href:
+          description: The HREF of the asset
+          type: string
+          example: https://example.com/asset.tif
+        raster:bands:
+          description: "Example\n```\n[\n\t{\n\t\t\"scale\": 0.00002,\n\t\t\"nodata\": 0,\n\t\t\"offset\": 0,\n\t\t\"spatial_resolution\": 30\n\t}\n]"
+          type: array
+          items:
+            $ref: '#/components/schemas/cosmos.RasterBand'
+        roles:
+          description: The roles of the asset (e.g., "data", "metadata")
+          type: array
+          items:
+            type: string
+          example:
+          - data
+          - metadata
+        title:
+          description: A human-readable title for the asset
+          type: string
+          example: Example Asset Title
+        type:
+          description: The MIME type of the asset
+          type: string
+          example: image/tiff
     cosmos.Properties:
       type: object
       properties:
@@ -361,137 +492,6 @@ components:
           description: The angle between the sun and the horizon
           type: number
           example: 45
-    lens.Filter:
-      type: object
-      required:
-      - id
-      - max
-      - min
-      properties:
-        id:
-          description: eo:cloud_cover
-          type: string
-          x-order: '100'
-          example: eo:cloud_cover
-        min:
-          description: '0'
-          type: integer
-          x-order: '101'
-          example: 0
-        max:
-          description: '100'
-          type: integer
-          x-order: '102'
-          example: 100
-    common.ErrorResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/common.Error'
-    cosmos.GeometryType:
-      type: string
-      enum:
-      - Point
-      - MultiPoint
-      - LineString
-      - MultiLineString
-      - Polygon
-      - MultiPolygon
-      - GeometryCollection
-      x-enum-varnames:
-      - GeometryPoint
-      - GeometryMultiPoint
-      - GeometryLineString
-      - GeometryMultiLineString
-      - GeometryPolygon
-      - GeometryMultiPolygon
-      - GeometryCollection
-    cosmos.Link:
-      type: object
-      required:
-      - href
-      - rel
-      properties:
-        href:
-          description: The URL or reference the link points to
-          type: string
-          example: https://example.com
-        rel:
-          description: The relationship of the link (e.g., "self", "parent", "child")
-          type: string
-          example: self
-        title:
-          description: A human-readable title for the link
-          type: string
-          example: Example Link Title
-        type:
-          description: The MIME type of the linked resource (e.g., "application/json")
-          type: string
-          example: application/json
-    cosmos.EoBand:
-      type: object
-      properties:
-        center_wavelength:
-          description: The center wavelength of the band in micrometers
-          type: number
-          example: 0.443
-        common_name:
-          description: The common name of the band (e.g., "coastal", "blue", "green")
-          type: string
-          example: coastal
-        fwhm:
-          description: The full width at half maximum (FWHM) of the band in micrometers
-          type: number
-          example: 0.027
-        name:
-          description: The unique name of the band
-          type: string
-          example: B01
-        solar_irradiance:
-          description: The solar irradiance at the top of the atmosphere for the band in W/m²/μm
-          type: number
-          example: 1901
-    lens.SatelliteInfo:
-      type: object
-      required:
-      - collection_id
-      - satellite_id
-      properties:
-        collection_id:
-          type: string
-          x-order: '100'
-          example: sentinel-2-l2a
-        satellite_id:
-          type: string
-          x-order: '101'
-          example: 0002a3a3-00a2-4b55-842b-44d8202c6d60
-    common.Error:
-      type: object
-      properties:
-        code:
-          type: string
-        details: {}
-        message:
-          type: string
-    cosmos.RasterBand:
-      type: object
-      properties:
-        nodata:
-          description: The nodata value of the band
-          type: number
-          example: -9999
-        offset:
-          description: The offset of the band
-          type: number
-          example: 0
-        scale:
-          description: The scale of the band
-          type: number
-          example: 1
-        spatial_resolution:
-          description: The spatial resolution of the band in meters
-          type: number
-          example: 10
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

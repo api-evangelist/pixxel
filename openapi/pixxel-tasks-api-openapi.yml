@@ -63,14 +63,11 @@ paths:
         url: /developer/jobs/download-task
 components:
   schemas:
-    common.Error:
+    common.ErrorResponse:
       type: object
       properties:
-        code:
-          type: string
-        details: {}
-        message:
-          type: string
+        error:
+          $ref: '#/components/schemas/common.Error'
     dexter.PutTaskUpstreamResponseBody:
       type: object
       properties:
@@ -94,11 +91,14 @@ components:
           description: SignedUrl is the URL where the packaged assets can be downloaded from
           type: string
           x-order: '50'
-    common.ErrorResponse:
+    common.Error:
       type: object
       properties:
-        error:
-          $ref: '#/components/schemas/common.Error'
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

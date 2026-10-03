@@ -114,26 +114,6 @@ paths:
         url: /developer/assets/get-status-download-request
 components:
   schemas:
-    common.Error:
-      type: object
-      properties:
-        code:
-          type: string
-        details: {}
-        message:
-          type: string
-    atlas.DownloadReadModel:
-      type: object
-      properties:
-        download_id:
-          type: string
-          example: dc01addf-b6c3-4fa9-9a49-dcdcb4c99229
-        signed_url:
-          type: string
-          example: https://storage.account/download
-        status:
-          type: string
-          example: SUCCESS
     atlas.DownloadCreateModel:
       type: object
       required:
@@ -151,6 +131,26 @@ components:
       properties:
         error:
           $ref: '#/components/schemas/common.Error'
+    atlas.DownloadReadModel:
+      type: object
+      properties:
+        download_id:
+          type: string
+          example: dc01addf-b6c3-4fa9-9a49-dcdcb4c99229
+        signed_url:
+          type: string
+          example: https://storage.account/download
+        status:
+          type: string
+          example: SUCCESS
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

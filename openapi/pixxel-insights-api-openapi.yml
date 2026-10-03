@@ -218,56 +218,6 @@ paths:
         url: /developer/insights/delete-insights
 components:
   schemas:
-    dexter.CreateInsightCostEstimateUpstreamResponseBody:
-      type: object
-      properties:
-        estimate:
-          description: Estimate provides the computed cost value for the insight execution
-          type: integer
-          x-order: '10'
-    dexter.PutInsightsUpstreamRequestBody:
-      type: object
-      properties:
-        inputs:
-          description: Specifies which input assets to include in the download
-          type: array
-          items:
-            type: string
-          x-order: '10'
-        outputs:
-          description: Specifies which output assets to include in the download
-          type: array
-          items:
-            type: string
-          x-order: '20'
-    dexter.ListInsightsTransformerResponse:
-      type: object
-      properties:
-        insights:
-          type: array
-          items:
-            $ref: '#/components/schemas/dexter.ListInsightItem'
-          x-order: '10'
-    common.ErrorResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/common.Error'
-    dexter.PutInsightsUpstreamResponseBody:
-      type: object
-      properties:
-        id:
-          description: Unique identifier of the insight
-          type: string
-          x-order: '10'
-        status:
-          description: Current status of the download operation
-          type: string
-          x-order: '20'
-        signed_url:
-          description: URL where the packaged assets can be downloaded from
-          type: string
-          x-order: '30'
     dexter.CreateInsightUpstreamResponseBody:
       type: object
       properties:
@@ -279,6 +229,14 @@ components:
           description: Message contains additional information about the insight creation result
           type: string
           x-order: '20'
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
     dexter.CreateInsightsWildcardTransformerRequest:
       type: object
       required:
@@ -325,6 +283,43 @@ components:
           description: Indicates whether to return a cost estimate instead of running the insight.
           type: boolean
           x-order: '60'
+    dexter.PutInsightsUpstreamResponseBody:
+      type: object
+      properties:
+        id:
+          description: Unique identifier of the insight
+          type: string
+          x-order: '10'
+        status:
+          description: Current status of the download operation
+          type: string
+          x-order: '20'
+        signed_url:
+          description: URL where the packaged assets can be downloaded from
+          type: string
+          x-order: '30'
+    dexter.CreateInsightCostEstimateUpstreamResponseBody:
+      type: object
+      properties:
+        estimate:
+          description: Estimate provides the computed cost value for the insight execution
+          type: integer
+          x-order: '10'
+    dexter.PutInsightsUpstreamRequestBody:
+      type: object
+      properties:
+        inputs:
+          description: Specifies which input assets to include in the download
+          type: array
+          items:
+            type: string
+          x-order: '10'
+        outputs:
+          description: Specifies which output assets to include in the download
+          type: array
+          items:
+            type: string
+          x-order: '20'
     dexter.ListInsightItem:
       type: object
       properties:
@@ -390,14 +385,19 @@ components:
           description: Indicates the completion percentage of the insight processing
           type: number
           x-order: '90'
-    common.Error:
+    common.ErrorResponse:
       type: object
       properties:
-        code:
-          type: string
-        details: {}
-        message:
-          type: string
+        error:
+          $ref: '#/components/schemas/common.Error'
+    dexter.ListInsightsTransformerResponse:
+      type: object
+      properties:
+        insights:
+          type: array
+          items:
+            $ref: '#/components/schemas/dexter.ListInsightItem'
+          x-order: '10'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

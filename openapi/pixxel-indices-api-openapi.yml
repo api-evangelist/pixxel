@@ -120,50 +120,6 @@ paths:
         url: /developer/indices/create-index
 components:
   schemas:
-    atlas.IndexCreateRequest:
-      type: object
-      required:
-      - colormap
-      - description
-      - expression
-      - expression_type
-      - name
-      - rescale
-      - satellite_id
-      properties:
-        name:
-          type: string
-          x-order: '100'
-          example: NDVI
-        description:
-          type: string
-          x-order: '101'
-          example: This formula will give insights about vegetation
-        rescale:
-          type: array
-          items:
-            type: integer
-          x-order: '102'
-          example:
-          - 0
-          - 1
-        expression:
-          type: string
-          x-order: '103'
-          example: (B04-B08)/(B04+B08)
-        colormap:
-          type: string
-          x-order: '104'
-          example: rplumbho
-        satellite_id:
-          type: string
-          x-order: '105'
-          example: 0002a3a3-00a2-4b55-842b-44d8202c6d60
-        expression_type:
-          allOf:
-          - $ref: '#/components/schemas/atlas.ExpressionType'
-          x-order: '106'
-          example: index
     atlas.IndexCreateResponse:
       type: object
       properties:
@@ -214,34 +170,58 @@ components:
         updated_at:
           type: string
           example: '2022-11-14 12:55:49.125928+00:00'
-    common.Pagination:
+    atlas.IndexCreateRequest:
+      type: object
+      required:
+      - colormap
+      - description
+      - expression
+      - expression_type
+      - name
+      - rescale
+      - satellite_id
+      properties:
+        name:
+          type: string
+          x-order: '100'
+          example: NDVI
+        description:
+          type: string
+          x-order: '101'
+          example: This formula will give insights about vegetation
+        rescale:
+          type: array
+          items:
+            type: integer
+          x-order: '102'
+          example:
+          - 0
+          - 1
+        expression:
+          type: string
+          x-order: '103'
+          example: (B04-B08)/(B04+B08)
+        colormap:
+          type: string
+          x-order: '104'
+          example: rplumbho
+        satellite_id:
+          type: string
+          x-order: '105'
+          example: 0002a3a3-00a2-4b55-842b-44d8202c6d60
+        expression_type:
+          allOf:
+          - $ref: '#/components/schemas/atlas.ExpressionType'
+          x-order: '106'
+          example: index
+    common.Error:
       type: object
       properties:
-        limit:
-          type: integer
-          x-order: '10037'
-          example: 10
-        offset:
-          type: integer
-          x-order: '10038'
-          example: 0
-        total:
-          type: integer
-          x-order: '10039'
-          example: 100
-    common.ErrorResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/common.Error'
-    atlas.IndexType:
-      type: string
-      enum:
-      - custom
-      - preset
-      x-enum-varnames:
-      - Custom
-      - Preset
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
     atlas.IndexEntity:
       type: object
       properties:
@@ -273,6 +253,14 @@ components:
           $ref: '#/components/schemas/atlas.IndexType'
         updated_at:
           type: string
+    atlas.IndexType:
+      type: string
+      enum:
+      - custom
+      - preset
+      x-enum-varnames:
+      - Custom
+      - Preset
     atlas.ExpressionType:
       type: string
       enum:
@@ -283,14 +271,26 @@ components:
       - ExpressionTypeComposite
       - ExpressionTypeIndex
       - ExpressionTypeGrayscale
-    common.Error:
+    common.Pagination:
       type: object
       properties:
-        code:
-          type: string
-        details: {}
-        message:
-          type: string
+        limit:
+          type: integer
+          x-order: '10037'
+          example: 10
+        offset:
+          type: integer
+          x-order: '10038'
+          example: 0
+        total:
+          type: integer
+          x-order: '10039'
+          example: 100
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
     atlas.ListIndicesResponse:
       type: object
       properties:

@@ -287,6 +287,174 @@ components:
             $ref: '#/components/schemas/clerk.Catalog'
         pagination:
           $ref: '#/components/schemas/common.Pagination'
+    clerk.ListDeliveries:
+      type: object
+      properties:
+        deliveries:
+          type: array
+          items:
+            $ref: '#/components/schemas/clerk.Delivery'
+    clerk.Link:
+      type: object
+      properties:
+        href:
+          type: string
+        rel:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+    clerk.DownloadResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
+        signed_url:
+          type: string
+          example: http://signed_url_link
+        status:
+          allOf:
+          - $ref: '#/components/schemas/clerk.DownloadStatus'
+          example: success
+    clerk.Delivery:
+      type: object
+      properties:
+        catalog_id:
+          description: id of the catalog, whose delivery this resource tracks
+          type: string
+          example: 47435e2b-d8c4-51ff-9de9-2be3bfc92276
+        cloud_delivery:
+          description: cloud delivery configuration for the delivery resource
+          allOf:
+          - $ref: '#/components/schemas/clerk.CloudDelivery'
+        created_at:
+          description: timestamp of the creation of the delivery resource
+          type: string
+          example: '2024-05-27T06:50:20.056549Z'
+        created_by:
+          description: uuid of the user who created the delivery resource
+          type: string
+          example: 60795589-8759-4d00-9162-b1537b66fb3e
+        delivery_id:
+          description: id of the delivery
+          type: string
+          example: 47435e2b-d8c4-41ff-9de9-2be3cfc92276
+        status:
+          description: status of the delivery resource
+          allOf:
+          - $ref: '#/components/schemas/clerk.DeliveryStatus'
+          example: SUCCESS
+        target_path:
+          description: target path where the resource is delivered, add the cloud_config path and target_path to get the actual path of the resource
+          type: string
+          example: order_1/catalogs.zip
+        task_id:
+          description: id of the task, whose delivery this resource tracks. The task_id is set only for automated deliveries. Manual deliveries would have the task_id set as null.
+          type: string
+          example: 7f74a393-236f-4e02-9d22-b11dea4eac8a
+        updated_at:
+          description: timestamp of the last update of the delivery resource
+          type: string
+          example: '2024-05-27T06:50:20.056549Z'
+        updated_by:
+          description: uuid of the user who last updated the delivery resource
+          type: string
+          example: b23d9181-4de1-4856-950b-e83b2ac52830
+    clerk.Error:
+      type: object
+      properties:
+        code:
+          description: short string based code reflecting the type of error
+          type: string
+        details:
+          description: additional details on the error
+        message:
+          description: info message on the error
+          type: string
+    clerk.CloudDelivery:
+      type: object
+      required:
+      - config
+      properties:
+        config:
+          description: id of the store
+          type: string
+          example: 9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6
+        path:
+          description: prefix path to which resource should be transferred to
+          type: string
+          example: path/subdirectory1/
+    clerk.DownloadRequest:
+      type: object
+      required:
+      - catalog_ids
+      - order_item_ids
+      properties:
+        catalog_ids:
+          description: do not supply order_item_ids if this field is used
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+          example:
+          - 47435e2b-d8c4-51ff-9de9-2be3bfc92276
+        order_item_ids:
+          description: do not supply catalog_ids if this field is used
+          type: array
+          uniqueItems: true
+          items:
+            type: string
+    clerk.EoBand:
+      type: object
+      properties:
+        center_wavelength:
+          type: number
+        common_name:
+          type: string
+        fwhm:
+          type: number
+        name:
+          type: string
+    clerk.CreateDeliveryRequest:
+      type: object
+      required:
+      - deliveries
+      properties:
+        deliveries:
+          type: array
+          items:
+            $ref: '#/components/schemas/clerk.DeliveryRequest'
+    common.Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          x-order: '10037'
+          example: 10
+        offset:
+          type: integer
+          x-order: '10038'
+          example: 0
+        total:
+          type: integer
+          x-order: '10039'
+          example: 100
+    clerk.Geometry:
+      type: object
+      properties:
+        coordinates:
+          type: array
+          items:
+            type: array
+            items:
+              type: array
+              items:
+                type: number
+        type:
+          type: string
+          example: Polygon
     clerk.DeliveryRequest:
       type: object
       required:
@@ -310,103 +478,6 @@ components:
           uniqueItems: true
           items:
             type: string
-    clerk.ErrorResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/clerk.Error'
-    clerk.SortingOrder:
-      type: string
-      enum:
-      - ASC
-      - DESC
-      x-enum-varnames:
-      - AscendingSortingOrder
-      - DescendingSortingOrder
-    clerk.Link:
-      type: object
-      properties:
-        href:
-          type: string
-        rel:
-          type: string
-        title:
-          type: string
-        type:
-          type: string
-    clerk.Catalog:
-      type: object
-      properties:
-        area:
-          description: area of the catalog in sq. km
-          type: number
-          example: 100
-        bandset_id:
-          description: id of the bandset present in the catalog
-          type: string
-          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92277
-        created_at:
-          description: timestamp of the creation of the catalog
-          type: string
-          example: '2024-05-27T06:50:20.056549Z'
-        created_by:
-          description: uuid of the user who created the catalog
-          type: string
-          example: 0d7b3c5e-3b2a-4e77-bedb-5e0d2257cdb6
-        delivery_status:
-          description: status of the delivery of the catalog, in case automated delivery was enabled
-          allOf:
-          - $ref: '#/components/schemas/clerk.DeliveryStatus'
-          example: SUCCESSFUL
-        details:
-          description: STAC item info of the catalog
-          allOf:
-          - $ref: '#/components/schemas/clerk.STACItem'
-        id:
-          description: id of the catalog
-          type: string
-          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
-        org_id:
-          description: id of the workspace to which the catalog belongs
-          type: string
-          example: e31ab6f8-d359-4c6a-83c6-bfa322 29bb01
-        task_id:
-          description: id of the task, whose catalog this resource tracks
-          type: string
-          example: ef8195b7-5ca6-4aca-a3fc-df6ffd58892d
-        updated_at:
-          description: timestamp of the last update of the catalog
-          type: string
-          example: '2024-05-27T06:50:20.056549Z'
-        updated_by:
-          description: uuid of the user who last updated the catalog
-          type: string
-          example: 0ada9483-e3ed-4f31-8a69-372686966451
-    clerk.EoBand:
-      type: object
-      properties:
-        center_wavelength:
-          type: number
-        common_name:
-          type: string
-        fwhm:
-          type: number
-        name:
-          type: string
-    clerk.Geometry:
-      type: object
-      properties:
-        coordinates:
-          type: array
-          items:
-            type: array
-            items:
-              type: array
-              items:
-                type: number
-        type:
-          type: string
-          example: Polygon
     clerk.originalCatalogFilter:
       type: object
       properties:
@@ -513,6 +584,45 @@ components:
             type: object
             additionalProperties:
               $ref: '#/components/schemas/clerk.SortingOrder'
+    clerk.Asset:
+      type: object
+      properties:
+        eo:bands:
+          type: array
+          items:
+            $ref: '#/components/schemas/clerk.EoBand'
+        href:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        title:
+          type: string
+        type:
+          type: string
+    clerk.DeliveryStatus:
+      type: string
+      enum:
+      - UNSPECIFIED
+      - CREATED
+      - FAILED
+      - IN_PROGRESS
+      - SUCCESS
+      x-enum-varnames:
+      - DeliveryStatusUnspecified
+      - DeliveryStatusCreated
+      - DeliveryStatusFailed
+      - DeliveryStatusInProgress
+      - DeliveryStatusSuccess
+    clerk.SortingOrder:
+      type: string
+      enum:
+      - ASC
+      - DESC
+      x-enum-varnames:
+      - AscendingSortingOrder
+      - DescendingSortingOrder
     clerk.DownloadStatus:
       type: string
       enum:
@@ -525,72 +635,59 @@ components:
       - DownloadStatusCreated
       - DownloadStatusFailed
       - DownloadStatusInProgress
-    clerk.CloudDelivery:
-      type: object
-      required:
-      - config
-      properties:
-        config:
-          description: id of the store
-          type: string
-          example: 9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6
-        path:
-          description: prefix path to which resource should be transferred to
-          type: string
-          example: path/subdirectory1/
-    clerk.CreateDeliveryRequest:
-      type: object
-      required:
-      - deliveries
-      properties:
-        deliveries:
-          type: array
-          items:
-            $ref: '#/components/schemas/clerk.DeliveryRequest'
-    clerk.Error:
+    clerk.ErrorResponse:
       type: object
       properties:
-        code:
-          description: short string based code reflecting the type of error
+        error:
+          $ref: '#/components/schemas/clerk.Error'
+    clerk.Catalog:
+      type: object
+      properties:
+        area:
+          description: area of the catalog in sq. km
+          type: number
+          example: 100
+        bandset_id:
+          description: id of the bandset present in the catalog
           type: string
+          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92277
+        created_at:
+          description: timestamp of the creation of the catalog
+          type: string
+          example: '2024-05-27T06:50:20.056549Z'
+        created_by:
+          description: uuid of the user who created the catalog
+          type: string
+          example: 0d7b3c5e-3b2a-4e77-bedb-5e0d2257cdb6
+        delivery_status:
+          description: status of the delivery of the catalog, in case automated delivery was enabled
+          allOf:
+          - $ref: '#/components/schemas/clerk.DeliveryStatus'
+          example: SUCCESSFUL
         details:
-          description: additional details on the error
-        message:
-          description: info message on the error
-          type: string
-    clerk.DownloadResponse:
-      type: object
-      properties:
+          description: STAC item info of the catalog
+          allOf:
+          - $ref: '#/components/schemas/clerk.STACItem'
         id:
+          description: id of the catalog
           type: string
           example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
-        signed_url:
+        org_id:
+          description: id of the workspace to which the catalog belongs
           type: string
-          example: http://signed_url_link
-        status:
-          allOf:
-          - $ref: '#/components/schemas/clerk.DownloadStatus'
-          example: success
-    clerk.DownloadRequest:
-      type: object
-      required:
-      - catalog_ids
-      - order_item_ids
-      properties:
-        catalog_ids:
-          description: do not supply order_item_ids if this field is used
-          type: array
-          uniqueItems: true
-          items:
-            type: string
-          example:
-          - 47435e2b-d8c4-51ff-9de9-2be3bfc92276
-        order_item_ids:
-          description: do not supply catalog_ids if this field is used
-          type: array
-          uniqueItems: true
-          items:
-            type: string
+          example: e31ab6f8-d359-4c6a-83c6-bfa322 29bb01
+        task_id:
+          description: id of the task, whose catalog this resource tracks
+          type: string
+          example: ef8195b7-5ca6-4aca-a3fc-df6ffd58892d
+        updated_at:
+          description: timestamp of the last update of the catalog
+          type: string
+          example: '2024-05-27T06:50:20.056549Z'
+        updated_by:
+          description: uuid of the user who last updated the catalog
+          type: string
+          example: 0ada9483-e3ed-4f31-8a69-372686966451
     clerk.Properties:
       type: object
       properties:
@@ -692,103 +789,6 @@ components:
         type:
           description: type of the STAC item
           type: string
-    clerk.DeliveryStatus:
-      type: string
-      enum:
-      - UNSPECIFIED
-      - CREATED
-      - FAILED
-      - IN_PROGRESS
-      - SUCCESS
-      x-enum-varnames:
-      - DeliveryStatusUnspecified
-      - DeliveryStatusCreated
-      - DeliveryStatusFailed
-      - DeliveryStatusInProgress
-      - DeliveryStatusSuccess
-    common.Pagination:
-      type: object
-      properties:
-        limit:
-          type: integer
-          x-order: '10037'
-          example: 10
-        offset:
-          type: integer
-          x-order: '10038'
-          example: 0
-        total:
-          type: integer
-          x-order: '10039'
-          example: 100
-    clerk.Asset:
-      type: object
-      properties:
-        eo:bands:
-          type: array
-          items:
-            $ref: '#/components/schemas/clerk.EoBand'
-        href:
-          type: string
-        roles:
-          type: array
-          items:
-            type: string
-        title:
-          type: string
-        type:
-          type: string
-    clerk.Delivery:
-      type: object
-      properties:
-        catalog_id:
-          description: id of the catalog, whose delivery this resource tracks
-          type: string
-          example: 47435e2b-d8c4-51ff-9de9-2be3bfc92276
-        cloud_delivery:
-          description: cloud delivery configuration for the delivery resource
-          allOf:
-          - $ref: '#/components/schemas/clerk.CloudDelivery'
-        created_at:
-          description: timestamp of the creation of the delivery resource
-          type: string
-          example: '2024-05-27T06:50:20.056549Z'
-        created_by:
-          description: uuid of the user who created the delivery resource
-          type: string
-          example: 60795589-8759-4d00-9162-b1537b66fb3e
-        delivery_id:
-          description: id of the delivery
-          type: string
-          example: 47435e2b-d8c4-41ff-9de9-2be3cfc92276
-        status:
-          description: status of the delivery resource
-          allOf:
-          - $ref: '#/components/schemas/clerk.DeliveryStatus'
-          example: SUCCESS
-        target_path:
-          description: target path where the resource is delivered, add the cloud_config path and target_path to get the actual path of the resource
-          type: string
-          example: order_1/catalogs.zip
-        task_id:
-          description: id of the task, whose delivery this resource tracks. The task_id is set only for automated deliveries. Manual deliveries would have the task_id set as null.
-          type: string
-          example: 7f74a393-236f-4e02-9d22-b11dea4eac8a
-        updated_at:
-          description: timestamp of the last update of the delivery resource
-          type: string
-          example: '2024-05-27T06:50:20.056549Z'
-        updated_by:
-          description: uuid of the user who last updated the delivery resource
-          type: string
-          example: b23d9181-4de1-4856-950b-e83b2ac52830
-    clerk.ListDeliveries:
-      type: object
-      properties:
-        deliveries:
-          type: array
-          items:
-            $ref: '#/components/schemas/clerk.Delivery'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

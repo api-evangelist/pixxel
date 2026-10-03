@@ -168,41 +168,41 @@ paths:
         url: /developer/workflows/workflow-cost-estimate
 components:
   schemas:
-    dexter.ListWorkflowsTransformerResponse:
+    dexter.ListWorkflowItem:
       type: object
       properties:
-        workflows:
-          type: array
-          items:
-            $ref: '#/components/schemas/dexter.ListWorkflowItem'
-          x-order: '10'
-        pagination:
-          allOf:
-          - $ref: '#/components/schemas/common.Pagination'
-          x-order: '20'
-    dexter.ValError:
-      type: object
-      properties:
-        from:
-          description: Source component of the validation error
+        id:
+          description: Unique identifier for the workflow
           type: string
           x-order: '10'
-        to:
-          description: Target component of the validation error
+        project_id:
+          description: Identifier of the project this workflow belongs to
           type: string
           x-order: '20'
-        err:
-          description: Error message
+        legacy_project_id:
+          description: Identifier of the project in legacy systems
           type: string
           x-order: '30'
-        reason:
-          description: Additional context about why the error occurred
+        name:
+          description: Display name of the workflow
           type: string
           x-order: '40'
-        component_name:
-          description: Specific component that generated the error
+        created_by:
+          description: Represents the user who created this workflow
           type: string
           x-order: '50'
+        description:
+          description: Provides additional details about the workflow
+          type: string
+          x-order: '60'
+        created_at:
+          description: Timestamp when the workflow was created
+          type: string
+          x-order: '70'
+        updated_at:
+          description: Timestamp when the workflow was last modified
+          type: string
+          x-order: '80'
     dexter.GetWorkflowsByIdTransformerResponse:
       type: object
       properties:
@@ -250,11 +250,49 @@ components:
           description: Identifier of the project this workflow belongs to
           type: string
           x-order: '90'
-    common.ErrorResponse:
+    common.Error:
       type: object
       properties:
-        error:
-          $ref: '#/components/schemas/common.Error'
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
+    dexter.ValError:
+      type: object
+      properties:
+        from:
+          description: Source component of the validation error
+          type: string
+          x-order: '10'
+        to:
+          description: Target component of the validation error
+          type: string
+          x-order: '20'
+        err:
+          description: Error message
+          type: string
+          x-order: '30'
+        reason:
+          description: Additional context about why the error occurred
+          type: string
+          x-order: '40'
+        component_name:
+          description: Specific component that generated the error
+          type: string
+          x-order: '50'
+    dexter.ListWorkflowsTransformerResponse:
+      type: object
+      properties:
+        workflows:
+          type: array
+          items:
+            $ref: '#/components/schemas/dexter.ListWorkflowItem'
+          x-order: '10'
+        pagination:
+          allOf:
+          - $ref: '#/components/schemas/common.Pagination'
+          x-order: '20'
     common.Pagination:
       type: object
       properties:
@@ -270,49 +308,11 @@ components:
           type: integer
           x-order: '10039'
           example: 100
-    common.Error:
+    common.ErrorResponse:
       type: object
       properties:
-        code:
-          type: string
-        details: {}
-        message:
-          type: string
-    dexter.ListWorkflowItem:
-      type: object
-      properties:
-        id:
-          description: Unique identifier for the workflow
-          type: string
-          x-order: '10'
-        project_id:
-          description: Identifier of the project this workflow belongs to
-          type: string
-          x-order: '20'
-        legacy_project_id:
-          description: Identifier of the project in legacy systems
-          type: string
-          x-order: '30'
-        name:
-          description: Display name of the workflow
-          type: string
-          x-order: '40'
-        created_by:
-          description: Represents the user who created this workflow
-          type: string
-          x-order: '50'
-        description:
-          description: Provides additional details about the workflow
-          type: string
-          x-order: '60'
-        created_at:
-          description: Timestamp when the workflow was created
-          type: string
-          x-order: '70'
-        updated_at:
-          description: Timestamp when the workflow was last modified
-          type: string
-          x-order: '80'
+        error:
+          $ref: '#/components/schemas/common.Error'
     dexter.GetWorkflowCostEstimateTransformerResponse:
       type: object
       properties:
