@@ -218,108 +218,6 @@ paths:
         url: /developer/insights/delete-insights
 components:
   schemas:
-    dexter.CreateInsightUpstreamResponseBody:
-      type: object
-      properties:
-        id:
-          description: Id is the unique identifier assigned to the created insight
-          type: string
-          x-order: '10'
-        message:
-          description: Message contains additional information about the insight creation result
-          type: string
-          x-order: '20'
-    common.Error:
-      type: object
-      properties:
-        code:
-          type: string
-        details: {}
-        message:
-          type: string
-    dexter.CreateInsightsWildcardTransformerRequest:
-      type: object
-      required:
-      - block
-      - input
-      properties:
-        name:
-          description: Name is a human-readable title for the insight
-          type: string
-          x-order: '10'
-        block:
-          description: Describes the processing block to use for the insight
-          type: object
-          required:
-          - version
-          properties:
-            name:
-              description: Name of the block
-              type: string
-            string:
-              description: Id is a unique identifier for the block
-              type: string
-            version:
-              description: Semantic version of the block to use
-              type: string
-          x-order: '20'
-        input:
-          description: Inputs to the insight
-          type: array
-          items:
-            type: integer
-          x-order: '30'
-        project_id:
-          description: Identifies which project this insight belongs to
-          type: string
-          x-order: '40'
-        metadata:
-          description: Contains additional key-value information about the insight
-          type: object
-          additionalProperties:
-            type: string
-          x-order: '50'
-        estimate:
-          description: Indicates whether to return a cost estimate instead of running the insight.
-          type: boolean
-          x-order: '60'
-    dexter.PutInsightsUpstreamResponseBody:
-      type: object
-      properties:
-        id:
-          description: Unique identifier of the insight
-          type: string
-          x-order: '10'
-        status:
-          description: Current status of the download operation
-          type: string
-          x-order: '20'
-        signed_url:
-          description: URL where the packaged assets can be downloaded from
-          type: string
-          x-order: '30'
-    dexter.CreateInsightCostEstimateUpstreamResponseBody:
-      type: object
-      properties:
-        estimate:
-          description: Estimate provides the computed cost value for the insight execution
-          type: integer
-          x-order: '10'
-    dexter.PutInsightsUpstreamRequestBody:
-      type: object
-      properties:
-        inputs:
-          description: Specifies which input assets to include in the download
-          type: array
-          items:
-            type: string
-          x-order: '10'
-        outputs:
-          description: Specifies which output assets to include in the download
-          type: array
-          items:
-            type: string
-          x-order: '20'
     dexter.ListInsightItem:
       type: object
       properties:
@@ -385,11 +283,6 @@ components:
           description: Indicates the completion percentage of the insight processing
           type: number
           x-order: '90'
-    common.ErrorResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/common.Error'
     dexter.ListInsightsTransformerResponse:
       type: object
       properties:
@@ -398,6 +291,113 @@ components:
           items:
             $ref: '#/components/schemas/dexter.ListInsightItem'
           x-order: '10'
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
+    dexter.CreateInsightUpstreamResponseBody:
+      type: object
+      properties:
+        id:
+          description: Id is the unique identifier assigned to the created insight
+          type: string
+          x-order: '10'
+        message:
+          description: Message contains additional information about the insight creation result
+          type: string
+          x-order: '20'
+    dexter.PutInsightsUpstreamResponseBody:
+      type: object
+      properties:
+        id:
+          description: Unique identifier of the insight
+          type: string
+          x-order: '10'
+        status:
+          description: Current status of the download operation
+          type: string
+          x-order: '20'
+        signed_url:
+          description: URL where the packaged assets can be downloaded from
+          type: string
+          x-order: '30'
+    dexter.CreateInsightCostEstimateUpstreamResponseBody:
+      type: object
+      properties:
+        estimate:
+          description: Estimate provides the computed cost value for the insight execution
+          type: integer
+          x-order: '10'
+    dexter.CreateInsightsWildcardTransformerRequest:
+      type: object
+      required:
+      - block
+      - input
+      properties:
+        name:
+          description: Name is a human-readable title for the insight
+          type: string
+          x-order: '10'
+        block:
+          description: Describes the processing block to use for the insight
+          type: object
+          required:
+          - version
+          properties:
+            name:
+              description: Name of the block
+              type: string
+            string:
+              description: Id is a unique identifier for the block
+              type: string
+            version:
+              description: Semantic version of the block to use
+              type: string
+          x-order: '20'
+        input:
+          description: Inputs to the insight
+          type: array
+          items:
+            type: integer
+          x-order: '30'
+        project_id:
+          description: Identifies which project this insight belongs to
+          type: string
+          x-order: '40'
+        metadata:
+          description: Contains additional key-value information about the insight
+          type: object
+          additionalProperties:
+            type: string
+          x-order: '50'
+        estimate:
+          description: Indicates whether to return a cost estimate instead of running the insight.
+          type: boolean
+          x-order: '60'
+    dexter.PutInsightsUpstreamRequestBody:
+      type: object
+      properties:
+        inputs:
+          description: Specifies which input assets to include in the download
+          type: array
+          items:
+            type: string
+          x-order: '10'
+        outputs:
+          description: Specifies which output assets to include in the download
+          type: array
+          items:
+            type: string
+          x-order: '20'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

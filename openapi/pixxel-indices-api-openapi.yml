@@ -120,6 +120,74 @@ paths:
         url: /developer/indices/create-index
 components:
   schemas:
+    common.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/common.Error'
+    atlas.ListIndicesResponse:
+      type: object
+      properties:
+        indices:
+          type: array
+          items:
+            $ref: '#/components/schemas/atlas.IndexEntity'
+        pagination:
+          $ref: '#/components/schemas/common.Pagination'
+    atlas.IndexType:
+      type: string
+      enum:
+      - custom
+      - preset
+      x-enum-varnames:
+      - Custom
+      - Preset
+    atlas.IndexEntity:
+      type: object
+      properties:
+        bands:
+          type: array
+          items:
+            type: string
+        colormap:
+          type: string
+        created_at:
+          type: string
+        description:
+          type: string
+        expression:
+          type: string
+        expression_type:
+          $ref: '#/components/schemas/atlas.ExpressionType'
+        id:
+          type: string
+        name:
+          type: string
+        rescale:
+          type: array
+          items:
+            type: integer
+        satellite_id:
+          type: string
+        type:
+          $ref: '#/components/schemas/atlas.IndexType'
+        updated_at:
+          type: string
+    common.Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          x-order: '10037'
+          example: 10
+        offset:
+          type: integer
+          x-order: '10038'
+          example: 0
+        total:
+          type: integer
+          x-order: '10039'
+          example: 100
     atlas.IndexCreateResponse:
       type: object
       properties:
@@ -214,53 +282,6 @@ components:
           - $ref: '#/components/schemas/atlas.ExpressionType'
           x-order: '106'
           example: index
-    common.Error:
-      type: object
-      properties:
-        code:
-          type: string
-        details: {}
-        message:
-          type: string
-    atlas.IndexEntity:
-      type: object
-      properties:
-        bands:
-          type: array
-          items:
-            type: string
-        colormap:
-          type: string
-        created_at:
-          type: string
-        description:
-          type: string
-        expression:
-          type: string
-        expression_type:
-          $ref: '#/components/schemas/atlas.ExpressionType'
-        id:
-          type: string
-        name:
-          type: string
-        rescale:
-          type: array
-          items:
-            type: integer
-        satellite_id:
-          type: string
-        type:
-          $ref: '#/components/schemas/atlas.IndexType'
-        updated_at:
-          type: string
-    atlas.IndexType:
-      type: string
-      enum:
-      - custom
-      - preset
-      x-enum-varnames:
-      - Custom
-      - Preset
     atlas.ExpressionType:
       type: string
       enum:
@@ -271,35 +292,14 @@ components:
       - ExpressionTypeComposite
       - ExpressionTypeIndex
       - ExpressionTypeGrayscale
-    common.Pagination:
+    common.Error:
       type: object
       properties:
-        limit:
-          type: integer
-          x-order: '10037'
-          example: 10
-        offset:
-          type: integer
-          x-order: '10038'
-          example: 0
-        total:
-          type: integer
-          x-order: '10039'
-          example: 100
-    common.ErrorResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/common.Error'
-    atlas.ListIndicesResponse:
-      type: object
-      properties:
-        indices:
-          type: array
-          items:
-            $ref: '#/components/schemas/atlas.IndexEntity'
-        pagination:
-          $ref: '#/components/schemas/common.Pagination'
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

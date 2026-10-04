@@ -214,158 +214,13 @@ paths:
       x-operation-id-original: List Satellites
 components:
   schemas:
-    atlas.AOICreateModelV2:
+    lens.modifiedSuccessResponse:
       type: object
-      required:
-      - description
-      - geometry
-      - item_ids
-      - name
-      - project_id
-      - provider
-      - satellite_id
       properties:
-        name:
-          description: Unique user friendly name of the AOI for easier identification
-          type: string
-          x-order: '100'
-          example: AOI-D2
-        description:
-          description: Brief description of the AOI explaining its purpose or contents
-          type: string
-          x-order: '101'
-          example: This AOI contains images of D2
-        satellite_id:
-          description: 'Unique identifier (UUID) for the satellite. Each satellite has a unique ID mapped to its name: - `Pixxel-TD1` - `0004ab8d-0ad1-4d62-8a3f-fe18a7000e70` - `Pixxel-TD2` - `0005c5bb-0bd2-4c80-9393-4a808341c54c`'
-          type: string
-          x-order: '102'
-          example: 0005c5bb-0bd2-4c80-9393-4a808341c54c
-        provider:
-          description: 'Data provider source for satellite imagery: - `pixxel` - For TD and Firefly satellite imagery - `planetary` - For all open source satellite data (Landsat, Sentinel, etc.)'
-          type: string
-          x-order: '103'
-          example: pixxel
-        project_id:
-          description: UUID of the project this AOI belongs to. The AOI will be associated with this project for organization
-          type: string
-          x-order: '104'
-          example: ce5dcc14-8291-4b0c-a278-8c05ec426d22
-        geometry:
-          description: Polygon geometry defining the geographic boundary of the AOI
-          allOf:
-          - $ref: '#/components/schemas/atlas.Polygon'
-          x-order: '105'
-        item_ids:
-          description: 'Array of satellite image item IDs to include in this AOI. Item IDs Example: `["TD2_000650_20230404_L2A_20240405_01001067", "TD1_005630_20230314_L2A_20230504_03001069"]`'
+        satellites:
           type: array
           items:
-            type: string
-          x-order: '106'
-          example:
-          - TD2_00056_20230815_L2A_004010_01001001
-    common.Error:
-      type: object
-      properties:
-        code:
-          type: string
-        details: {}
-        message:
-          type: string
-    lens.originalSuccessResponse:
-      type: object
-      properties:
-        bands:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              offset:
-                type: number
-              scale:
-                type: number
-              spatial_resolution:
-                type: integer
-              wavelength:
-                type: number
-        collections:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              name:
-                type: string
-              provider:
-                type: string
-              queryables:
-                type: array
-                items:
-                  type: string
-              rescale:
-                type: array
-                items:
-                  type: integer
-        id:
-          type: string
-        name:
-          type: string
-        rgb_composite:
-          type: object
-          properties:
-            blue:
-              type: string
-            green:
-              type: string
-            red:
-              type: string
-    atlas.AOIListResponse:
-      type: object
-      properties:
-        aois:
-          type: array
-          items:
-            $ref: '#/components/schemas/atlas.AOI'
-        pagination:
-          $ref: '#/components/schemas/common.Pagination'
-    atlas.Polygon:
-      type: object
-      required:
-      - coordinates
-      - type
-      properties:
-        type:
-          description: GeoJSON geometry type. Must be "Polygon" for AOI boundaries
-          type: string
-          x-order: '100'
-          example: Polygon
-        coordinates:
-          description: 'Nested array of coordinates [[[lng,lat],...]] forming a closed polygon. Example: [[[49.32, 40.85], [49.32, 9.08], [110.7, 9.08], [110.7, 40.85], [49.32, 40.85]]]'
-          type: array
-          items:
-            type: array
-            items:
-              type: array
-              items:
-                type: number
-          x-order: '101'
-    common.Pagination:
-      type: object
-      properties:
-        limit:
-          type: integer
-          x-order: '10037'
-          example: 10
-        offset:
-          type: integer
-          x-order: '10038'
-          example: 0
-        total:
-          type: integer
-          x-order: '10039'
-          example: 100
+            $ref: '#/components/schemas/lens.originalSuccessResponse'
     atlas.AOI:
       type: object
       properties:
@@ -459,18 +314,163 @@ components:
           example:
           - 77.55
           - 12.95
-    lens.modifiedSuccessResponse:
-      type: object
-      properties:
-        satellites:
-          type: array
-          items:
-            $ref: '#/components/schemas/lens.originalSuccessResponse'
     common.ErrorResponse:
       type: object
       properties:
         error:
           $ref: '#/components/schemas/common.Error'
+    atlas.Polygon:
+      type: object
+      required:
+      - coordinates
+      - type
+      properties:
+        type:
+          description: GeoJSON geometry type. Must be "Polygon" for AOI boundaries
+          type: string
+          x-order: '100'
+          example: Polygon
+        coordinates:
+          description: 'Nested array of coordinates [[[lng,lat],...]] forming a closed polygon. Example: [[[49.32, 40.85], [49.32, 9.08], [110.7, 9.08], [110.7, 40.85], [49.32, 40.85]]]'
+          type: array
+          items:
+            type: array
+            items:
+              type: array
+              items:
+                type: number
+          x-order: '101'
+    common.Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          x-order: '10037'
+          example: 10
+        offset:
+          type: integer
+          x-order: '10038'
+          example: 0
+        total:
+          type: integer
+          x-order: '10039'
+          example: 100
+    atlas.AOIListResponse:
+      type: object
+      properties:
+        aois:
+          type: array
+          items:
+            $ref: '#/components/schemas/atlas.AOI'
+        pagination:
+          $ref: '#/components/schemas/common.Pagination'
+    atlas.AOICreateModelV2:
+      type: object
+      required:
+      - description
+      - geometry
+      - item_ids
+      - name
+      - project_id
+      - provider
+      - satellite_id
+      properties:
+        name:
+          description: Unique user friendly name of the AOI for easier identification
+          type: string
+          x-order: '100'
+          example: AOI-D2
+        description:
+          description: Brief description of the AOI explaining its purpose or contents
+          type: string
+          x-order: '101'
+          example: This AOI contains images of D2
+        satellite_id:
+          description: 'Unique identifier (UUID) for the satellite. Each satellite has a unique ID mapped to its name: - `Pixxel-TD1` - `0004ab8d-0ad1-4d62-8a3f-fe18a7000e70` - `Pixxel-TD2` - `0005c5bb-0bd2-4c80-9393-4a808341c54c`'
+          type: string
+          x-order: '102'
+          example: 0005c5bb-0bd2-4c80-9393-4a808341c54c
+        provider:
+          description: 'Data provider source for satellite imagery: - `pixxel` - For TD and Firefly satellite imagery - `planetary` - For all open source satellite data (Landsat, Sentinel, etc.)'
+          type: string
+          x-order: '103'
+          example: pixxel
+        project_id:
+          description: UUID of the project this AOI belongs to. The AOI will be associated with this project for organization
+          type: string
+          x-order: '104'
+          example: ce5dcc14-8291-4b0c-a278-8c05ec426d22
+        geometry:
+          description: Polygon geometry defining the geographic boundary of the AOI
+          allOf:
+          - $ref: '#/components/schemas/atlas.Polygon'
+          x-order: '105'
+        item_ids:
+          description: 'Array of satellite image item IDs to include in this AOI. Item IDs Example: `["TD2_000650_20230404_L2A_20240405_01001067", "TD1_005630_20230314_L2A_20230504_03001069"]`'
+          type: array
+          items:
+            type: string
+          x-order: '106'
+          example:
+          - TD2_00056_20230815_L2A_004010_01001001
+    lens.originalSuccessResponse:
+      type: object
+      properties:
+        bands:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              offset:
+                type: number
+              scale:
+                type: number
+              spatial_resolution:
+                type: integer
+              wavelength:
+                type: number
+        collections:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              provider:
+                type: string
+              queryables:
+                type: array
+                items:
+                  type: string
+              rescale:
+                type: array
+                items:
+                  type: integer
+        id:
+          type: string
+        name:
+          type: string
+        rgb_composite:
+          type: object
+          properties:
+            blue:
+              type: string
+            green:
+              type: string
+            red:
+              type: string
+    common.Error:
+      type: object
+      properties:
+        code:
+          type: string
+        details: {}
+        message:
+          type: string
     atlas.AOIStatus:
       type: string
       enum:
