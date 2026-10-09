@@ -2,7 +2,7 @@
 name: Task and order Pixxel satellite imagery
 description: Define an area of interest, check available satellites/bandsets, and submit a tasking order for new hyperspectral/multispectral capture.
 api: openapi/pixxel-openapi-original.json
-operations: [ListProjects, AOICreateAOI, "List Satellites", ListBandsets, SubmitOrder, ListOrderItems, GetOrderById]
+operations: [ListProjects, AOICreateAOI, "ListSatellites", ListBandsets, SubmitOrder, ListOrderItems, GetOrderById]
 ---
 
 # Task and order Pixxel satellite imagery
