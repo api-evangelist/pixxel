@@ -296,35 +296,153 @@ paths:
         url: /developer/orders/order-orderitem
 components:
   schemas:
-    clerk.Band:
+    clerk.OrderItemFeasibilityStatus:
+      type: string
+      enum:
+      - NOT_APPLICABLE
+      - FAILED
+      - WEAK_SUCCESS
+      - SUCCESS
+      - UNSPECIFIED
+      x-enum-varnames:
+      - OrderItemFeasibilityStatusNotApplicable
+      - OrderItemFeasibilityStatusFailed
+      - OrderItemFeasibilityStatusWeakSuccess
+      - OrderItemFeasibilityStatusSuccess
+      - OrderItemFeasibilityStatusUnspecified
+    clerk.OrderItemRecurrence:
+      type: string
+      enum:
+      - ONCE
+      - MONTHLY
+      - BIMONTHLY
+      - QUARTERLY
+      - NOT_APPLICABLE
+      x-enum-varnames:
+      - OrderItemRecurrenceOnce
+      - OrderItemRecurrenceMonthly
+      - OrderItemRecurrenceBimonthly
+      - OrderItemRecurrenceQuarterly
+      - OrderItemRecurrenceNotApplicable
+    clerk.Order:
       type: object
       properties:
-        name:
-          description: name of the band
+        created_at:
           type: string
-          example: B001
-        wavelength:
-          description: wavelength of the band in nm
+          example: '2020-01-01T00:00:00+00:00'
+        created_by:
+          description: uuid of the user who created the order
+          type: string
+          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92270
+        id:
+          type: string
+          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
+        order_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/clerk.OrderItem'
+        org_id:
+          type: string
+          example: e31ab6f8-d359-4c6a-83c6-bfa32229bb01
+        paid_at:
+          type: string
+          example: ''
+        status:
+          description: payment status of the order PAID/UNPAID/PAYMENT_IN_PROGRESS
+          allOf:
+          - $ref: '#/components/schemas/clerk.OrderStatus'
+          example: PAID
+        total_amount:
           type: number
-          example: 473
-    clerk.Uplift:
+          example: 1000
+        transaction_id:
+          type: string
+          example: 3671066b-c4fd-4201-8e02-470cb6bc088e
+        updated_at:
+          type: string
+          example: '2020-01-01T00:00:00+00:00'
+        updated_by:
+          description: uuid of the user who last updated the order
+          type: string
+          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92270
+        user_id:
+          type: string
+          example: 90afd20d-8447-4636-a60d-73102008856c
+    clerk.OrderItemDeliverySpeed:
+      type: string
+      enum:
+      - STANDARD
+      - NOT_APPLICABLE
+      x-enum-varnames:
+      - OrderItemDeliverySpeedStandard
+      - OrderItemDeliverySpeedNotApplicable
+    clerk.Task:
       type: object
       properties:
-        amount:
-          description: delta amount due to the uplift
+        created_at:
+          description: timestamp of the creation of the task
+          type: string
+          example: '2024-05-27T06:50:20.056549Z'
+        created_by:
+          description: uuid of the user who created the task
+          type: string
+          example: e3ff4960-2d5a-4737-90dd-9cfb31bfa71e
+        delivery_status:
+          description: tracks status of the delivery of the task if automated delivery was configured.
+          enum:
+          - PENDING
+          - SUCCESSFUL
+          - FAILED
+          - NOT_APPLICABLE
+          allOf:
+          - $ref: '#/components/schemas/clerk.DeliveryStatus'
+          example: SUCCESSFUL
+        end_date:
+          description: relevant only for tasking
+          type: string
+          example: 25-05-2024
+        id:
+          description: uuid of the task
+          type: string
+          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
+        number_of_strips:
+          description: (relevant only for tasking) number of strips generated for the task
           type: integer
-        item_id:
-          description: (only for archive order) the item id to which the uplift applies
+          example: 4
+        order_item_id:
+          description: uuid of the order item
           type: string
-        percentage:
-          description: percentage of the uplift
+          example: TD1_006800_20230528_L2A_20230615_03001067
+        start_date:
+          description: relevant only for tasking
+          type: string
+          example: 15-05-2024
+        status:
+          description: status of the task
+          allOf:
+          - $ref: '#/components/schemas/clerk.TaskStatus'
+          example: FULFILLED
+        tokens_used:
+          description: tokens used by the specific task, for recurring tasking, tokens are consumed on task level and not orderitem level.
           type: integer
-        subtitle:
-          description: description of the uplift
+          example: 10
+        transaction_id:
+          description: uuid of the transaction associated with the task, transaction id will be different for tasks of recurring order items, since each task is transacted for when it's requested/created.
           type: string
-        title:
-          description: type/cause of the uplift
+          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
+        type:
+          description: type of the task
+          allOf:
+          - $ref: '#/components/schemas/clerk.TaskType'
+          example: ARCHIVE
+        updated_at:
+          description: timestamp of the last update of the task
           type: string
+          example: '2024-05-27T06:50:20.056549Z'
+        updated_by:
+          description: uuid of the user who last updated the task
+          type: string
+          example: 77345b90-0677-4889-b4d8-2ddb93c0467f
     clerk.OrderItemImageType:
       type: string
       enum:
@@ -335,26 +453,46 @@ components:
       - OrderItemImageTypeVNIR
       - OrderItemImageTypeSWIR
       - OrderItemImageTypeVSWIR
-    clerk.docOriginalOrderRequest:
+    clerk.OrderItemStatus:
+      type: string
+      enum:
+      - DRAFT
+      - ACTIVE
+      - FULFILLED
+      - CANCELLED
+      - FAILED
+      - PARTIALLY_FULFILLED
+      x-enum-varnames:
+      - OrderItemStatusDraft
+      - OrderItemStatusActive
+      - OrderItemStatusFulfilled
+      - OrderItemStatusCancelled
+      - OrderItemStatusFailed
+      - OrderItemStatusPartiallyFulfilled
+    common.Pagination:
       type: object
-      required:
-      - order_items
       properties:
-        dry_run:
-          description: default is false
-          type: boolean
-          x-order: '1'
-          example: false
-        order_items:
+        limit:
+          type: integer
+          x-order: '10037'
+          example: 10
+        offset:
+          type: integer
+          x-order: '10038'
+          example: 0
+        total:
+          type: integer
+          x-order: '10039'
+          example: 100
+    clerk.ListOrdersResponse:
+      type: object
+      properties:
+        orders:
           type: array
           items:
-            $ref: '#/components/schemas/clerk.docOriginalOrderItem'
-          x-order: '2'
-    clerk.ErrorResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/clerk.Error'
+            $ref: '#/components/schemas/clerk.Order'
+        pagination:
+          $ref: '#/components/schemas/common.Pagination'
     clerk.docOriginalOrderItem:
       type: object
       required:
@@ -473,6 +611,70 @@ components:
               type: string
               example: my-bucket/my-folder
           x-order: '113'
+    clerk.OrderItemPaymentStatus:
+      type: string
+      enum:
+      - PAID
+      - PARTIAL-REFUND
+      - REFUND
+      - UNPAID
+      - PARTIAL-MONTHLY
+      x-enum-varnames:
+      - OrderItemPaymentStatusPaid
+      - OrderItemPaymentStatusPartialRefund
+      - OrderItemPaymentStatusRefund
+      - OrderItemPaymentStatusUnpaid
+      - OrderItemPaymentStatusPartialMonthly
+    clerk.Band:
+      type: object
+      properties:
+        name:
+          description: name of the band
+          type: string
+          example: B001
+        wavelength:
+          description: wavelength of the band in nm
+          type: number
+          example: 473
+    clerk.DeliveryStatus:
+      type: string
+      enum:
+      - UNSPECIFIED
+      - CREATED
+      - FAILED
+      - IN_PROGRESS
+      - SUCCESS
+      x-enum-varnames:
+      - DeliveryStatusUnspecified
+      - DeliveryStatusCreated
+      - DeliveryStatusFailed
+      - DeliveryStatusInProgress
+      - DeliveryStatusSuccess
+    clerk.OrderStatus:
+      type: string
+      enum:
+      - PAID
+      - REFUND
+      - UNPAID
+      - PAYMENT_IN_PROGRESS
+      x-enum-varnames:
+      - OrderStatusPaid
+      - OrderStatusRefund
+      - OrderStatusUnpaid
+      - OrderStatusPaymentInProgress
+    clerk.CloudDelivery:
+      type: object
+      required:
+      - config
+      properties:
+        config:
+          description: id of the store
+          type: string
+          example: 9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6
+        path:
+          description: prefix path to which resource should be transferred to
+          type: string
+          example: path/subdirectory1/
     clerk.OrderItemType:
       type: string
       enum:
@@ -501,89 +703,55 @@ components:
             type: array
             items:
               type: integer
-    clerk.OrderItemStatus:
+    clerk.TaskStatus:
       type: string
       enum:
       - DRAFT
-      - ACTIVE
+      - SUBMITTED
+      - IN_PROGRESS
       - FULFILLED
-      - CANCELLED
-      - FAILED
       - PARTIALLY_FULFILLED
+      - FAILED
+      - CANCELLED
+      - EXPIRED
       x-enum-varnames:
-      - OrderItemStatusDraft
-      - OrderItemStatusActive
-      - OrderItemStatusFulfilled
-      - OrderItemStatusCancelled
-      - OrderItemStatusFailed
-      - OrderItemStatusPartiallyFulfilled
-    clerk.Task:
+      - TaskStatusDraft
+      - TaskStatusSubmitted
+      - TaskStatusInProgress
+      - TaskStatusFulfilled
+      - TaskStatusPartiallyFulfilled
+      - TaskStatusFailed
+      - TaskStatusCancelled
+      - TaskStatusExpired
+    clerk.Uplift:
       type: object
       properties:
-        created_at:
-          description: timestamp of the creation of the task
-          type: string
-          example: '2024-05-27T06:50:20.056549Z'
-        created_by:
-          description: uuid of the user who created the task
-          type: string
-          example: e3ff4960-2d5a-4737-90dd-9cfb31bfa71e
-        delivery_status:
-          description: tracks status of the delivery of the task if automated delivery was configured.
-          enum:
-          - PENDING
-          - SUCCESSFUL
-          - FAILED
-          - NOT_APPLICABLE
-          allOf:
-          - $ref: '#/components/schemas/clerk.DeliveryStatus'
-          example: SUCCESSFUL
-        end_date:
-          description: relevant only for tasking
-          type: string
-          example: 25-05-2024
-        id:
-          description: uuid of the task
-          type: string
-          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
-        number_of_strips:
-          description: (relevant only for tasking) number of strips generated for the task
+        amount:
+          description: delta amount due to the uplift
           type: integer
-          example: 4
-        order_item_id:
-          description: uuid of the order item
+        item_id:
+          description: (only for archive order) the item id to which the uplift applies
           type: string
-          example: TD1_006800_20230528_L2A_20230615_03001067
-        start_date:
-          description: relevant only for tasking
-          type: string
-          example: 15-05-2024
-        status:
-          description: status of the task
-          allOf:
-          - $ref: '#/components/schemas/clerk.TaskStatus'
-          example: FULFILLED
-        tokens_used:
-          description: tokens used by the specific task, for recurring tasking, tokens are consumed on task level and not orderitem level.
+        percentage:
+          description: percentage of the uplift
           type: integer
-          example: 10
-        transaction_id:
-          description: uuid of the transaction associated with the task, transaction id will be different for tasks of recurring order items, since each task is transacted for when it's requested/created.
+        subtitle:
+          description: description of the uplift
           type: string
-          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
-        type:
-          description: type of the task
-          allOf:
-          - $ref: '#/components/schemas/clerk.TaskType'
-          example: ARCHIVE
-        updated_at:
-          description: timestamp of the last update of the task
+        title:
+          description: type/cause of the uplift
           type: string
-          example: '2024-05-27T06:50:20.056549Z'
-        updated_by:
-          description: uuid of the user who last updated the task
+    clerk.Interval:
+      type: object
+      properties:
+        end:
+          description: end time of the interval
           type: string
-          example: 77345b90-0677-4889-b4d8-2ddb93c0467f
+          example: '2020-01-01T00:00:00+00:00'
+        start:
+          description: start time of the interval
+          type: string
+          example: '2020-01-01T00:00:00+00:00'
     clerk.OrderItem:
       type: object
       properties:
@@ -737,169 +905,6 @@ components:
           description: UUID of the user
           type: string
           example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
-    clerk.Image:
-      type: object
-      properties:
-        geometry: {}
-        item_id:
-          description: STAC item id for the image
-          type: string
-    clerk.OrderItemDeliverySpeed:
-      type: string
-      enum:
-      - STANDARD
-      - NOT_APPLICABLE
-      x-enum-varnames:
-      - OrderItemDeliverySpeedStandard
-      - OrderItemDeliverySpeedNotApplicable
-    clerk.Order:
-      type: object
-      properties:
-        created_at:
-          type: string
-          example: '2020-01-01T00:00:00+00:00'
-        created_by:
-          description: uuid of the user who created the order
-          type: string
-          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92270
-        id:
-          type: string
-          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92276
-        order_items:
-          type: array
-          items:
-            $ref: '#/components/schemas/clerk.OrderItem'
-        org_id:
-          type: string
-          example: e31ab6f8-d359-4c6a-83c6-bfa32229bb01
-        paid_at:
-          type: string
-          example: ''
-        status:
-          description: payment status of the order PAID/UNPAID/PAYMENT_IN_PROGRESS
-          allOf:
-          - $ref: '#/components/schemas/clerk.OrderStatus'
-          example: PAID
-        total_amount:
-          type: number
-          example: 1000
-        transaction_id:
-          type: string
-          example: 3671066b-c4fd-4201-8e02-470cb6bc088e
-        updated_at:
-          type: string
-          example: '2020-01-01T00:00:00+00:00'
-        updated_by:
-          description: uuid of the user who last updated the order
-          type: string
-          example: 47435e2b-d8c4-41ff-9de9-2be3bfc92270
-        user_id:
-          type: string
-          example: 90afd20d-8447-4636-a60d-73102008856c
-    clerk.DeliveryStatus:
-      type: string
-      enum:
-      - UNSPECIFIED
-      - CREATED
-      - FAILED
-      - IN_PROGRESS
-      - SUCCESS
-      x-enum-varnames:
-      - DeliveryStatusUnspecified
-      - DeliveryStatusCreated
-      - DeliveryStatusFailed
-      - DeliveryStatusInProgress
-      - DeliveryStatusSuccess
-    clerk.OrderStatus:
-      type: string
-      enum:
-      - PAID
-      - REFUND
-      - UNPAID
-      - PAYMENT_IN_PROGRESS
-      x-enum-varnames:
-      - OrderStatusPaid
-      - OrderStatusRefund
-      - OrderStatusUnpaid
-      - OrderStatusPaymentInProgress
-    clerk.Interval:
-      type: object
-      properties:
-        end:
-          description: end time of the interval
-          type: string
-          example: '2020-01-01T00:00:00+00:00'
-        start:
-          description: start time of the interval
-          type: string
-          example: '2020-01-01T00:00:00+00:00'
-    clerk.Error:
-      type: object
-      properties:
-        code:
-          description: short string based code reflecting the type of error
-          type: string
-        details:
-          description: additional details on the error
-        message:
-          description: info message on the error
-          type: string
-    clerk.CloudDelivery:
-      type: object
-      required:
-      - config
-      properties:
-        config:
-          description: id of the store
-          type: string
-          example: 9af9ca14-8c0f-4b7b-ab5e-3a29fc7325b6
-        path:
-          description: prefix path to which resource should be transferred to
-          type: string
-          example: path/subdirectory1/
-    clerk.ListOrdersResponse:
-      type: object
-      properties:
-        orders:
-          type: array
-          items:
-            $ref: '#/components/schemas/clerk.Order'
-        pagination:
-          $ref: '#/components/schemas/common.Pagination'
-    clerk.OrderItemFeasibilityStatus:
-      type: string
-      enum:
-      - NOT_APPLICABLE
-      - FAILED
-      - WEAK_SUCCESS
-      - SUCCESS
-      - UNSPECIFIED
-      x-enum-varnames:
-      - OrderItemFeasibilityStatusNotApplicable
-      - OrderItemFeasibilityStatusFailed
-      - OrderItemFeasibilityStatusWeakSuccess
-      - OrderItemFeasibilityStatusSuccess
-      - OrderItemFeasibilityStatusUnspecified
-    clerk.TaskStatus:
-      type: string
-      enum:
-      - DRAFT
-      - SUBMITTED
-      - IN_PROGRESS
-      - FULFILLED
-      - PARTIALLY_FULFILLED
-      - FAILED
-      - CANCELLED
-      - EXPIRED
-      x-enum-varnames:
-      - TaskStatusDraft
-      - TaskStatusSubmitted
-      - TaskStatusInProgress
-      - TaskStatusFulfilled
-      - TaskStatusPartiallyFulfilled
-      - TaskStatusFailed
-      - TaskStatusCancelled
-      - TaskStatusExpired
     clerk.TaskType:
       type: string
       enum:
@@ -908,35 +913,21 @@ components:
       x-enum-varnames:
       - TaskTypeArchive
       - TaskTypeTasking
-    clerk.OrderItemRecurrence:
-      type: string
-      enum:
-      - ONCE
-      - MONTHLY
-      - BIMONTHLY
-      - QUARTERLY
-      - NOT_APPLICABLE
-      x-enum-varnames:
-      - OrderItemRecurrenceOnce
-      - OrderItemRecurrenceMonthly
-      - OrderItemRecurrenceBimonthly
-      - OrderItemRecurrenceQuarterly
-      - OrderItemRecurrenceNotApplicable
-    common.Pagination:
+    clerk.docOriginalOrderRequest:
       type: object
+      required:
+      - order_items
       properties:
-        limit:
-          type: integer
-          x-order: '10037'
-          example: 10
-        offset:
-          type: integer
-          x-order: '10038'
-          example: 0
-        total:
-          type: integer
-          x-order: '10039'
-          example: 100
+        dry_run:
+          description: default is false
+          type: boolean
+          x-order: '1'
+          example: false
+        order_items:
+          type: array
+          items:
+            $ref: '#/components/schemas/clerk.docOriginalOrderItem'
+          x-order: '2'
     clerk.OrderItemResponse:
       type: object
       properties:
@@ -1104,6 +1095,22 @@ components:
               type: array
               items:
                 type: string
+    clerk.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/clerk.Error'
+    clerk.Error:
+      type: object
+      properties:
+        code:
+          description: short string based code reflecting the type of error
+          type: string
+        details:
+          description: additional details on the error
+        message:
+          description: info message on the error
+          type: string
     clerk.ListOrderItemsResponse:
       type: object
       properties:
@@ -1113,20 +1120,13 @@ components:
             $ref: '#/components/schemas/clerk.OrderItemResponse'
         pagination:
           $ref: '#/components/schemas/common.Pagination'
-    clerk.OrderItemPaymentStatus:
-      type: string
-      enum:
-      - PAID
-      - PARTIAL-REFUND
-      - REFUND
-      - UNPAID
-      - PARTIAL-MONTHLY
-      x-enum-varnames:
-      - OrderItemPaymentStatusPaid
-      - OrderItemPaymentStatusPartialRefund
-      - OrderItemPaymentStatusRefund
-      - OrderItemPaymentStatusUnpaid
-      - OrderItemPaymentStatusPartialMonthly
+    clerk.Image:
+      type: object
+      properties:
+        geometry: {}
+        item_id:
+          description: STAC item id for the image
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

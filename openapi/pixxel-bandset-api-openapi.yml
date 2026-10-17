@@ -44,17 +44,18 @@ paths:
         url: /developer/orders/bandsets
 components:
   schemas:
-    clerk.Band:
+    clerk.ListBandsets:
       type: object
       properties:
-        name:
-          description: name of the band
-          type: string
-          example: B001
-        wavelength:
-          description: wavelength of the band in nm
-          type: number
-          example: 473
+        bandsets:
+          type: array
+          items:
+            $ref: '#/components/schemas/clerk.Bandset'
+    clerk.ErrorResponse:
+      type: object
+      properties:
+        error:
+          $ref: '#/components/schemas/clerk.Error'
     clerk.Bandset:
       type: object
       properties:
@@ -79,18 +80,6 @@ components:
           description: name of the bandset
           type: string
           example: Agriculture
-    clerk.ErrorResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/clerk.Error'
-    clerk.ListBandsets:
-      type: object
-      properties:
-        bandsets:
-          type: array
-          items:
-            $ref: '#/components/schemas/clerk.Bandset'
     clerk.Error:
       type: object
       properties:
@@ -102,6 +91,17 @@ components:
         message:
           description: info message on the error
           type: string
+    clerk.Band:
+      type: object
+      properties:
+        name:
+          description: name of the band
+          type: string
+          example: B001
+        wavelength:
+          description: wavelength of the band in nm
+          type: number
+          example: 473
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

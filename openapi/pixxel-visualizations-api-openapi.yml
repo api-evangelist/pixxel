@@ -420,6 +420,153 @@ paths:
                 $ref: '#/components/schemas/common.ErrorResponse'
 components:
   schemas:
+    atlas.AssetType:
+      type: string
+      enum:
+      - mosaic
+      - stac_item
+      - visualization
+      x-enum-varnames:
+      - MosaicAssetType
+      - STACItemAssetType
+      - VisualizationAssetType
+    atlas.LegendItem:
+      type: object
+      properties:
+        area:
+          type: number
+          example: 50
+        area_percentage:
+          type: number
+          example: 5
+        color:
+          type: string
+          example: '#2b83ba'
+        label:
+          type: string
+          example: Very Low
+        max:
+          type: number
+          example: 51
+        min:
+          type: number
+          example: 0
+    atlas.VisualizationListItem:
+      type: object
+      properties:
+        aoi_id:
+          type: string
+          example: e9767554-550e-4464-a677-b8cf096073ab
+        created_at:
+          type: string
+          example: '2022-11-14 12:55:49.125928+00:00'
+        id:
+          type: string
+          example: a80f7f4c-abe9-4118-875e-3a2306577e11
+        index_id:
+          type: string
+          example: 90d63531-5f54-4704-a4b0-7bb92ae08f23
+        progress:
+          type: integer
+          example: 100
+        status:
+          allOf:
+          - $ref: '#/components/schemas/atlas.VisualizationStatus'
+          example: success
+        tenant_id:
+          type: string
+          example: tenant-123456
+        updated_at:
+          type: string
+          example: '2022-11-14 12:55:49.125928+00:00'
+        user_id:
+          type: string
+          example: e3a671ad-5381-4413-8c1c-bc4e1ccaff45
+    atlas.VisualizationListResponse:
+      type: object
+      properties:
+        pagination:
+          $ref: '#/components/schemas/common.Pagination'
+        visualization:
+          type: array
+          items:
+            $ref: '#/components/schemas/atlas.VisualizationListItem'
+    atlas.SLDRequest:
+      type: object
+      required:
+      - dates
+      - visualization_modes
+      properties:
+        dates:
+          description: List of dates to generate SLD for
+          type: array
+          items:
+            type: string
+          x-order: '100'
+          example:
+          - '2024_05_06'
+          - '2024_05_07'
+        visualization_modes:
+          description: Visualization modes to generate SLD for
+          type: array
+          items:
+            $ref: '#/components/schemas/atlas.VisualizationMode'
+          x-order: '101'
+          example:
+          - dynamic
+          - theoretical
+    atlas.AssetStatus:
+      type: string
+      enum:
+      - success
+      - failed
+      - started
+      - creating
+      x-enum-varnames:
+      - AssetStatusSuccess
+      - AssetStatusFailed
+      - AssetStatusStarted
+      - AssetStatusCreating
+    common.Pagination:
+      type: object
+      properties:
+        limit:
+          type: integer
+          x-order: '10037'
+          example: 10
+        offset:
+          type: integer
+          x-order: '10038'
+          example: 0
+        total:
+          type: integer
+          x-order: '10039'
+          example: 100
+    atlas.VisualizationMetadataUpdateRequest:
+      type: object
+      required:
+      - legend
+      - visualization_mode
+      properties:
+        visualization_mode:
+          description: Which legend mode to update (dynamic or theoretical)
+          allOf:
+          - $ref: '#/components/schemas/atlas.VisualizationMode'
+          x-order: '100'
+          example: theoretical
+        legend:
+          description: Legend breakpoints per date. For dynamic mode, values can be null (auto-computed)
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/atlas.LegendItemUpdateRequest'
+          x-order: '101'
+        dynamic_bins:
+          description: Number of equal-interval bins for dynamic mode (1-15). Required when visualization_mode is dynamic
+          type: integer
+          x-order: '102'
+          example: 5
     atlas.PngRequest:
       type: object
       required:
@@ -445,42 +592,34 @@ components:
           - theoretical
           x-order: '102'
           example: dynamic
-    atlas.AssetStatus:
+    atlas.SLDResponse:
+      type: object
+      properties:
+        sld:
+          description: 'Nested map: mode -> date -> SLD XML string'
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: string
+    atlas.ExpressionType:
       type: string
       enum:
-      - success
-      - failed
-      - started
-      - creating
+      - composite
+      - index
+      - grayscale
       x-enum-varnames:
-      - AssetStatusSuccess
-      - AssetStatusFailed
-      - AssetStatusStarted
-      - AssetStatusCreating
-    atlas.VisualizationCreateRequest:
+      - ExpressionTypeComposite
+      - ExpressionTypeIndex
+      - ExpressionTypeGrayscale
+    common.Error:
       type: object
-      required:
-      - index_id
       properties:
-        index_id:
-          description: UUID of the index to use for this visualization
+        code:
           type: string
-          x-order: '100'
-          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
-        src_asset_ids:
-          description: Optional list of source asset IDs to include in the visualization
-          type: array
-          items:
-            type: string
-          x-order: '101'
-          example:
-          - e3a671ad-5381-4413-8c1c-bc4e1ccaff45
-          - 90d63531-5f54-4704-a4b0-7bb92ae08f23
-        resolution:
-          description: Optional resolution override. If not provided, defaults to the satellite's default resolution
-          type: number
-          x-order: '102'
-          example: 10
+        details: {}
+        message:
+          type: string
     atlas.LegendItemUpdateRequest:
       type: object
       properties:
@@ -496,112 +635,13 @@ components:
         min:
           type: number
           example: 0
-    atlas.ExpressionType:
-      type: string
-      enum:
-      - composite
-      - index
-      - grayscale
-      x-enum-varnames:
-      - ExpressionTypeComposite
-      - ExpressionTypeIndex
-      - ExpressionTypeGrayscale
-    atlas.LegendItem:
+    atlas.VisualizationMetadata:
       type: object
       properties:
-        area:
-          type: number
-          example: 50
-        area_percentage:
-          type: number
-          example: 5
-        color:
-          type: string
-          example: '#2b83ba'
-        label:
-          type: string
-          example: Very Low
-        max:
-          type: number
-          example: 51
-        min:
-          type: number
-          example: 0
-    atlas.VisualizationType:
-      type: string
-      enum:
-      - custom
-      x-enum-varnames:
-      - CustomType
-    common.ErrorResponse:
-      type: object
-      properties:
-        error:
-          $ref: '#/components/schemas/common.Error'
-    atlas.SLDRequest:
-      type: object
-      required:
-      - dates
-      - visualization_modes
-      properties:
-        dates:
-          description: List of dates to generate SLD for
-          type: array
-          items:
-            type: string
-          x-order: '100'
-          example:
-          - '2024_05_06'
-          - '2024_05_07'
-        visualization_modes:
-          description: Visualization modes to generate SLD for
-          type: array
-          items:
-            $ref: '#/components/schemas/atlas.VisualizationMode'
-          x-order: '101'
-          example:
-          - dynamic
-          - theoretical
-    atlas.Polygon:
-      type: object
-      required:
-      - coordinates
-      - type
-      properties:
-        type:
-          description: GeoJSON geometry type. Must be "Polygon" for AOI boundaries
-          type: string
-          x-order: '100'
-          example: Polygon
-        coordinates:
-          description: 'Nested array of coordinates [[[lng,lat],...]] forming a closed polygon. Example: [[[49.32, 40.85], [49.32, 9.08], [110.7, 9.08], [110.7, 40.85], [49.32, 40.85]]]'
-          type: array
-          items:
-            type: array
-            items:
-              type: array
-              items:
-                type: number
-          x-order: '101'
-    atlas.AssetType:
-      type: string
-      enum:
-      - mosaic
-      - stac_item
-      - visualization
-      x-enum-varnames:
-      - MosaicAssetType
-      - STACItemAssetType
-      - VisualizationAssetType
-    atlas.VisualizationListResponse:
-      type: object
-      properties:
-        pagination:
-          $ref: '#/components/schemas/common.Pagination'
-        visualization:
-          type: array
-          items:
-            $ref: '#/components/schemas/atlas.VisualizationListItem'
+        legend:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/atlas.VisualizationLegends'
     atlas.VisualizationDetailResponse:
       type: object
       properties:
@@ -660,47 +700,26 @@ components:
         user_id:
           type: string
           example: e3a671ad-5381-4413-8c1c-bc4e1ccaff45
-    atlas.SLDResponse:
-      type: object
-      properties:
-        sld:
-          description: 'Nested map: mode -> date -> SLD XML string'
-          type: object
-          additionalProperties:
-            type: object
-            additionalProperties:
-              type: string
-    atlas.VisualizationListItem:
-      type: object
-      properties:
-        aoi_id:
-          type: string
-          example: e9767554-550e-4464-a677-b8cf096073ab
-        created_at:
-          type: string
-          example: '2022-11-14 12:55:49.125928+00:00'
-        id:
-          type: string
-          example: a80f7f4c-abe9-4118-875e-3a2306577e11
-        index_id:
-          type: string
-          example: 90d63531-5f54-4704-a4b0-7bb92ae08f23
-        progress:
-          type: integer
-          example: 100
-        status:
-          allOf:
-          - $ref: '#/components/schemas/atlas.VisualizationStatus'
-          example: success
-        tenant_id:
-          type: string
-          example: tenant-123456
-        updated_at:
-          type: string
-          example: '2022-11-14 12:55:49.125928+00:00'
-        user_id:
-          type: string
-          example: e3a671ad-5381-4413-8c1c-bc4e1ccaff45
+    atlas.VisualizationStatus:
+      type: string
+      enum:
+      - creating
+      - success
+      - failed
+      - partial_success
+      x-enum-varnames:
+      - VizStatusCreating
+      - VizStatusSuccess
+      - VizStatusFailed
+      - VizStatusPartialSuccess
+    atlas.VisualizationMode:
+      type: string
+      enum:
+      - dynamic
+      - theoretical
+      x-enum-varnames:
+      - VisualizationModeDynamic
+      - VisualizationModeTheoretical
     atlas.Asset:
       type: object
       properties:
@@ -764,14 +783,62 @@ components:
         visualization_id:
           type: string
           example: e9767554-550e-4464-a677-b8cf096073ab
-    common.Error:
+    atlas.VisualizationType:
+      type: string
+      enum:
+      - custom
+      x-enum-varnames:
+      - CustomType
+    atlas.VisualizationCreateRequest:
+      type: object
+      required:
+      - index_id
+      properties:
+        index_id:
+          description: UUID of the index to use for this visualization
+          type: string
+          x-order: '100'
+          example: 3fa85f64-5717-4562-b3fc-2c963f66afa6
+        src_asset_ids:
+          description: Optional list of source asset IDs to include in the visualization
+          type: array
+          items:
+            type: string
+          x-order: '101'
+          example:
+          - e3a671ad-5381-4413-8c1c-bc4e1ccaff45
+          - 90d63531-5f54-4704-a4b0-7bb92ae08f23
+        resolution:
+          description: Optional resolution override. If not provided, defaults to the satellite's default resolution
+          type: number
+          x-order: '102'
+          example: 10
+    common.ErrorResponse:
       type: object
       properties:
-        code:
+        error:
+          $ref: '#/components/schemas/common.Error'
+    atlas.Polygon:
+      type: object
+      required:
+      - coordinates
+      - type
+      properties:
+        type:
+          description: GeoJSON geometry type. Must be "Polygon" for AOI boundaries
           type: string
-        details: {}
-        message:
-          type: string
+          x-order: '100'
+          example: Polygon
+        coordinates:
+          description: 'Nested array of coordinates [[[lng,lat],...]] forming a closed polygon. Example: [[[49.32, 40.85], [49.32, 9.08], [110.7, 9.08], [110.7, 40.85], [49.32, 40.85]]]'
+          type: array
+          items:
+            type: array
+            items:
+              type: array
+              items:
+                type: number
+          x-order: '101'
     atlas.VisualizationMetadataRollbackRequest:
       type: object
       required:
@@ -799,73 +866,6 @@ components:
           - $ref: '#/components/schemas/atlas.VisualizationMode'
           x-order: '102'
           example: dynamic
-    atlas.VisualizationMetadata:
-      type: object
-      properties:
-        legend:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/atlas.VisualizationLegends'
-    atlas.VisualizationStatus:
-      type: string
-      enum:
-      - creating
-      - success
-      - failed
-      - partial_success
-      x-enum-varnames:
-      - VizStatusCreating
-      - VizStatusSuccess
-      - VizStatusFailed
-      - VizStatusPartialSuccess
-    atlas.VisualizationMode:
-      type: string
-      enum:
-      - dynamic
-      - theoretical
-      x-enum-varnames:
-      - VisualizationModeDynamic
-      - VisualizationModeTheoretical
-    common.Pagination:
-      type: object
-      properties:
-        limit:
-          type: integer
-          x-order: '10037'
-          example: 10
-        offset:
-          type: integer
-          x-order: '10038'
-          example: 0
-        total:
-          type: integer
-          x-order: '10039'
-          example: 100
-    atlas.VisualizationMetadataUpdateRequest:
-      type: object
-      required:
-      - legend
-      - visualization_mode
-      properties:
-        visualization_mode:
-          description: Which legend mode to update (dynamic or theoretical)
-          allOf:
-          - $ref: '#/components/schemas/atlas.VisualizationMode'
-          x-order: '100'
-          example: theoretical
-        legend:
-          description: Legend breakpoints per date. For dynamic mode, values can be null (auto-computed)
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              $ref: '#/components/schemas/atlas.LegendItemUpdateRequest'
-          x-order: '101'
-        dynamic_bins:
-          description: Number of equal-interval bins for dynamic mode (1-15). Required when visualization_mode is dynamic
-          type: integer
-          x-order: '102'
-          example: 5
     atlas.VisualizationLegends:
       type: object
       properties:
