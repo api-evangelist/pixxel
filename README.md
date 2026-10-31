@@ -64,6 +64,146 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Pixxel is a company surfaced as a portfolio company of techstars and added to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+Pixxel is a hyperspectral Earth-observation company operating the Firefly constellation of hyperspectral imaging satellites and the Aurora platform, an Earth-observation studio for tasking, ordering, searching, and analyzing satellite imagery. Its public "stargate" API (api.pixxel.space) gives developers programmatic access to projects and areas of interest (AOIs), satellite tasking and ordering, a STAC-based imagery archive, cloud delivery, spectral indices and visualizations, and analytics workflows, jobs, and model insights across agriculture, mining, energy, forestry, environment, and government use cases. Authentication uses bearer Personal Access Tokens scoped by organization, project, and role.
 
-Backed by: techstars — https://pixxel.space/
+**Areas:** Company · Satellite Imagery · Earth Observation · Hyperspectral · Geospatial · Remote Sensing · Analytics · STAC
+
+## Pixxel on APIs.io
+
+Everything profiled for Pixxel is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/pixxel/](https://apis.io/providers/pixxel/)** — or go straight to one of the APIs or properties below.
+
+### APIs (19)
+
+- [Pixxel AOI API](https://apis.io/apis/pixxel/pixxel-aoi-api/) — The AOI API from Pixxel — 3 operation(s) for aoi.
+- [Pixxel Archives API](https://apis.io/apis/pixxel/pixxel-archives-api/) — The Archives API from Pixxel — 5 operation(s) for archives.
+- [Pixxel Assets API](https://apis.io/apis/pixxel/pixxel-assets-api/) — The Assets API from Pixxel — 1 operation(s) for assets.
+- [Pixxel Bandset API](https://apis.io/apis/pixxel/pixxel-bandset-api/) — The Bandset API from Pixxel — 1 operation(s) for bandset.
+- [Pixxel Blocks API](https://apis.io/apis/pixxel/pixxel-blocks-api/) — The Blocks API from Pixxel — 3 operation(s) for blocks.
+- [Pixxel Catalog API](https://apis.io/apis/pixxel/pixxel-catalog-api/) — The Catalog API from Pixxel — 5 operation(s) for catalog.
+- [Pixxel Downloads API](https://apis.io/apis/pixxel/pixxel-downloads-api/) — The Downloads API from Pixxel — 2 operation(s) for downloads.
+- [Pixxel External API](https://apis.io/apis/pixxel/pixxel-external-api/) — The external API from Pixxel — 1 operation(s) for external.
+- [Pixxel Indices API](https://apis.io/apis/pixxel/pixxel-indices-api/) — The Indices API from Pixxel — 1 operation(s) for indices.
+- [Pixxel Insights API](https://apis.io/apis/pixxel/pixxel-insights-api/) — The Insights API from Pixxel — 4 operation(s) for insights.
+- [Pixxel Jobs API](https://apis.io/apis/pixxel/pixxel-jobs-api/) — The Jobs API from Pixxel — 3 operation(s) for jobs.
+- [Pixxel Order API](https://apis.io/apis/pixxel/pixxel-order-api/) — The Order API from Pixxel — 4 operation(s) for order.
+- [Pixxel Project API](https://apis.io/apis/pixxel/pixxel-project-api/) — The Project API from Pixxel — 2 operation(s) for project.
+- [Pixxel Report API](https://apis.io/apis/pixxel/pixxel-report-api/) — The Report API from Pixxel — 1 operation(s) for report.
+- [Pixxel Search API](https://apis.io/apis/pixxel/pixxel-search-api/) — The Search API from Pixxel — 1 operation(s) for search.
+- [Pixxel Stores API](https://apis.io/apis/pixxel/pixxel-stores-api/) — The Stores API from Pixxel — 2 operation(s) for stores.
+- [Pixxel Tasks API](https://apis.io/apis/pixxel/pixxel-tasks-api/) — The Tasks API from Pixxel — 1 operation(s) for tasks.
+- [Pixxel Visualizations API](https://apis.io/apis/pixxel/pixxel-visualizations-api/) — The Visualizations API from Pixxel — 4 operation(s) for visualizations.
+- [Pixxel Workflows API](https://apis.io/apis/pixxel/pixxel-workflows-api/) — The Workflows API from Pixxel — 3 operation(s) for workflows.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [pixxel](https://apis.io/servers/pixxel/pixxel/)
+
+#### Collections (19)
+
+Postman and Open Collection request collections.
+
+- [stargate AOI API](https://apis.io/collections/pixxel/open-pixxel-aoi-api/)
+- [stargate AOI Archives API](https://apis.io/collections/pixxel/open-pixxel-archives-api/)
+- [stargate AOI Assets API](https://apis.io/collections/pixxel/open-pixxel-assets-api/)
+- [stargate AOI Bandset API](https://apis.io/collections/pixxel/open-pixxel-bandset-api/)
+- [stargate AOI Blocks API](https://apis.io/collections/pixxel/open-pixxel-blocks-api/)
+- [stargate AOI Catalog API](https://apis.io/collections/pixxel/open-pixxel-catalog-api/)
+- [stargate AOI Downloads API](https://apis.io/collections/pixxel/open-pixxel-downloads-api/)
+- [stargate AOI external API](https://apis.io/collections/pixxel/open-pixxel-external-api/)
+- [stargate AOI Indices API](https://apis.io/collections/pixxel/open-pixxel-indices-api/)
+- [stargate AOI Insights API](https://apis.io/collections/pixxel/open-pixxel-insights-api/)
+- [stargate AOI Jobs API](https://apis.io/collections/pixxel/open-pixxel-jobs-api/)
+- [stargate AOI Order API](https://apis.io/collections/pixxel/open-pixxel-order-api/)
+- [stargate AOI Project API](https://apis.io/collections/pixxel/open-pixxel-project-api/)
+- [stargate AOI Report API](https://apis.io/collections/pixxel/open-pixxel-report-api/)
+- [stargate AOI Search API](https://apis.io/collections/pixxel/open-pixxel-search-api/)
+- [stargate AOI Stores API](https://apis.io/collections/pixxel/open-pixxel-stores-api/)
+- [stargate AOI Tasks API](https://apis.io/collections/pixxel/open-pixxel-tasks-api/)
+- [stargate AOI Visualizations API](https://apis.io/collections/pixxel/open-pixxel-visualizations-api/)
+- [stargate AOI Workflows API](https://apis.io/collections/pixxel/open-pixxel-workflows-api/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Pixxel Openapi Overlay](https://apis.io/overlays/pixxel/pixxel-openapi-overlay/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Pixxel Authentication](https://apis.io/security/pixxel/pixxel-authentication/)
+- [Pixxel Domain Security](https://apis.io/security/pixxel/pixxel-domain-security/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://pixxel.space/)
+- [Documentation](https://docs.pixxel.space/)
+- [Getting started](https://docs.pixxel.space/documentation/getting_started/quickstart)
+- [API reference](https://docs.pixxel.space/developer/gettingstarted/introduction)
+- [Pricing](https://docs.pixxel.space/documentation/getting_started/pricingandrefunds/pricingoverview)
+- [Sign up](https://aurora.pixxel.space/)
+- [Support](https://support.pixxel.space/hc/en-us)
+- [Blog](https://pixxel.space/knowledge-hub)
+- [Privacy policy](https://pixxel.space/privacy-policy)
+
+## API Evangelist rating
+
+**Kin Score 36.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 51.2 |
+| Contract governance | 4.5 |
+| Operational transparency | 0.0 |
+| Developer ergonomics | 58.9 |
+| Access clarity | 21.1 |
+
+**Agent readiness 23.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | — |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | — |
+| Rate Limit Signal | — |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 20.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/pixxel/](https://apis.io/providers/pixxel/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Pixxel: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/pixxel/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
